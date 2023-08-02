@@ -1,9 +1,7 @@
 import 'package:devsite_web/presentation/common/ui_helpers.dart';
-import 'package:devsite_web/presentation/view/home/home_view.dart';
-import 'package:devsite_web/presentation/widget/navbar/navbar.desktop.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
+import '../widget/body.dart';
 import '../widget/navbar/navbar.dart';
 
 class MainView extends StatelessWidget {
@@ -16,7 +14,6 @@ class MainView extends StatelessWidget {
 
     //TODO FIX NAVBAR
     return Scaffold(
-
       /// APP BAR
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(120),
@@ -24,9 +21,40 @@ class MainView extends StatelessWidget {
       ),
 
       /// BODY
-      body: HomeView(),
+      body: Stack(
+        children: [
+          AllViews(),
+        ],
+      ),
     );
   }
+}
 
 
-
+//TODO: DELETE WHEN NOT NEEDED
+// Row(
+//   mainAxisSize: MainAxisSize.max,
+//   children: [
+//     // LEFT SIDE
+//     const Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         DevsiteIcon(),
+//         Spacer(flex: 2),
+//         HomeTitle(),
+//         HomeSubtitle(),
+//
+//         // Arrow
+//         verticalSpaceMedium,
+//
+//         // Padding(
+//         //   padding: const EdgeInsets.symmetric(horizontal: 100),
+//         //   child: SvgPicture.asset('assets/undraw_software_engineer.png'),
+//         // ),
+//         verticalSpaceSmall,
+//         Spacer(flex: 3)
+//       ],
+//     ),
+//     HomeImage()
+//   ],
+// ),

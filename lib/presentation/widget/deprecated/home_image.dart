@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../common/app_constants.dart';
+import '../../common/app_constants.dart';
 
 class HomeImage extends StatelessWidget {
   @override

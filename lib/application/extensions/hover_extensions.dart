@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/widget/mouse_transforms/scale_on_hover.dart';
-import '../../presentation/widget/mouse_transforms/translate_on_hover.dart';
+import '../../presentation/animations/scale_on_hover.dart';
+import '../../presentation/animations/translate_on_hover.dart';
 
 
 extension HoverExtensions on Widget {

@@ -1,6 +1,8 @@
+import 'package:devsite_web/application/provider/scroll_provider.dart';
 import 'package:devsite_web/presentation/view/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'common/app_colors.dart';
 
@@ -9,12 +11,17 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DEVsite',
-      debugShowCheckedModeBanner: false,
-      theme: theme(context),
-      //TODO: ADD DYNAMIC ROUTES TO ADD CUSTOM ERROR PAGE WHEN NOT WORKING
-      home: MainView(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ScrollProvider()),
+      ],
+      child: MaterialApp(
+        title: 'DEVsite',
+        debugShowCheckedModeBanner: false,
+        theme: theme(context),
+        //TODO: ADD DYNAMIC ROUTES TO ADD CUSTOM ERROR PAGE WHEN NOT WORKING
+        home: MainView(),
+      ),
     );
   }
 

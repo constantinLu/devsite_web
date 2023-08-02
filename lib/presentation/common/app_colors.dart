@@ -66,3 +66,33 @@ const greyDim = Color.fromRGBO(106, 106, 106, 1);
 // 5% — 0D
 // 0% — 00
 const Color greySpanishHexa = Color(0xCC949494);
+
+
+const pinkpurple = LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: [Color(0XFFaa367c), Color(0XFF4a2fbd)],
+);
+
+const grayBack = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0XFF2E2D36), Color(0XFF11101D)],
+);
+const grayWhite = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFFFFFFFF), Color(0xFFF3F2FF)],
+);
+
+const buttonGradi = LinearGradient(
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  colors: [Color(0XFF7DE7EB), Color(0XFF33BBCF)],
+);
+
+const contactGradi = LinearGradient(
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  colors: [Color(0XFF2E2D36), Color(0XFF11101D)],
+);

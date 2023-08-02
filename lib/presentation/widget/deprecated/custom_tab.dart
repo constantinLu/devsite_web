@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/shared_styles.dart';
+import '../../common/shared_styles.dart';
 
 class CustomTab extends StatelessWidget {
   const CustomTab({Key? key, required this.title}) : super(key: key);

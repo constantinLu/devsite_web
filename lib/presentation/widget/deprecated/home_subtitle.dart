@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-import '../common/shared_styles.dart';
+import '../../common/shared_styles.dart';
 
 class HomeSubtitle extends StatelessWidget {
   const HomeSubtitle({Key? key}) : super(key: key);
