@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/animations/scale_on_hover.dart';
-import '../../presentation/animations/translate_on_hover.dart';
-
+import '../../presentation/widget/animation/scale_on_hover.dart';
+import '../../presentation/widget/animation/translate_on_hover.dart';
 
 extension HoverExtensions on Widget {
   Widget get showCursorOnHover {
