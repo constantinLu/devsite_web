@@ -91,10 +91,10 @@ sendemail() async {
     'content-type': 'application/json',
   };
   final requestBody = {
-    'service_id': 'devsite-email-sender',
-    'template_id': 'template_6xhhnpz',
-    'user_id': 'vNTC7BkceIWYKu9nr',
-    'accessToken': 'Hs6A3EDfq-Z-p1Q3_p8od'
+    'service_id': 'asd',
+    'template_id': 'asd',
+    'user_id': 'asd',
+    'accessToken': 'asd'
   };
 
   final response = await http.post(url, body: requestBody);
