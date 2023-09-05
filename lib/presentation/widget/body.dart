@@ -5,14 +5,14 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../application/provider/scroll_provider.dart';
 import '../view/contact/contact_view.dart';
 import '../view/footer/footer_view.dart';
-import '../view/home/home_view.dart';
-import '../view/services/service_view.dart';
+import '../view/home/about_view.dart';
+import '../view/services/service_view.desktop.dart';
 import '../view/showcase/showcase_view.dart';
 
 class AllViews extends StatelessWidget {
-  static const List<Widget> views = [
-    HomeView(),
-    ServiceView(),
+  static List<Widget> views = [
+    AboutView(),
+    ServiceDesktopView(),
     ShowcaseView(),
     ContactView(),
     FooterView(),

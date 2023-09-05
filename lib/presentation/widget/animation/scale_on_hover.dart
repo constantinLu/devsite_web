@@ -25,8 +25,8 @@ class _ScaleOnHoverState extends State<ScaleOnHover> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeOutCirc,
-        child: widget.child,
         transform: _hovering ? scaleTransform : noScaleTransform,
+        child: widget.child,
       ),
     );
   }

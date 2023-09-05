@@ -1,25 +1,22 @@
+import 'package:devsite_web/presentation/view/showcase/showcase_view.desktop.dart';
+import 'package:devsite_web/presentation/view/showcase/showcase_view.mobile.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../common/app_constants.dart';
-
-class ShowcaseView extends StatelessWidget {
-  const ShowcaseView({
-    super.key,
-  });
+class ShowcaseView extends StatefulWidget {
+  const ShowcaseView({super.key});
 
   @override
+  State<ShowcaseView> createState() => _ShowcaseViewState();
+}
+
+class _ShowcaseViewState extends State<ShowcaseView> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(50),
-      color: Colors.green,
-      width: kdDesktopMaxContentWidth,
-      height: kdDesktopMaxContentHeight,
-      child: Center(
-        child: Text(
-          "SHOWCASE SECTION\n Here I'll add some past projects and a couple past clients",
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-      ),
+    return ScreenTypeLayout.builder(
+      desktop: (_) => const ShowcaseDesktopView(),
+      tablet: (_) => const ShowcaseDesktopView(),
+      mobile: (_) => const ShowcaseMobileView(),
     );
   }
 }

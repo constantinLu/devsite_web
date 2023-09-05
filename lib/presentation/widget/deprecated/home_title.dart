@@ -4,7 +4,7 @@
 // import 'package:responsive_builder/responsive_builder.dart';
 // import 'package:simple_gradient_text/simple_gradient_text.dart';
 //
-// import '../common/app_colors.dart';
+// import '../common/color_picker.dart';
 //
 // class HomeTitle extends StatelessWidget {
 //   const HomeTitle({Key? key}) : super(key: key);

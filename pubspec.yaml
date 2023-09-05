@@ -2,6 +2,7 @@ name: devsite_web
 description: webpage for devsite
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
+
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
@@ -31,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons:
+  http:
   uuid:
   flutter_bloc: #state management
   logger: #for logging
@@ -47,14 +49,25 @@ dependencies:
   cached_network_image:
   shimmer:
   flutter_animate:
-  responsive_builder: ^0.7.0
+  responsive_builder:
   email_validator:
-  scrollable_positioned_list: ^0.3.8
-  animated_text_kit: ^4.2.2
-  provider: ^6.0.1
+  scrollable_positioned_list:
+  animated_text_kit:
+  provider:
   sizer:
   url_launcher:
   carousel_slider:
+  palette_pro:
+
+  flutter_animated_icons:
+  material_design_icons_flutter:
+  font_awesome_flutter:
+  flutter_form_builder:
+  mailer:
+  google_sign_in:
+  timelines: ^0.1.0
+
+
 
 
 
@@ -64,37 +77,55 @@ dev_dependencies:
   injectable_generator: # Version 2
   auto_route_generator:
 
-  flutter_lints: 2.0.2
-  build_runner: ^2.3.3
+  flutter_lints:
+  build_runner:
 
   faker:
   flutter_test:
     sdk: flutter
   mocktail:
-  #integration_test:
   bloc_test:
-
-
 
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     #images
     - assets/images/dev_bold.svg
     - assets/images/master-web-hero-image.png
     - assets/images/undraw-service.svg
     - assets/images/devbutton.svg
+    - assets/images/devbutton-cropped.svg
     - assets/images/undraw_software_engineer.png
-    - assets/gif/logo_gif.gif
-    - assets/gif/logo_gif_transparent.gif
+    - assets/gif/devsite_logo_bold_350×220.gif
+     #cards
+    - assets/images/cards/custom_card.svg
+    - assets/images/cards/integration_card.svg
+    - assets/images/cards/mobile_card.svg
+    - assets/images/cards/refactor_card.svg
+    - assets/images/cards/web_card.svg
+    - #client logo
+    - assets/images/client/mercedes.svg
+    - assets/images/client/fortech.png
+    - assets/images/client/revolut.svg
+    - assets/images/client/orange.svg
+    - assets/images/client/eurocontrol.svg
+    - #tools logo
+    - assets/images/tools/azure.svg
+    - assets/images/tools/confluence.svg
+    - assets/images/tools/docker.svg
+    - assets/images/tools/flutter.svg
+    - assets/images/tools/git.svg
+    - assets/images/tools/gradle.svg
+    - assets/images/tools/google-cloud.svg
+    - assets/images/tools/intellij-idea.svg
+    - assets/images/tools/java.svg
+    - assets/images/tools/jira.svg
+    - assets/images/tools/maven.svg
+    - assets/images/tools/mysql.svg
+    - assets/images/tools/postgresql.svg
+    - assets/images/tools/spring-boot.svg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -102,10 +133,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-#   - family: TT-Commons
-#     fonts:
-#       - asset: assets/fonts/TT-Commons-Medium.otf
-#         style: regular
+  #   - family: TT-Commons
+  #     fonts:
+  #       - asset: assets/fonts/TT-Commons-Medium.otf
+  #         style: regular
 
   fonts:
     - family: TT-Commons

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../application/provider/scroll_provider.dart';
-import '../common/app_colors.dart';
+import '../common/gradient_picker.dart';
 import 'animation/entrance_fader.dart';
 
 class ArrowOnTop extends StatefulWidget {

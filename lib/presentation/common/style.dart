@@ -1,0 +1,45 @@
+import 'package:devsite_web/presentation/widget/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'color_picker.dart';
+
+robotoStyle(BuildContext context, [double? size = 16]) => TextStyle(
+      fontSize: size,
+      fontFamily: GoogleFonts.robotoMono().fontFamily,
+      fontWeight: FontWeight.w100,
+      color: Theme.of(context).textColor.withOpacity(0.6),
+    );
+
+montserratStyle(BuildContext context, [double? size = 16, Color? textColor]) =>
+    GoogleFonts.montserrat(
+      fontSize: size,
+      fontWeight: FontWeight.w200,
+      color: textColor ?? Theme.of(context).textColor,
+    );
+
+poppinsStyle(BuildContext context, [double? size = 16, FontWeight weight = FontWeight.w700]) =>
+    GoogleFonts.poppins(fontSize: size, fontWeight: weight);
+
+TextStyle get ktsTitle => GoogleFonts.openSans(
+      fontSize: 80,
+      height: 0.95,
+      fontWeight: FontWeight.w800,
+    );
+
+TextStyle get ktsTitle2 => GoogleFonts.openSans(
+      fontSize: 40,
+      height: 0.95,
+      fontWeight: FontWeight.w800,
+    );
+
+TextStyle get ktsBodyRegular => GoogleFonts.openSans(
+      fontSize: 15,
+    );
+
+TextStyle get ktsBodyLarge => GoogleFonts.openSans(
+      fontSize: 20,
+    );
+
+TextStyle get ktsTTCommons =>
+    const TextStyle(fontFamily: "TT-Commons", fontSize: 20, color: kcWhiteCultured);

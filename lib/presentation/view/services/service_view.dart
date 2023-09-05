@@ -1,25 +1,22 @@
+import 'package:devsite_web/presentation/view/services/service_view.desktop.dart';
+import 'package:devsite_web/presentation/view/services/service_view.mobile.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../common/app_constants.dart';
-
-class ServiceView extends StatelessWidget {
-  const ServiceView({
-    super.key,
-  });
+class ServiceView extends StatefulWidget {
+  const ServiceView({Key? key}) : super(key: key);
 
   @override
+  State<ServiceView> createState() => _ServiceViewState();
+}
+
+class _ServiceViewState extends State<ServiceView> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(50),
-      color: Colors.black,
-      width: kdDesktopMaxContentWidth,
-      height: kdDesktopMaxContentHeight,
-      child: Center(
-        child: Text(
-          "DEVSITE SERICES SECTION\n Here I'll present the IT Services available",
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-      ),
+    return ScreenTypeLayout.builder(
+      desktop: (_) => const ServiceDesktopView(),
+      tablet: (_) => const ServiceDesktopView(),
+      mobile: (_) => const ServiceMobileView(),
     );
   }
 }

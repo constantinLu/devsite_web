@@ -1,26 +1,25 @@
+import 'package:devsite_web/presentation/view/footer/footer_view.desktop.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../common/app_constants.dart';
+import 'footer_view.mobile.dart';
 
-class FooterView extends StatelessWidget {
+class FooterView extends StatefulWidget {
   const FooterView({
     super.key,
   });
 
   @override
+  State<FooterView> createState() => _FooterViewState();
+}
+
+class _FooterViewState extends State<FooterView> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(50),
-      color: Colors.blue,
-      width: kdDesktopMaxContentWidth,
-      height: kdDesktopMaxContentHeight - 400,
-      child: Center(
-        child: Text(
-          "FOOTER SECTION DATA\n LIKE: company logo on the left\n copyright, company address, maybe\n "
-          "Links to Social Media, Instagram, Linkedin, github, medium, whatsup, telegram ",
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-      ),
+    return ScreenTypeLayout.builder(
+      desktop: (_) => const FooterDesktopView(),
+      tablet: (_) => const FooterDesktopView(),
+      mobile: (_) => const FooterMobileView(),
     );
   }
 }

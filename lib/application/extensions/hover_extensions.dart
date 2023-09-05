@@ -12,6 +12,10 @@ extension HoverExtensions on Widget {
     ));
   }
 
+  Widget get moveUpOnHover {
+    return moveOnHover(x: 0.0, y: -5.0);
+  }
+
   /// Moves the widget by x,y pixels on hover
   ///
   /// to move up use -y values, to move left use -x values
@@ -42,4 +46,8 @@ extension HoverExtensions on Widget {
     }
     return this;
   }
+
+// Widget get moveUpOnHover {
+//   return TranslateOnHover(child: this);
+// }
 }

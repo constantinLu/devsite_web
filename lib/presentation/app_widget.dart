@@ -1,50 +1,31 @@
 import 'package:devsite_web/application/provider/scroll_provider.dart';
 import 'package:devsite_web/presentation/view/main_view.dart';
+import 'package:devsite_web/presentation/widget/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
-import 'common/app_colors.dart';
+import '../app_setup.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    App.init(context);
+    var theme = AppThemeUtil(context).theme;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ScrollProvider()),
       ],
-      child: MaterialApp(
-        title: 'DEVsite',
-        debugShowCheckedModeBanner: false,
-        theme: theme(context),
-        //TODO: ADD DYNAMIC ROUTES TO ADD CUSTOM ERROR PAGE WHEN NOT WORKING
-        home: MainView(),
-      ),
-    );
-  }
-
-  ThemeData theme(BuildContext context) {
-    return Theme.of(context).copyWith(
-      primaryColor: kcBackgroundColor,
-      focusColor: kcPrimaryColor,
-      // Use openSansTextTheme !!!!!!!!! TODO:
-      textTheme: GoogleFonts.openSansTextTheme().apply(
-        bodyColor: Colors.white,
-      ),
-      colorScheme: const ColorScheme(
-          background: Colors.black,
-          brightness: Brightness.light,
-          primary: Colors.black,
-          onPrimary: Colors.black,
-          secondary: Colors.black,
-          onSecondary: Colors.black,
-          error: Colors.black,
-          onError: Colors.black,
-          onBackground: Colors.black,
-          surface: Colors.black,
-          onSurface: Colors.black),
+      child: Sizer(builder: (context, orentation, deviceType) {
+        return MaterialApp(
+          title: 'DEV - Coding the Future, NOW!',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.themeData(true, context),
+          home: MainView(),
+        );
+      }),
     );
   }
 }
