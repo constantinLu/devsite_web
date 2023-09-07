@@ -11,6 +11,7 @@ class AppAssets {
   static String share = 'assets/images/share.png';
 
   //gif
+
   static String devsiteDark = 'assets/gif/dev_gif_300x200_dark.gif';
   static String devsiteLight = 'assets/gif/dev_gif_300x200_light.gif';
 
