@@ -1,12 +1,10 @@
 import 'dart:ui';
 
-import 'package:devsite_web/presentation/common/device_size.dart';
 import 'package:devsite_web/presentation/deprecated/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/body.dart';
 import 'navbar/navbar.dart';
-import 'navbar/navbar.mobile.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -26,7 +24,7 @@ class MainView extends StatelessWidget {
       ),
 
       /// DRAWER
-      drawer: DeviceSize.isDesktop(context) ? null : NavbarMobile(),
+      //drawer: NavBar(),
 
       /// BODY
       body: Stack(

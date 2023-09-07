@@ -1,8 +1,8 @@
-import 'package:devsite_web/presentation/view/home/about_view.mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'about_view.desktop.dart';
+import 'about_view.mobile.dart';
 
 class AboutView extends StatefulWidget {
   const AboutView({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _AboutViewState extends State<AboutView> {
     return ScreenTypeLayout.builder(
       desktop: (_) => const AboutDesktopView(),
       tablet: (_) => const AboutDesktopView(),
-      mobile: (_) => const AboutMobileView(),
+      mobile: (_) => AboutMobileView(),
     );
   }
 }

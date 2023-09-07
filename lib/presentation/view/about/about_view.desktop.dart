@@ -48,7 +48,6 @@ class AboutDesktopView extends StatelessWidget {
                       ),
                       Space.height(0.3.w)!,
                       Text(
-                        //TODO: Add box decoration to text to match the retro style
                         welcomeTitle,
                         style: montserratStyle(context, 25),
                       ),
