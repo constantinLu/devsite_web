@@ -31,40 +31,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons:
+  #cupertino_icons:
   http:
-  uuid:
+ # uuid:
   flutter_bloc: #state management
   logger: #for logging
   google_fonts: #fonts
   flutter_svg:
-  flutter_svg_provider: #to use svg images
-  freezed_annotation: #freeze
-  json_annotation: #for json/toMap code generation
-  json_serializable:
-  injectable: #dependency injection
-  get_it: #service locator
-  auto_route: #routing
+ # freezed_annotation: #freeze
+  #json_annotation: #for json/toMap code generation
+ # json_serializable:
+  #injectable: #dependency injection
+  #get_it: #service locator
+  #auto_route: #routing
   simple_gradient_text: #GRADIENT
-  cached_network_image:
-  shimmer:
-  flutter_animate: ^4.2.0+1
+  #cached_network_image:
+  #shimmer:
+  flutter_animate:
   responsive_builder:
-  email_validator:
+  #email_validator:
   scrollable_positioned_list:
   animated_text_kit:
   provider:
   sizer:
   url_launcher:
   carousel_slider:
-  palette_pro:
-  flutter_animated_icons:
   material_design_icons_flutter:
   font_awesome_flutter:
   flutter_form_builder:
   mailer:
-  google_sign_in:
-  timelines: ^0.1.0
+  timelines:
 
 
 
@@ -72,18 +68,18 @@ dependencies:
 
 dev_dependencies:
 
-  freezed:
-  injectable_generator: # Version 2
-  auto_route_generator:
+  #freezed:
+  #injectable_generator: # Version 2
+  #auto_route_generator:
 
-  flutter_lints:
-  build_runner:
+  #flutter_lints:
+  #build_runner:
 
-  faker:
+  #faker:
   flutter_test:
     sdk: flutter
-  mocktail:
-  bloc_test:
+  #mocktail:
+  #bloc_test:
 
 flutter:
   uses-material-design: true

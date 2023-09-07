@@ -20,7 +20,7 @@ class TagWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Text(
-        "#${tag.name!}",
+        "#${tag.name}",
         style: TextStyle(
           color: tag.override ? kcBlackFull : tag.color,
           fontWeight: FontWeight.bold,
