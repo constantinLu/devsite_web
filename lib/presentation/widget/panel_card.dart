@@ -28,9 +28,11 @@ class PanelCard extends StatelessWidget {
       children: [
         Transform.translate(
           offset: const Offset(-8, 8),
-          child: buildSizedBox(context, height, width, true),
+          //this is the back card
+          child: buildSizedBox(context, height, width, false),
         ),
-        buildSizedBox(context, height, width, false),
+        // this is the front card
+        buildSizedBox(context, height, width, true),
       ],
     ).moveUpOnHover;
   }
@@ -43,20 +45,16 @@ class PanelCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(2),
         child: Card(
-          shadowColor: (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
-          color: isFrontCard
-              ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
-              : (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
+          shadowColor: processColor(isFrontCard, provider),
+          color: processColor(isFrontCard, provider),
           elevation: 12,
           clipBehavior: Clip.antiAlias,
           borderOnForeground: true,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: BorderRadius.circular(0),
             side: BorderSide(
-              color: isFrontCard
-                  ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
-                  : (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
-              width: isFrontCard ? 0 : 3,
+              color: kcBlackFull,
+              width: isFrontCard ? 3 : 0,
             ),
           ),
           child: Row(
@@ -72,12 +70,9 @@ class PanelCard extends StatelessWidget {
                     Container(
                       width: width,
                       height: height,
-                      decoration: BoxDecoration(
-                          color: isFrontCard
-                              ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
-                              : (provider.isDarkMode ? kcDarkBackground : kcLightBackground)),
+                      decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
                     ),
-                    isFrontCard
+                    !isFrontCard
                         ? const Padding(
                             padding: EdgeInsets.all(0),
                           )
@@ -99,7 +94,7 @@ class PanelCard extends StatelessWidget {
                   ],
                 ),
               ),
-              isFrontCard
+              !isFrontCard
                   ? const Padding(padding: EdgeInsets.all(0))
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(20.0, 5, 5, 5),
@@ -122,7 +117,7 @@ class PanelCard extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               maxLines: 5,
-                              style: montserratStyle(context, 14),
+                              style: montserratStyle(context, 14, FontWeight.w400),
                             ),
                           ),
                           Space.height(0.5.w)!,
@@ -158,5 +153,9 @@ class PanelCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color processColor(bool isFrontCard, ThemeProvider provider) {
+    return isFrontCard ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground) : kcBlackFull;
   }
 }

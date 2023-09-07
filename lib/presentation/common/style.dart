@@ -11,11 +11,11 @@ robotoStyle(BuildContext context, [double? size = 16]) => TextStyle(
       color: Theme.of(context).textColor.withOpacity(0.6),
     );
 
-montserratStyle(BuildContext context, [double? size = 16, Color? textColor]) =>
+montserratStyle(BuildContext context, [double? size = 16, FontWeight weight = FontWeight.w200]) =>
     GoogleFonts.montserrat(
       fontSize: size,
-      fontWeight: FontWeight.w200,
-      color: textColor ?? Theme.of(context).textColor,
+      fontWeight: weight,
+      color: Theme.of(context).textColor,
     );
 
 poppinsStyle(BuildContext context, [double? size = 16, FontWeight weight = FontWeight.w700]) =>
