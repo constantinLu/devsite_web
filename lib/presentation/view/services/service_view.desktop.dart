@@ -142,7 +142,7 @@ class ServiceCard extends StatelessWidget {
           elevation: 3,
           clipBehavior: Clip.antiAlias,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(2),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

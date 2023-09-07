@@ -51,7 +51,7 @@ class PanelCard extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           borderOnForeground: true,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0),
+            borderRadius: BorderRadius.circular(2),
             side: BorderSide(
               color: kcBlackFull,
               width: isFrontCard ? 3 : 0,
