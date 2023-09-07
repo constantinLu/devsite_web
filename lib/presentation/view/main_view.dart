@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:devsite_web/presentation/deprecated/ui_helpers.dart';
+import 'package:devsite_web/presentation/view/navbar/navbar.mobile.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/body.dart';
@@ -24,7 +25,7 @@ class MainView extends StatelessWidget {
       ),
 
       /// DRAWER
-      //drawer: NavBar(),
+      drawer: NavbarMobile(),
 
       /// BODY
       body: Stack(
@@ -41,6 +42,7 @@ class MainView extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.blueGrey,
               ),
+              //TODO: FIX THIS BACKDROP
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 200, sigmaY: 200),
                 child: Container(
