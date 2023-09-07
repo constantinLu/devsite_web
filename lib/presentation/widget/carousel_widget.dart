@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:devsite_web/application/assets/app_assets.dart';
+import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common/color_picker.dart';
+import 'animation/grey_scale.dart';
 
 class CarouselWidget extends StatefulWidget {
   const CarouselWidget({super.key});
@@ -34,28 +36,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> grayscaleMatrix = <double>[
-      0.2126,
-      0.7152,
-      0.0722,
-      0,
-      0,
-      0.2126,
-      0.7152,
-      0.0722,
-      0,
-      0,
-      0.2126,
-      0.7152,
-      0.0722,
-      0,
-      0,
-      0,
-      0,
-      0,
-      1,
-      0,
-    ];
+
     return SizedBox(
       width: 75.w,
       child: Column(
@@ -84,25 +65,25 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                     autoPlay: true,
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 300),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 200),
                     viewportFraction: 0.1,
                   ),
                   items: tools.map((i) {
                     return Builder(
                       builder: (BuildContext context) {
                         return Padding(
-                          padding: const EdgeInsets.only(top:15.0),
+                          padding: const EdgeInsets.only(top: 15.0),
                           child: Tooltip(
-                            richMessage:  TextSpan(
+                            richMessage: TextSpan(
                               text: extractName(i),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: kcGreyDim,
                                 fontSize: 16.0,
                               ),
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.transparent, // Transparent background
-                              borderRadius: BorderRadius.circular(4.0), // Optional: Add border radius
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: ColorFiltered(
                               colorFilter: ColorFilter.matrix(grayscaleMatrix),
@@ -113,7 +94,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                                 height: 8.h,
                               ),
                             ),
-                          ),
+                          ).moveUpOnHover,
                         );
                       },
                     );

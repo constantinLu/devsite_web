@@ -2,9 +2,11 @@ import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:devsite_web/presentation/widget/tag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../application/model/project.dart';
+import '../../application/provider/theme_provider.dart';
 import '../common/color_picker.dart';
 import '../common/space.dart';
 import '../common/style.dart';
@@ -33,23 +35,28 @@ class PanelCard extends StatelessWidget {
     ).moveUpOnHover;
   }
 
-  SizedBox buildSizedBox(BuildContext context, double height, double width, bool isBackCard) {
+  SizedBox buildSizedBox(BuildContext context, double height, double width, bool isFrontCard) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SizedBox(
       width: 35.w,
       height: height,
       child: Padding(
         padding: const EdgeInsets.all(2),
         child: Card(
-          shadowColor: kcBlackFull,
-          color: isBackCard ? kcBlackFull : kcDarkGreyColor,
+          shadowColor: (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
+          color: isFrontCard
+              ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
+              : (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
           elevation: 12,
           clipBehavior: Clip.antiAlias,
           borderOnForeground: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(2),
             side: BorderSide(
-              color: kcBlackFull,
-              width: isBackCard ? 0 : 3,
+              color: isFrontCard
+                  ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
+                  : (provider.isDarkMode ? kcDarkBackground : kcLightBackground),
+              width: isFrontCard ? 0 : 3,
             ),
           ),
           child: Row(
@@ -65,9 +72,12 @@ class PanelCard extends StatelessWidget {
                     Container(
                       width: width,
                       height: height,
-                      decoration: BoxDecoration(color: isBackCard ? kcBlackFull : project.color),
+                      decoration: BoxDecoration(
+                          color: isFrontCard
+                              ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground)
+                              : (provider.isDarkMode ? kcDarkBackground : kcLightBackground)),
                     ),
-                    isBackCard
+                    isFrontCard
                         ? const Padding(
                             padding: EdgeInsets.all(0),
                           )
@@ -78,14 +88,18 @@ class PanelCard extends StatelessWidget {
                                     project.logo!,
                                     fit: BoxFit.scaleDown,
                                   )
-                                : Image.asset(
-                                    project.logo!,
+                                : Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Image.asset(
+                                      project.logo!,
+                                      fit: BoxFit.fitHeight,
+                                    ),
                                   ),
                           ),
                   ],
                 ),
               ),
-              isBackCard
+              isFrontCard
                   ? const Padding(padding: EdgeInsets.all(0))
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(20.0, 5, 5, 5),
@@ -130,8 +144,7 @@ class PanelCard extends StatelessWidget {
                             children: [
                               ...project.tags.skip(4).map(
                                     (tag) => Padding(
-                                      padding:
-                                      const EdgeInsets.fromLTRB(4, 6, 4, 4),
+                                      padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
                                       child: TagWidget(tag, TagSize.XS),
                                     ),
                                   ),

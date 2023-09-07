@@ -59,31 +59,3 @@ class MainView extends StatelessWidget {
     );
   }
 }
-
-//TODO: DELETE WHEN NOT NEEDED
-// Row(
-//   mainAxisSize: MainAxisSize.max,
-//   children: [
-//     // LEFT SIDE
-//     const Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         DevsiteIcon(),
-//         Spacer(flex: 2),
-//         HomeTitle(),
-//         HomeSubtitle(),
-//
-//         // Arrow
-//         verticalSpaceMedium,
-//
-//         // Padding(
-//         //   padding: const EdgeInsets.symmetric(horizontal: 100),
-//         //   child: SvgPicture.asset('assets/undraw_software_engineer.png'),
-//         // ),
-//         verticalSpaceSmall,
-//         Spacer(flex: 3)
-//       ],
-//     ),
-//     HomeImage()
-//   ],
-// ),

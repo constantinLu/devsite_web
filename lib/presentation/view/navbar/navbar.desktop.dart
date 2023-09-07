@@ -1,8 +1,10 @@
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
+import 'package:devsite_web/application/provider/theme_provider.dart';
 import 'package:devsite_web/presentation/common/color_picker.dart';
 import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../common/navbar_utils.dart';
 import '../../widget/devsite_icon.dart';
@@ -18,8 +20,7 @@ class NavbarDesktop extends StatefulWidget {
 class _NavbarDesktopState extends State<NavbarDesktop> {
   @override
   Widget build(BuildContext context) {
-    // theme
-    var theme = Theme.of(context);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     //return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
     return Container(
       height: double.infinity,
@@ -38,21 +39,32 @@ class _NavbarDesktopState extends State<NavbarDesktop> {
               ),
           const Expanded(flex: 3, child: SizedBox(width: double.infinity)),
           RetroButton(label: 'CONTACT US', index: 3),
-          IconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            icon: Icon(false ? FontAwesomeIcons.solidMoon : FontAwesomeIcons.solidSun,
-                color: kcYellowBouldare),
-            onPressed: () {
-              //TODO: change the theme when pressed.
-              //TODO: add giggle animation on the icon.
-              // change color to yellow for the sun // whine for the moon and so on.
-            },
-          ).showCursorOnHover.moveUpOnHover,
+          Tooltip(
+            richMessage: TextSpan(
+              text: provider.isDarkMode ? "\u{1F4A4}" : "\u{1F30A}",
+              style: const TextStyle(
+                color: kcGreyDim,
+                fontSize: 16.0,
+              ),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+            child: IconButton(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              icon: provider.isDarkMode
+                  ? const Icon(FontAwesomeIcons.solidMoon, color: kcGreyDim)
+                  : const Icon(FontAwesomeIcons.solidSun, color: kcYellowBouldare),
+              onPressed: () {
+                provider.toggleTheme(); // Toggle the theme
+              },
+            ).showCursorOnHover.moveUpOnHover,
+          ),
         ],
       ),
     );
   }
-//);
 }
 
 // class _NavBarTablet extends StatelessWidget {

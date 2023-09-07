@@ -10,9 +10,12 @@ class AppAssets {
   static String analyst = 'assets/images/analytics.png';
   static String share = 'assets/images/share.png';
 
+  //gif
+  static String devsiteDark = 'assets/gif/dev_gif_300x200_dark.gif';
+  static String devsiteLight = 'assets/gif/dev_gif_300x200_light.gif';
+
   // company-logo
-  static String devsiteLogo = 'assets/gif/devsite_logo_bold_350×220.gif';
-  static String devsiteCropped = 'assets/images/devbutton-cropped.svg';
+  static String devButton = 'assets/images/devbutton.svg';
 
   // cards
   static String customCard = 'assets/images/cards/custom_card.svg';
@@ -22,11 +25,11 @@ class AppAssets {
   static String apiCard = 'assets/images/cards/integration_card.svg';
 
   // client logos
-  static String mercedesLogo = 'assets/images/client/mercedes.svg';
+  static String mercedesLogo = 'assets/images/client/mercedes.png';
   static String fortechLogo = 'assets/images/client/fortech.png';
   static String revolutLogo = 'assets/images/client/revolut.svg';
   static String orangeLogo = 'assets/images/client/orange.svg';
-  static String eurocontrolLogo = 'assets/images/client/eurocontrol.svg';
+  static String eurocontrolLogo = 'assets/images/client/eurocontrol.png';
 
 
   static const String azure = 'assets/images/tools/azure.svg';

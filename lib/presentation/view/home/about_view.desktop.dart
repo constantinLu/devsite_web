@@ -2,8 +2,10 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:devsite_web/application/assets/app_assets.dart';
 import 'package:devsite_web/presentation/common/style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../application/provider/theme_provider.dart';
 import '../../common/color_picker.dart';
 import '../../common/messages.dart';
 import '../../common/space.dart';
@@ -16,7 +18,7 @@ class AboutDesktopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
 
     return SizedBox(
       height: 90.h,
@@ -75,7 +77,7 @@ class AboutDesktopView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        AppAssets.devsiteLogo,
+                        provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
                         fit: BoxFit.contain,
                       ),
                       Space.height(15.h)!,

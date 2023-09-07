@@ -1,3 +1,6 @@
+//TITME
+const appTitle = 'DEV - Coding the Future, NOW!';
+
 // ABOUT
 const aboutHello = "Hello,";
 const welcomeTitle = "Welcome to Development Site";

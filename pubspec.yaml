@@ -48,7 +48,7 @@ dependencies:
   simple_gradient_text: #GRADIENT
   cached_network_image:
   shimmer:
-  flutter_animate:
+  flutter_animate: ^4.2.0+1
   responsive_builder:
   email_validator:
   scrollable_positioned_list:
@@ -58,7 +58,6 @@ dependencies:
   url_launcher:
   carousel_slider:
   palette_pro:
-
   flutter_animated_icons:
   material_design_icons_flutter:
   font_awesome_flutter:
@@ -90,27 +89,24 @@ flutter:
   uses-material-design: true
 
   assets:
-    #images
-    - assets/images/dev_bold.svg
-    - assets/images/master-web-hero-image.png
-    - assets/images/undraw-service.svg
+    #company
     - assets/images/devbutton.svg
-    - assets/images/devbutton-cropped.svg
-    - assets/images/undraw_software_engineer.png
-    - assets/gif/devsite_logo_bold_350×220.gif
-     #cards
+    #gif
+    - assets/gif/dev_gif_300x200_dark.gif
+    - assets/gif/dev_gif_300x200_light.gif
+    #cards
     - assets/images/cards/custom_card.svg
     - assets/images/cards/integration_card.svg
     - assets/images/cards/mobile_card.svg
     - assets/images/cards/refactor_card.svg
     - assets/images/cards/web_card.svg
-    - #client logo
-    - assets/images/client/mercedes.svg
+    #client-logo
+    - assets/images/client/mercedes.png
     - assets/images/client/fortech.png
     - assets/images/client/revolut.svg
     - assets/images/client/orange.svg
-    - assets/images/client/eurocontrol.svg
-    - #tools logo
+    - assets/images/client/eurocontrol.png
+     #tools-logo
     - assets/images/tools/azure.svg
     - assets/images/tools/confluence.svg
     - assets/images/tools/docker.svg

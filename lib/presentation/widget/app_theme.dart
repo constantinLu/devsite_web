@@ -19,7 +19,7 @@ class ThemeColors {
     brightness: Brightness.light,
     fontFamily: 'TT-Commons',
     primaryColor: kcWhiteCultured,
-    scaffoldBackgroundColor: kcWhiteCultured,
+    scaffoldBackgroundColor: kcWhitePure,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorScheme: ColorScheme.light(),
     appBarTheme: const AppBarTheme(
@@ -84,8 +84,6 @@ extension ThemeExtras on ThemeData {
 
   //
   Gradient get contactCard => brightness == Brightness.light ? grayBack : pinkpurple;
-
-
 }
 
 class AppThemeUtil {

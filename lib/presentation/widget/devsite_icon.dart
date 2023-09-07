@@ -1,8 +1,9 @@
 import 'package:devsite_web/application/assets/app_assets.dart';
+import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../common/messages.dart';
+import '../common/color_picker.dart';
 
 class DevsiteIcon extends StatelessWidget {
   final double iconHeight;
@@ -13,29 +14,39 @@ class DevsiteIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(AppAssets.devsiteCropped, fit: BoxFit.scaleDown);
-  }
-
-  //TODO: fix this on the icon when pop-up (can be done with tooltip - and move when hover)
-  void _showHelloDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Center(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            color: Colors.black87,
-            child: const Text(
-              aboutHello,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        );
-      },
+    return Tooltip(
+      richMessage: TextSpan(
+        text: greet(),
+        style: const TextStyle(
+          color: kcGreyDim,
+          fontSize: 16.0,
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SvgPicture.asset(AppAssets.devButton, fit: BoxFit.cover),
+      ).moveUpOnHover,
     );
   }
+}
+
+String greet() {
+  final currentTime = DateTime.now();
+  final hour = currentTime.hour;
+
+  String greeting;
+
+  if (hour < 12) {
+    greeting = 'Hey, good morning!';
+  } else if (hour < 17) {
+    greeting = 'Hey, Good afternoon!';
+  } else {
+    greeting = 'Hey, Good evening!';
+  }
+
+  return " \u{1F44B} $greeting";
 }

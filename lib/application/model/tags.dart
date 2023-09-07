@@ -70,7 +70,7 @@ class TagManager {
 
     Tag(name: TagName.postgresql, color: kcBlackFull, backgroundColor: kcBlue),
     Tag(name: TagName.mysql, color: kcBlackFull, backgroundColor: kcBlue),
-    Tag(name: TagName.impala, color: kcBlackFull, backgroundColor: kcDarkBlue),
+    Tag(name: TagName.impala, color: kcWhiteCultured, backgroundColor: kcDarkBlue),
 
     //cloud
     Tag(name: TagName.azure, color: kcBlackFull, backgroundColor: kcBlue),

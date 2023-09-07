@@ -4,9 +4,11 @@ import 'package:devsite_web/presentation/common/color_picker.dart';
 import 'package:devsite_web/presentation/widget/tag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../application/assets/app_assets.dart';
+import '../../../application/provider/theme_provider.dart';
 import '../../common/messages.dart';
 import '../../common/space.dart';
 import '../../common/style.dart';
@@ -129,6 +131,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var backgroundColor = tags?.first.backgroundColor?.withOpacity(0.8);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SizedBox(
       width: 22.w,
       height: 50.h,
@@ -168,8 +171,10 @@ class ServiceCard extends StatelessWidget {
                 padding: const EdgeInsets.all(20).copyWith(bottom: 0),
                 child: Text(
                   name,
-                  style: const TextStyle(
-                      fontSize: 20, color: Colors.white, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: provider.isDarkMode ? kcWhiteFull : kcBlackFull,
+                      fontWeight: FontWeight.w700),
                 ),
               ),
               Padding(

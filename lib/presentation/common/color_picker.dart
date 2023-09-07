@@ -27,12 +27,14 @@ import 'package:flutter/material.dart';
 ///app
 primaryColor(context) => Theme.of(context).primaryColor;
 
-const Color kcBackgroundColor = kcBlackCarbon;
+const Color kcDarkBackground = kcBlackCarbon;
+const Color kcLightBackground = kcWhitePure;
 
 ///whites
-const whiteFull = Color.fromRGBO(255, 255, 255, 1);
-const whiteSnow = Color.fromRGBO(248, 248, 247, 1);
+const kcWhiteFull = Color.fromRGBO(255, 255, 255, 1);
+const kcWhiteSnow = Color.fromRGBO(248, 248, 247, 1);
 const kcWhiteCultured = Color.fromRGBO(221, 221, 216, 1);
+const kcWhitePure = Color(0xfff0f0f0);
 
 ///blacks
 const kcBlackCarbon = Color(0xff252525);
@@ -49,6 +51,7 @@ const kcBlackFull = Color.fromRGBO(0, 0, 0, 1);
 const kcVeryLightGrey = Color(0xFFE3E3E3);
 const kcLightGrey = Color(0xff989898);
 const kcTitleGrey = Color(0xff949494);
+
 const kcGreyPlatinum = Color.fromRGBO(228, 228, 228, 1);
 const kcGreySpanish = Color.fromRGBO(148, 148, 148, 1);
 const kcGreyDim = Color.fromRGBO(106, 106, 106, 1);
