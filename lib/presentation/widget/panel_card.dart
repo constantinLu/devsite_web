@@ -22,8 +22,8 @@ class PanelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = 21.h;
     var width = 10.w;
-    var height = 20.h;
     return Stack(
       children: [
         Transform.translate(
@@ -121,6 +121,16 @@ class PanelCard extends StatelessWidget {
                             ),
                           ),
                           Space.height(0.5.w)!,
+                          // Wrap(
+                          //   children: project.tags
+                          //       .map(
+                          //         (tag) => Padding(
+                          //           padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
+                          //           child: TagWidget(tag, TagSize.XS),
+                          //         ),
+                          //       )
+                          //       .toList(),
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
