@@ -14,6 +14,10 @@ class ThemeProvider extends ChangeNotifier {
     return isDarkMode ? ThemeColors.darkTheme : ThemeColors.lightTheme;
   }
 
+  Color getOppositeColor() {
+    return isDarkMode ? ThemeColors.lightTheme.primaryColorLight : ThemeColors.darkTheme.primaryColorDark;
+  }
+
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
     notifyListeners();

@@ -15,6 +15,7 @@ class _AboutViewState extends State<AboutView> {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
+
       desktop: (_) => const AboutDesktopView(),
       tablet: (_) => const AboutDesktopView(),
       mobile: (_) => AboutMobileView(),
