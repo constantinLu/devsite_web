@@ -21,7 +21,7 @@ class AboutDesktopView extends StatelessWidget {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
 
     return SizedBox(
-      height: 90.h,
+      height: 80.h,
       width: 25.w,
       child: Column(
         children: [

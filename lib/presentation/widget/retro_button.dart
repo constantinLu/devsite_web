@@ -1,18 +1,16 @@
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../application/provider/scroll_provider.dart';
 import '../common/color_picker.dart';
 
 enum BtnSize { XS, S, M, L, XL }
 
 class RetroButton extends StatefulWidget {
   final String label;
-  final int? index;
   final Size? btnSize;
+  final Function onPressed;
 
-  const RetroButton({super.key, required this.label, this.index, this.btnSize});
+  const RetroButton({super.key, required this.label, this.btnSize, required this.onPressed});
 
   @override
   State<RetroButton> createState() => _RetroButtonState();
@@ -21,7 +19,6 @@ class RetroButton extends StatefulWidget {
 class _RetroButtonState extends State<RetroButton> {
   @override
   Widget build(BuildContext context) {
-    final scrollProvider = Provider.of<ScrollProvider>(context);
     final textStyle = Theme.of(context).textTheme.headlineSmall;
 
     return Stack(
@@ -30,7 +27,8 @@ class _RetroButtonState extends State<RetroButton> {
         Transform.translate(
           offset: const Offset(-7, 7),
           child: ElevatedButton(
-            onPressed: () {}, //DO NOTHING SINCE IS THE BACKGROUND
+            onPressed: () => null, //DO NOTHING SINCE IS THE BACKGROUND
+
             style: ElevatedButton.styleFrom(
               backgroundColor: kcBlackFull,
               shape: RoundedRectangleBorder(
@@ -50,9 +48,7 @@ class _RetroButtonState extends State<RetroButton> {
 
         // SECOND BUTTON
         ElevatedButton(
-          onPressed: () {
-            scrollProvider.jumpTo(widget.index ?? 3);
-          },
+          onPressed: () => widget.onPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: kcTitleTurquoise,
             shape: RoundedRectangleBorder(

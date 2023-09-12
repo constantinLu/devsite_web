@@ -1,7 +1,9 @@
 import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:devsite_web/presentation/widget/theme_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../application/provider/scroll_provider.dart';
 import '../../common/navbar_utils.dart';
 import '../../widget/devsite_icon.dart';
 import '../../widget/navbar_button.dart';
@@ -11,6 +13,7 @@ class NavbarDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollProvider = Provider.of<ScrollProvider>(context);
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -27,7 +30,7 @@ class NavbarDesktop extends StatelessWidget {
                 ),
               ),
           const Expanded(flex: 3, child: SizedBox(width: double.infinity)),
-          RetroButton(label: 'CONTACT US', index: 3),
+          RetroButton(label: 'CONTACT US', onPressed: () => scrollProvider.jumpTo(3)),
           ThemeButton(),
         ],
       ),

@@ -20,7 +20,7 @@ class ServiceDesktopView extends StatelessWidget {
   Widget build(BuildContext context) {
     final servicesMap = ServiceView.servicesMap;
     return Container(
-      height: 130.h,
+      height: 140.h,
       width: 90.h,
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
       child: Column(

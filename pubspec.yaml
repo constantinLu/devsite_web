@@ -33,14 +33,14 @@ dependencies:
     sdk: flutter
   #cupertino_icons:
   http:
- # uuid:
+  # uuid:
   flutter_bloc: #state management
   logger: #for logging
   google_fonts: #fonts
   flutter_svg:
- # freezed_annotation: #freeze
+  # freezed_annotation: #freeze
   #json_annotation: #for json/toMap code generation
- # json_serializable:
+  # json_serializable:
   #injectable: #dependency injection
   #get_it: #service locator
   #auto_route: #routing
@@ -102,7 +102,7 @@ flutter:
     - assets/images/client/revolut.svg
     - assets/images/client/orange.svg
     - assets/images/client/eurocontrol.png
-     #tools-logo
+    #tools-logo
     - assets/images/tools/azure.svg
     - assets/images/tools/confluence.svg
     - assets/images/tools/docker.svg

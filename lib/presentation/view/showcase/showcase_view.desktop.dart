@@ -8,12 +8,10 @@ import '../../../application/model/project.dart';
 import '../../common/messages.dart';
 import '../../common/space.dart';
 import '../../widget/animation/up_down_animation.dart';
-import '../../widget/panel_card.dart';
+import '../../widget/project_card.dart';
 
 class ShowcaseDesktopView extends StatelessWidget {
-  const ShowcaseDesktopView({
-    super.key,
-  });
+  const ShowcaseDesktopView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,6 @@ class ShowcaseDesktopView extends StatelessWidget {
             child: Text(
               showcaseTitle,
               style: Theme.of(context).textTheme.displaySmall,
-              // style: montserratStyle(context, 30),
             ),
           ),
           Space.height(3.h)!,
@@ -43,11 +40,11 @@ class ShowcaseDesktopView extends StatelessWidget {
                 contentsAlign: ContentsAlign.alternating,
                 itemCount: projects.length,
                 contentsBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: PanelCard(project: projects[index], index: index),
+                  padding: const EdgeInsets.all(5),
+                  child: ProjectCard(project: projects[index], index: index),
                 ),
                 oppositeContentsBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
                   child: Text(
                     projects[index].startDate.monthYear,
                     style: Theme.of(context).textTheme.titleLarge,

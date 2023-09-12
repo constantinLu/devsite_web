@@ -23,7 +23,7 @@ class HomeImage extends StatelessWidget {
         'assets/images/undraw_software_engineer.png',
         width: kdDesktopMaxContentWidth * 0.3,
         height:
-            getValueForScreenType<double>(context: context, mobile: 650, desktop: double.infinity),
+            getValueForScreenType<double>(context: context, mobile: 650, desktop: double.infinity, ),
       ),
     );
   }

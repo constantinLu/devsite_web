@@ -69,7 +69,7 @@ class ContactMobileView extends StatelessWidget {
                       ),
                       const Divider(),
                       Space.height(2.h)!,
-                      RetroButton(label: "SUBMIT"),
+                      RetroButton(label: "SUBMIT", onPressed: () => null,),
                     ],
                   ),
                 ),

@@ -1,15 +1,4 @@
 class AppAssets {
-  static String facebook = 'assets/images/face.png';
-  static String github = 'assets/images/git.png';
-  static String linkedIn = 'assets/images/in.png';
-  static String insta = 'assets/images/insta.png';
-  static String twitter = 'assets/images/twit.png';
-  static String profile1 = 'assets/images/pro1.png';
-  static String profile2 = 'assets/images/pro2.png';
-  static String brush = 'assets/images/brush-stroke.png';
-  static String analyst = 'assets/images/analytics.png';
-  static String share = 'assets/images/share.png';
-
   //gif
   static String devsiteDark = 'assets/gif/dev_gif_300x200_dark.gif';
   static String devsiteLight = 'assets/gif/dev_gif_300x200_light.gif';
@@ -31,7 +20,7 @@ class AppAssets {
   static String orangeLogo = 'assets/images/client/orange.svg';
   static String eurocontrolLogo = 'assets/images/client/eurocontrol.png';
 
-
+  // tools
   static const String azure = 'assets/images/tools/azure.svg';
   static const String confluence = 'assets/images/tools/confluence.svg';
   static const String docker = 'assets/images/tools/docker.svg';
@@ -46,5 +35,4 @@ class AppAssets {
   static const String mysql = 'assets/images/tools/mysql.svg';
   static const String postgresql = 'assets/images/tools/postgresql.svg';
   static const String springboot = 'assets/images/tools/spring-boot.svg';
-
 }

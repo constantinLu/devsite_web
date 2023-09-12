@@ -10,6 +10,19 @@ class DeviceSize {
 
   static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= 1024;
 
+  @Deprecated("use Responsive library")
+  static getDeviceType(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    if (width > 900) {
+      return DeviceType.desktop;
+    } else if (width > 600) {
+      return DeviceType.tablet;
+    } else {
+      return DeviceType.mobile;
+    }
+  }
+
+  @Deprecated("use Responsive library")
   static double deviceHeight(
       BuildContext context, double desktopH, double tabletH, double mobileH) {
     var height = desktopH;
@@ -25,6 +38,7 @@ class DeviceSize {
     return height;
   }
 
+  @Deprecated("use Responsive library")
   static double deviceWidth(BuildContext context, double desktopW, double tabletW, double mobileW) {
     var width = desktopW;
     if (DeviceSize.isDesktop(context)) {
@@ -38,4 +52,10 @@ class DeviceSize {
     }
     return width;
   }
+}
+
+enum DeviceType {
+  desktop,
+  tablet,
+  mobile,
 }

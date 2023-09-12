@@ -1,5 +1,5 @@
 //TITME
-const appTitle = 'DEV - Coding the Future, NOW!';
+const appTitle = 'DEV - Coding the Future';
 
 // ABOUT
 const aboutHello = "Hello,";

@@ -1,12 +1,11 @@
 import 'dart:core';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/widget/app_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  bool _isDarkMode = processTheme();
+  bool _isDarkMode = true;
 
   bool get isDarkMode => _isDarkMode;
 
@@ -15,7 +14,9 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   Color getOppositeColor() {
-    return isDarkMode ? ThemeColors.lightTheme.primaryColorLight : ThemeColors.darkTheme.primaryColorDark;
+    return isDarkMode
+        ? ThemeColors.lightTheme.primaryColorLight
+        : ThemeColors.darkTheme.primaryColorDark;
   }
 
   void toggleTheme() {
@@ -23,6 +24,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  @Deprecated("dark by default to be used")
   static bool processTheme() {
     final currentTime = DateTime.now();
     final hour = currentTime.hour;

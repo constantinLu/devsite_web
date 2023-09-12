@@ -17,10 +17,6 @@ class Tag {
   setOverride(bool override) {
     this.override = override;
   }
-
-// Tag(String name, {required this.color, required this.backgroundColor}) {
-//   this.name = '#' + name;
-// }
 }
 
 class TagName {

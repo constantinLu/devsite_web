@@ -15,11 +15,10 @@ class MainView extends StatelessWidget {
         /// APP BAR
         appBar: NavBar(),
 
-    /// DRAWER
-    drawer: NavbarDrawer(),
+        /// DRAWER
+        drawer: NavbarDrawer(),
 
-    /// BODY
-    body: AllViews()
-    );
+        /// BODY
+        body: AllViews());
   }
 }
