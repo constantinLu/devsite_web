@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 import '../common/color_picker.dart';
 import '../common/gradient_picker.dart';
@@ -65,10 +64,10 @@ class ThemeColors {
       backgroundColor: Colors.blueGrey,
     ),
   );
-
-  static Brightness get currentSystemBrightness =>
-      SchedulerBinding.instance.window.platformBrightness;
 }
+// static Brightness get currentSystemBrightness =>
+//     View.of(context).devicePixelRatio;
+//     SchedulerBinding.instance.window.platformBrightness;
 
 extension ThemeExtras on ThemeData {
   Color get navBarColor => brightness == Brightness.light ? kcBlackCarbon : kcWhiteCultured;

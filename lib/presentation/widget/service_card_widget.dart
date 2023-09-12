@@ -28,7 +28,7 @@ class ServiceCard extends StatelessWidget {
     /// THIS SizedBox controls the dimension of the card.
     return SizedBox(
       height: getValueForScreenType<double>(
-          context: context, mobile: 63.h, tablet: 52.h, desktop: 52.h),
+          context: context, mobile: 63.h, tablet: 52.h, desktop: 54.h),
       width: getValueForScreenType<double>(
           context: context, mobile: 85.w, tablet: 90.w, desktop: 20.w),
       child: Padding(

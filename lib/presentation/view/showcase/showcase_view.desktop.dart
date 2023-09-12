@@ -16,7 +16,6 @@ class ShowcaseDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = 310.h;
-    var width = 20.w;
     return Container(
       height: height,
       width: double.infinity,

@@ -18,7 +18,7 @@ class AboutMobileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SizedBox(
-      height: 100.h,
+      height: 110.h,
       width: 25.w,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
@@ -40,10 +40,12 @@ class AboutMobileView extends StatelessWidget {
               style: montserratStyle(context, 25),
             ),
             Space.height(1.h)!,
-            AnimatedTextKit(
-              isRepeatingAnimation: true,
-              repeatForever: true,
-              animatedTexts: desktopList,
+            Expanded(
+              child: AnimatedTextKit(
+                isRepeatingAnimation: true,
+                repeatForever: true,
+                animatedTexts: desktopList,
+              ),
             ),
             Space.height(4.h)!,
             Text(
@@ -57,7 +59,8 @@ class AboutMobileView extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
               child: Center(
                 child: const IconAnimation(
-                    icon: Icon(Icons.keyboard_double_arrow_down, size: 70, color: kcDevsiteTurquise)),
+                    icon:
+                        Icon(Icons.keyboard_double_arrow_down, size: 50, color: kcDevsiteTurquise)),
               ),
             )
           ],
