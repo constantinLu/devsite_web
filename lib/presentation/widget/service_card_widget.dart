@@ -22,7 +22,7 @@ class ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var backgroundColor = tags?.first.backgroundColor?.withOpacity(0.8);
+    final backgroundColor = tags?.first.backgroundColor?.withOpacity(0.8);
     final provider = Provider.of<ThemeProvider>(context, listen: false);
 
     /// THIS SizedBox controls the dimension of the card.

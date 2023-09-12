@@ -30,7 +30,7 @@ class ThemeButton extends StatelessWidget {
             ? const Icon(FontAwesomeIcons.solidMoon, color: kcGreyDim)
             : const Icon(FontAwesomeIcons.solidSun, color: kcYellowBouldare),
         onPressed: () {
-          provider.toggleTheme(); // Toggle the theme
+          provider.toggleTheme();
         },
       ).showCursorOnHover.moveUpOnHover,
     );

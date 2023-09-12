@@ -58,7 +58,8 @@ var projects = [
     name: "Unite",
     company: "Mercedes",
     sector: "Finance",
-    description: "Car sales for dealerships in europe markets",
+    description:
+        "Car sales with different financial instruments used by dealerships entities in europe markets",
     logo: AppAssets.mercedesLogo,
     color: Colors.white,
     tags: [
@@ -130,7 +131,8 @@ var projects = [
     name: "Forcaster",
     company: "Fortech",
     sector: "Finance",
-    description: "Financial forecasting application",
+    description: "Financial forecasting web-app"
+        "Financial projections performed to facilitate any decision-making relevant for determining future business performance",
     logo: AppAssets.fortechLogo,
     color: kcBlackCard,
     tags: [
@@ -147,7 +149,9 @@ var projects = [
     name: "SEPA-Tester",
     company: "Revolut",
     sector: "Finance",
-    description: "bank transaction simulator",
+    description: "Bank transaction simulator. "
+        "This mimicked the real world transactions of money in order "
+        "to automatically test mandatory scenarios required by the bank authority before going LIVE",
     logo: AppAssets.revolutLogo,
     color: kcRevolut,
     tags: [
@@ -184,11 +188,11 @@ var projects = [
   ),
   Project(
     id: 7,
-    name: "SEPA INSTANT",
+    name: "SEPA Instant",
     company: "Revolut",
     sector: "Finance",
     description: "Payment systems solutions for integration in Eurozone for "
-        "Instant transfers",
+        "Instant transfers (SEPA Inst)",
     logo: AppAssets.revolutLogo,
     color: kcRevolut,
     tags: [
@@ -205,11 +209,11 @@ var projects = [
   ),
   Project(
     id: 8,
-    name: "SEPA NON-INSTANT",
+    name: "SEPA Non-instant",
     company: "Revolut",
     sector: "Finance",
     description: "Payment systems solutions for integration in Eurozone for "
-        "Direct Debits, and Credit Transfers",
+        "Direct Debits, and Credit Transfers (SDD, SCT)",
     logo: AppAssets.revolutLogo,
     color: kcRevolut,
     tags: [
@@ -249,7 +253,7 @@ var projects = [
     name: "Web-shop",
     company: "Orange",
     sector: "IT Telecom",
-    description: "Shopping platform platform",
+    description: "Shopping web-platform",
     logo: AppAssets.orangeLogo,
     color: kcOrangeClient,
     tags: [
@@ -265,9 +269,9 @@ var projects = [
   Project(
     id: 11,
     name: "CNS-CAP",
-    company: "EUROCONTROL",
+    company: "Eurocontrol",
     sector: "Aviation",
-    description: "Data management, aviation monitoring, radar data",
+    description: "Aircraft communication, navigation and surveillance dashboard",
     logo: AppAssets.eurocontrolLogo,
     color: Colors.white,
     tags: [
