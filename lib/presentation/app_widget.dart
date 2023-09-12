@@ -28,7 +28,6 @@ class AppWidget extends StatelessWidget {
           home: MainView(),
         );
       }),
-    ).animate()
-        .fadeIn(duration: 400.ms);
+    ).animate().fadeIn(duration: 400.ms);
   }
 }

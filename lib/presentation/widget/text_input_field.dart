@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
-// "MERCEDES - FORTECH",
-// "SECUR AUTH - FORTECH",
-// "RESUME - FORTECH",
-// "OFFICE SPACE - FORTECH",
-// "FORCAST APP - FORTECH",
-// "REVOLUT - BAILIFF - DEBT COLLECTION - MIGRATING + ADDING NEW FEATURES",
-// "REVOLUT - EBA - FEATURES",
-// "SEPA INSTANT - MAINTENANCE",
-// "SEPA NON INSTANT - MAINTENANCE",
-// "SEPA - PROJECT TESTER OF TRANSACTION WITH BANKS IN DEV-MODE",
-// "WEBSHOP - ORANGE",
-// "EUROCONTROL - CNS-CAP"
 
 import '../common/app_constants.dart';
 
 class InputField extends StatelessWidget {
-  final TextEditingController? controller; // This is extra, but we'll need it very shortly
+  final TextEditingController? controller;
+
   const InputField({Key? key, this.controller}) : super(key: key);
 
   @override

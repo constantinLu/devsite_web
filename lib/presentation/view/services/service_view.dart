@@ -6,7 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class ServiceView extends StatefulWidget {
   const ServiceView({Key? key}) : super(key: key);
 
-   static const servicesMap = {
+  static const servicesMap = {
     "CUSTOM SOFTWARE": "Looking for a backend team to implement your business idea?"
         " Contact us for a bespoke back-end infrastructure. Upgrade, enhance, "
         "or migrate your back-ends at speed and affordable costs.",
@@ -40,5 +40,4 @@ class _ServiceViewState extends State<ServiceView> {
       mobile: (_) => const ServiceMobileView(),
     );
   }
-
 }

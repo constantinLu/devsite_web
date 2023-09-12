@@ -36,7 +36,6 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       width: 90.w,
       child: Column(
