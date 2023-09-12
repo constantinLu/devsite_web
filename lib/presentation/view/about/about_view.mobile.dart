@@ -53,9 +53,12 @@ class AboutMobileView extends StatelessWidget {
             Space.height(6.h)!,
             CarouselMobileWidget(),
             Space.height(6.h)!,
-            Center(
-              child: const IconAnimation(
-                  icon: Icon(Icons.keyboard_double_arrow_down, size: 70, color: kcDevsiteTurquise)),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+              child: Center(
+                child: const IconAnimation(
+                    icon: Icon(Icons.keyboard_double_arrow_down, size: 70, color: kcDevsiteTurquise)),
+              ),
             )
           ],
         ),
