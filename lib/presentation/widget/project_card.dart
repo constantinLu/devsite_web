@@ -92,7 +92,7 @@ class ProjectCard extends StatelessWidget {
                                     fit: BoxFit.scaleDown,
                                   )
                                 : Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: const EdgeInsets.all(25.0),
                                     child: Image.asset(
                                       project.logo!,
                                       fit: BoxFit.fitWidth,

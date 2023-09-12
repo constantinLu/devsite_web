@@ -271,7 +271,7 @@ var projects = [
     name: "CNS-CAP",
     company: "Eurocontrol",
     sector: "Aviation",
-    description: "Aircraft communication, navigation and surveillance dashboard",
+    description: "Aircraft communication, navigation and surveillance backend data processing",
     logo: AppAssets.eurocontrolLogo,
     color: Colors.white,
     tags: [
