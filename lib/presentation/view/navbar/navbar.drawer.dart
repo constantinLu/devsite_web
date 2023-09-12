@@ -31,7 +31,12 @@ class NavbarDrawer extends StatelessWidget {
                 ),
               ),
           Space.height(4.h)!,
-          RetroButton(label: 'CONTACT US', onPressed: () => scrollProvider.jumpTo(3)),
+          RetroButton(
+              label: 'CONTACT US',
+              onPressed: () {
+                scrollProvider.jumpTo(3);
+                Navigator.pop(context);
+              }),
         ],
       ),
     );

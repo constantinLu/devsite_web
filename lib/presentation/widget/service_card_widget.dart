@@ -28,9 +28,9 @@ class ServiceCard extends StatelessWidget {
     /// THIS SizedBox controls the dimension of the card.
     return SizedBox(
       height: getValueForScreenType<double>(
-          context: context, mobile: 61.h, tablet: 52.h, desktop: 52.h),
+          context: context, mobile: 63.h, tablet: 52.h, desktop: 52.h),
       width: getValueForScreenType<double>(
-          context: context, mobile: 70.w, tablet: 90.w, desktop: 20.w),
+          context: context, mobile: 85.w, tablet: 90.w, desktop: 20.w),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
         child: Card(
@@ -99,8 +99,7 @@ class ServiceCard extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: getValueForScreenType<double>(
-                            context: context, mobile: 50.w, tablet: 15.w, desktop: 15.w),
-
+                            context: context, mobile: 40.w, tablet: 15.w, desktop: 15.w),
                         child: Wrap(
                           runAlignment: WrapAlignment.start,
                           spacing: 6,

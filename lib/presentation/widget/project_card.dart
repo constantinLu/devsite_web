@@ -62,106 +62,104 @@ class ProjectCard extends StatelessWidget {
               width: isFrontCard ? 3 : 0,
             ),
           ),
-          child: Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: getValueForScreenType<double>(
-                      context: context, mobile: width, tablet: width, desktop: width),
-                  height: height,
-                  child: Stack(
-                    clipBehavior: Clip.antiAlias,
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      Container(
-                        width: getValueForScreenType<double>(
-                            context: context, mobile: 30.w, tablet: width, desktop: width),
-                        height: getValueForScreenType<double>(
-                            context: context,
-                            mobile: 10.h,
-                            tablet: double.infinity,
-                            desktop: double.infinity),
-                        decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
-                      ),
-                      isFrontCard
-                          ? Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: project.logo!.contains(".svg")
-                                  ? SvgPicture.asset(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: getValueForScreenType<double>(
+                    context: context, mobile: width, tablet: width, desktop: width),
+                height: height,
+                child: Stack(
+                  clipBehavior: Clip.antiAlias,
+                  alignment: Alignment.centerLeft,
+                  children: [
+                    Container(
+                      width: getValueForScreenType<double>(
+                          context: context, mobile: 30.w, tablet: width, desktop: width),
+                      height: getValueForScreenType<double>(
+                          context: context,
+                          mobile: 10.h,
+                          tablet: double.infinity,
+                          desktop: double.infinity),
+                      decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
+                    ),
+                    isFrontCard
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: project.logo!.contains(".svg")
+                                ? SvgPicture.asset(
+                                    project.logo!,
+                                    fit: BoxFit.scaleDown,
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Image.asset(
                                       project.logo!,
-                                      fit: BoxFit.scaleDown,
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.all(20.0),
-                                      child: Image.asset(
-                                        project.logo!,
-                                        fit: BoxFit.fitWidth,
-                                        width: 10.w,
-                                        height: 15.h,
-                                      ),
+                                      fit: BoxFit.fitWidth,
+                                      width: 10.w,
+                                      height: 15.h,
                                     ),
-                            )
-                          : const Padding(
-                              padding: EdgeInsets.all(0),
-                            )
-                    ],
-                  ),
+                                  ),
+                          )
+                        : const Padding(
+                            padding: EdgeInsets.all(0),
+                          )
+                  ],
                 ),
-                isFrontCard
-                    ? Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 5, 5),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              project.name,
-                              style: poppinsStyle(context, 20),
+              ),
+              isFrontCard
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 15, 5, 5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            project.name,
+                            style: poppinsStyle(context, 20),
+                          ),
+                          Space.height(0.2.w)!,
+                          Text(project.sector, style: robotoStyle(context, 15)),
+                          Space.height(0.5.w)!,
+                          SizedBox(
+                            //THE length where the text will collapse afterwards
+                            width: 23.w,
+                            child: Text(
+                              "• ${project.description}",
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              maxLines: 5,
+                              style: montserratStyle(context, 14, FontWeight.w400),
                             ),
-                            Space.height(0.2.w)!,
-                            Text(project.sector, style: robotoStyle(context, 15)),
-                            Space.height(0.5.w)!,
-                            SizedBox(
-                              //THE length where the text will collapse afterwards
-                              width: 23.w,
-                              child: Text(
-                                "• ${project.description}",
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: false,
-                                maxLines: 5,
-                                style: montserratStyle(context, 14, FontWeight.w400),
+                          ),
+                          Space.height(0.5.w)!,
+                          Expanded(
+                            flex: 1,
+                            child: SizedBox(
+                              width: getValueForScreenType<double>(
+                                  context: context, mobile: 50.w, tablet: 15.w, desktop: 23.w),
+                              height: getValueForScreenType<double>(
+                                  context: context,
+                                  mobile: 20.h,
+                                  tablet: double.infinity,
+                                  desktop: double.infinity),
+                              child: Wrap(
+                                spacing: 5.0, // Horizontal spacing between items
+                                runSpacing: 5.0, // Vertical spacing between lines
+                                runAlignment: WrapAlignment.start,
+                                children: project.tags
+                                    .map(
+                                      (tag) => TagWidget(tag, TagSize.XS),
+                                    )
+                                    .toList(),
                               ),
                             ),
-                            Space.height(0.5.w)!,
-                            Expanded(
-                              flex: 1,
-                              child: SizedBox(
-                                width: getValueForScreenType<double>(
-                                    context: context, mobile: 50.w, tablet: 15.w, desktop: 23.w),
-                                height: getValueForScreenType<double>(
-                                    context: context,
-                                    mobile: 20.h,
-                                    tablet: double.infinity,
-                                    desktop: double.infinity),
-                                child: Wrap(
-                                  spacing: 5.0, // Horizontal spacing between items
-                                  runSpacing: 5.0, // Vertical spacing between lines
-                                  runAlignment: WrapAlignment.start,
-                                  children: project.tags
-                                      .map(
-                                        (tag) => TagWidget(tag, TagSize.XS),
-                                      )
-                                      .toList(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : const Padding(padding: EdgeInsets.all(0))
-              ],
-            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : const Padding(padding: EdgeInsets.all(0))
+            ],
           ),
         ),
       ),

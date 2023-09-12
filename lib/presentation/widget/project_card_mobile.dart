@@ -23,7 +23,7 @@ class ProjectCardMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cardHeight = 25.h;
+    var cardHeight = 30.h;
     var cardWidth = 100.w;
     return Stack(
       children: [

@@ -54,7 +54,7 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
                 ),
               ),
               SizedBox(
-                width: 74.w,
+                width: 70.w,
                 child: CarouselSlider(
                   carouselController: _controller,
                   options: CarouselOptions(
@@ -70,28 +70,31 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
                   items: tools.map((i) {
                     return Builder(
                       builder: (BuildContext context) {
-                        return Tooltip(
-                          richMessage: TextSpan(
-                            text: extractName(i),
-                            style: const TextStyle(
-                              color: kcGreyDim,
-                              fontSize: 16.0,
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Tooltip(
+                            richMessage: TextSpan(
+                              text: extractName(i),
+                              style: const TextStyle(
+                                color: kcGreyDim,
+                                fontSize: 16.0,
+                              ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(4.0),
-                          ),
-                          child: ColorFiltered(
-                            colorFilter: ColorFilter.matrix(grayscaleMatrix),
-                            child: SvgPicture.asset(
-                              i,
-                              fit: BoxFit.contain,
-                              width: 40.w,
-                              height: 14.h,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
-                          ),
-                        ).moveUpOnHover;
+                            child: ColorFiltered(
+                              colorFilter: ColorFilter.matrix(grayscaleMatrix),
+                              child: SvgPicture.asset(
+                                i,
+                                fit: BoxFit.contain,
+                                width: 40.w,
+                                height: 14.h,
+                              ),
+                            ),
+                          ).moveUpOnHover,
+                        );
                       },
                     );
                   }).toList(),
@@ -113,6 +116,14 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
       ),
     );
   }
+}
+
+void showMobileTooltip(BuildContext context, message) {
+  final snackBar = SnackBar(
+    content: Text(message),
+    duration: Duration(seconds: 3), // Adjust the duration as needed
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
 String extractName(String input) {

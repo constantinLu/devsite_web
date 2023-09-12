@@ -1,10 +1,11 @@
 import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
+import '../../common/color_picker.dart';
 import '../../common/space.dart';
 
 class ContactDesktopView extends StatelessWidget {
@@ -30,16 +31,32 @@ class ContactDesktopView extends StatelessWidget {
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               Space.height(2.h)!,
-              Text("Get in touch or drop an email directly at: office.devsite@gmail.com"),
-              Space.height(2.h)!,
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Drop a message on whatsup: ",
-                      style: Theme.of(context).textTheme.titleLarge),
-                  IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.whatsapp)),
+                  Text(
+                    "Get in touch or drop an email directly at:",
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    maxLines: 5,
+                  ),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: TextButton(
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com"))
+                              .then((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Email address copied to clipboard"), elevation: 0, backgroundColor: kcWhiteCultured,));
+                          });
+                          // copied successfully
+                        },
+                        child: Text("office.devsite@gmail.com")),
+                  ),
                 ],
               ),
-              //
+
+              Space.height(2.h)!,
               const Divider(),
               FormBuilder(
                 key: _formKey,
@@ -71,7 +88,10 @@ class ContactDesktopView extends StatelessWidget {
                       ),
                       const Divider(),
                       Space.height(2.h)!,
-                      RetroButton(label: "SUBMIT", onPressed: () => null,),
+                      RetroButton(
+                        label: "SUBMIT",
+                        onPressed: () => null,
+                      ),
                     ],
                   ),
                 ),

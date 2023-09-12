@@ -31,28 +31,26 @@ class ShowcaseDesktopView extends StatelessWidget {
             ),
           ),
           Space.height(3.h)!,
-          Expanded(
-            child: FixedTimeline.tileBuilder(
-              theme: TimelineThemeData(
-                color: kcTitleTurquoise,
+          FixedTimeline.tileBuilder(
+            theme: TimelineThemeData(
+              color: kcTitleTurquoise,
+            ),
+            builder: TimelineTileBuilder.connectedFromStyle(
+              contentsAlign: ContentsAlign.alternating,
+              itemCount: projects.length,
+              contentsBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(5),
+                child: ProjectCard(project: projects[index], index: index),
               ),
-              builder: TimelineTileBuilder.connectedFromStyle(
-                contentsAlign: ContentsAlign.alternating,
-                itemCount: projects.length,
-                contentsBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: ProjectCard(project: projects[index], index: index),
+              oppositeContentsBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(5),
+                child: Text(
+                  projects[index].startDate.monthYear,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                oppositeContentsBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Text(
-                    projects[index].startDate.monthYear,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                connectorStyleBuilder: (context, index) => ConnectorStyle.dashedLine,
-                indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
               ),
+              connectorStyleBuilder: (context, index) => ConnectorStyle.dashedLine,
+              indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
             ),
           ),
           Space.height(4.h)!,

@@ -48,7 +48,9 @@ class _RetroButtonState extends State<RetroButton> {
 
         // SECOND BUTTON
         ElevatedButton(
-          onPressed: () => widget.onPressed,
+          onPressed: () {
+            widget.onPressed();
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: kcTitleTurquoise,
             shape: RoundedRectangleBorder(
