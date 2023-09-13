@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../common/space.dart';
-import '../../common/style.dart';
+import 'contact_view.dart';
 
 class ContactMobileView extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -63,7 +63,7 @@ class ContactMobileView extends StatelessWidget {
               child: Column(
                 children: [
                   FormBuilderTextField(
-                    name: 'Namee',
+                    name: 'Name',
                     decoration: const InputDecoration(
                         filled: true, hintText: "Name", border: InputBorder.none),
                   ),
@@ -75,7 +75,7 @@ class ContactMobileView extends StatelessWidget {
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
-                    name: 'Messagee',
+                    name: 'Message',
                     maxLines: 10,
                     decoration: const InputDecoration(
                         filled: true, hintText: "Message", border: InputBorder.none),
@@ -83,19 +83,19 @@ class ContactMobileView extends StatelessWidget {
                   const Divider(),
                   Space.height(2.h)!,
                   RetroButton(
-                      label: "SUBMIT",
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Center(
-                                child: Text("Email sent!",
-                                    style: montserratStyleWithColor(
-                                        context, 16, kcBlackFull, FontWeight.w400))),
-                            elevation: 0,
-                            backgroundColor: kcTitleTurquoise,
-                          ),
-                        );
-                      }),
+                    label: "SUBMIT",
+                    onPressed: () {
+                      var snackBar;
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        Map<String, dynamic> formData = _formKey.currentState!.value;
+                        String name = formData['Name'];
+                        String email = formData['Email'];
+                        String message = formData['Message'];
+                        snackBar = sendEmail(context, name, email, message);
+                      }
+                      snackBar = alertMessage(context, "Mailing provider stopped working!", kcRed);
+                    },
+                  ),
                 ],
               ),
             ),

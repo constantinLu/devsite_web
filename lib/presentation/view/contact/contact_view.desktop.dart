@@ -3,11 +3,11 @@ import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
 import '../../common/color_picker.dart';
 import '../../common/space.dart';
+import 'contact_view.dart';
 
 class ContactDesktopView extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -20,121 +20,96 @@ class ContactDesktopView extends StatelessWidget {
       height: 80.h,
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
-      child: Column(
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
         children: [
-          ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
+          Text(
+            "Contact",
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          Space.height(2.h)!,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Contact",
-                style: Theme.of(context).textTheme.displaySmall,
+                "Get in touch or drop an email directly at:",
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                maxLines: 5,
               ),
-              Space.height(2.h)!,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Align(
+                alignment: Alignment.topCenter,
+                child: TextButton(
+                    onPressed: () {
+                      Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com")).then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Email address copied to clipboard",
+                              style: montserratStyleWithColor(
+                                  context, 16, kcBlackFull, FontWeight.w400)),
+                          elevation: 0,
+                          backgroundColor: kcWhiteCultured,
+                        ));
+                      });
+                      // copied successfully
+                    },
+                    child: Text("office.devsite@gmail.com")),
+              ),
+            ],
+          ),
+          Space.height(2.h)!,
+          const Divider(),
+          FormBuilder(
+            key: _formKey,
+            onChanged: () => Center(
+              child: Text("Form has been changed"),
+            ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
                 children: [
-                  Text(
-                    "Get in touch or drop an email directly at:",
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    maxLines: 5,
+                  FormBuilderTextField(
+                    name: 'Name',
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Name", border: InputBorder.none),
                   ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: TextButton(
-                        onPressed: () {
-                          Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com"))
-                              .then((_) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Email address copied to clipboard",
-                                  style: montserratStyleWithColor(
-                                      context, 16, kcBlackFull, FontWeight.w400)),
-                              elevation: 0,
-                              backgroundColor: kcWhiteCultured,
-                            ));
-                          });
-                          // copied successfully
-                        },
-                        child: Text("office.devsite@gmail.com")),
+                  Space.height(2.h)!,
+                  FormBuilderTextField(
+                    name: 'Email',
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Email", border: InputBorder.none),
+                  ),
+                  Space.height(2.h)!,
+                  FormBuilderTextField(
+                    name: 'Message',
+                    maxLines: 10,
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Message", border: InputBorder.none),
+                  ),
+                  const Divider(),
+                  Space.height(2.h)!,
+                  RetroButton(
+                    label: "SUBMIT",
+                    onPressed: () {
+                      var snackBar;
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        Map<String, dynamic> formData = _formKey.currentState!.value;
+                        String name = formData['Name'];
+                        String email = formData['Email'];
+                        String message = formData['Message'];
+                        snackBar = sendEmail(context, name, email, message);
+                      }
+                      snackBar = alertMessage(context, "Mailing provider stopped working!", kcRed);
+                    },
                   ),
                 ],
               ),
-              Space.height(2.h)!,
-              const Divider(),
-              FormBuilder(
-                key: _formKey,
-                onChanged: () => Center(
-                  child: Text("Form has been changed"),
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      FormBuilderTextField(
-                        name: 'Namee',
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Name", border: InputBorder.none),
-                      ),
-                      Space.height(2.h)!,
-                      FormBuilderTextField(
-                        name: 'Email',
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Email", border: InputBorder.none),
-                      ),
-                      Space.height(2.h)!,
-                      FormBuilderTextField(
-                        name: 'Messagee',
-                        maxLines: 10,
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Message", border: InputBorder.none),
-                      ),
-                      const Divider(),
-                      Space.height(2.h)!,
-                      RetroButton(
-                        label: "SUBMIT",
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Center(
-                                  child: Text("Email sent!",
-                                      style: montserratStyleWithColor(
-                                          context, 16, kcBlackFull, FontWeight.w400))),
-                              elevation: 0,
-                              backgroundColor: kcTitleTurquoise,
-                            ),
-                          );
-                          // copied successfully
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),
     );
   }
-}
-
-sendemail() async {
-  final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-
-  final httpHeadears = {
-    'content-type': 'application/json',
-  };
-  final requestBody = {
-    'service_id': 'asd',
-    'template_id': 'asd',
-    'user_id': 'asd',
-    'accessToken': 'asd'
-  };
-
-  final response = await http.post(url, body: requestBody);
-  print(response.body);
-  print(response.headers);
 }

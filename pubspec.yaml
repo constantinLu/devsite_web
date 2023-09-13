@@ -49,7 +49,7 @@ dependencies:
   #shimmer:
   flutter_animate:
   responsive_builder:
-  #email_validator:
+  email_validator:
   scrollable_positioned_list:
   animated_text_kit:
   provider:
