@@ -17,78 +17,77 @@ class ContactMobileView extends StatelessWidget {
     return Container(
       height: 78.h,
       width: double.infinity,
-      child: Column(
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
         children: [
-          ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
-            children: [
-              Text(
-                "Contact",
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-              Space.height(2.h)!,
-              Text(
-                "Get in touch or drop an email directly at:",
-                overflow: TextOverflow.ellipsis,
-                softWrap: false,
-                maxLines: 5,
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: TextButton(
-                    onPressed: () async {
-                      await Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com"))
-                          .then((_) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Email address copied to clipboard"), elevation: 0, backgroundColor: kcWhiteCultured,));
-                      });
-                      // copied successfully
-                    },
-                    child: Text("office.devsite@gmail.com")),
-              ),
-              Space.height(2.h)!,
-              const Divider(),
-              FormBuilder(
-                key: _formKey,
-                onChanged: () => Center(
-                  child: Text("Form has been changed"),
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      FormBuilderTextField(
-                        name: 'Namee',
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Name", border: InputBorder.none),
-                      ),
-                      Space.height(2.h)!,
-                      FormBuilderTextField(
-                        name: 'Email',
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Email", border: InputBorder.none),
-                      ),
-                      Space.height(2.h)!,
-                      FormBuilderTextField(
-                        name: 'Messagee',
-                        maxLines: 10,
-                        decoration: const InputDecoration(
-                            filled: true, hintText: "Message", border: InputBorder.none),
-                      ),
-                      const Divider(),
-                      Space.height(2.h)!,
-                      RetroButton(
-                        label: "SUBMIT",
-                        onPressed: () => null,
-                      ),
-                    ],
+          Text(
+            "Contact",
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          Space.height(2.h)!,
+          Text(
+            "Get in touch or drop an email directly at:",
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            maxLines: 5,
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: TextButton(
+                onPressed: () {
+                  Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com")).then((_) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Email address copied to clipboard"),
+                      elevation: 0,
+                      backgroundColor: kcWhiteCultured,
+                    ));
+                  });
+                  // copied successfully
+                },
+                child: Text("office.devsite@gmail.com")),
+          ),
+          Space.height(2.h)!,
+          const Divider(),
+          FormBuilder(
+            key: _formKey,
+            onChanged: () => Center(
+              child: Text("Form has been changed"),
+            ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  FormBuilderTextField(
+                    name: 'Namee',
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Name", border: InputBorder.none),
                   ),
-                ),
+                  Space.height(2.h)!,
+                  FormBuilderTextField(
+                    name: 'Email',
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Email", border: InputBorder.none),
+                  ),
+                  Space.height(2.h)!,
+                  FormBuilderTextField(
+                    name: 'Messagee',
+                    maxLines: 10,
+                    decoration: const InputDecoration(
+                        filled: true, hintText: "Message", border: InputBorder.none),
+                  ),
+                  const Divider(),
+                  Space.height(2.h)!,
+                  RetroButton(
+                    label: "SUBMIT",
+                    onPressed: () => null,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),

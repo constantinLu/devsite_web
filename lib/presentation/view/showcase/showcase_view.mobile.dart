@@ -15,7 +15,7 @@ class ShowcaseMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = 490.h;
+    var height = 460.h;
     return Container(
       height: height,
       width: double.infinity,

@@ -106,7 +106,7 @@ class ServiceCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: getValueForScreenType<double>(
-                              context: context, mobile: 70.w, tablet: 15.w, desktop: 15.w),
+                              context: context, mobile: 60.w, tablet: 15.w, desktop: 15.w),
                           child: Wrap(
                             runAlignment: WrapAlignment.start,
                             spacing: 6,
