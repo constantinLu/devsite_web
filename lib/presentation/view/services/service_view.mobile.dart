@@ -49,8 +49,8 @@ class ServiceMobileView extends StatelessWidget {
             description: servicesMap["BACKEND REFACTORING"]!,
             image: AppAssets.refactorCard,
             tags: [
-              TagManager.getTag("integration-testing"),
-              TagManager.getTag("unit-testing"),
+              TagManager.getTag("integration-test"),
+              TagManager.getTag("unit-test"),
             ],
           ),
           ServiceCard(

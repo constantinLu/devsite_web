@@ -18,7 +18,7 @@ class TagWidget extends StatelessWidget {
         color: tag.override ? kcGreySpanish : tag.backgroundColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
       child: Text(
         "#${tag.name}",
         style: TextStyle(

@@ -38,9 +38,9 @@ class TagName {
   static const String gcp = 'gcp';
 
   static const String spock = 'spock';
-  static const String unitTesting = 'unit-testing';
-  static const String integrationTesting = 'integration-testing';
-  static const String e2eTesting = 'E2E-testing';
+  static const String unitTesting = 'unit-test';
+  static const String integrationTesting = 'integration-test';
+  static const String e2eTesting = 'E2E-test';
 
   static const String git = 'git';
   static const String docker = 'docker';
