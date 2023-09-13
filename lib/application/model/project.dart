@@ -131,8 +131,8 @@ var projects = [
     name: "Forcaster",
     company: "Fortech",
     sector: "Finance",
-    description: "Financial forecasting web-app"
-        "Financial projections performed to facilitate any decision-making relevant for determining future business performance",
+    description: "Financial forecasting and projections performed to "
+        "facilitate any decision-making relevant for determining future business performance",
     logo: AppAssets.fortechLogo,
     color: kcBlackCard,
     tags: [
