@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../common/space.dart';
+import '../../common/style.dart';
 
 class ContactMobileView extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -82,9 +83,19 @@ class ContactMobileView extends StatelessWidget {
                   const Divider(),
                   Space.height(2.h)!,
                   RetroButton(
-                    label: "SUBMIT",
-                    onPressed: () => null,
-                  ),
+                      label: "SUBMIT",
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Center(
+                                child: Text("Email sent!",
+                                    style: montserratStyleWithColor(
+                                        context, 16, kcBlackFull, FontWeight.w400))),
+                            elevation: 0,
+                            backgroundColor: kcTitleTurquoise,
+                          ),
+                        );
+                      }),
                 ],
               ),
             ),

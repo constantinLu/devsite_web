@@ -1,3 +1,4 @@
+import 'package:devsite_web/presentation/common/style.dart';
 import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,11 +44,16 @@ class ContactDesktopView extends StatelessWidget {
                   Align(
                     alignment: Alignment.topCenter,
                     child: TextButton(
-                        onPressed: () async {
-                          await Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com"))
+                        onPressed: () {
+                          Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com"))
                               .then((_) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Email address copied to clipboard"), elevation: 0, backgroundColor: kcWhiteCultured,));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Email address copied to clipboard",
+                                  style: montserratStyleWithColor(
+                                      context, 16, kcBlackFull, FontWeight.w400)),
+                              elevation: 0,
+                              backgroundColor: kcWhiteCultured,
+                            ));
                           });
                           // copied successfully
                         },
@@ -55,7 +61,6 @@ class ContactDesktopView extends StatelessWidget {
                   ),
                 ],
               ),
-
               Space.height(2.h)!,
               const Divider(),
               FormBuilder(
@@ -90,7 +95,19 @@ class ContactDesktopView extends StatelessWidget {
                       Space.height(2.h)!,
                       RetroButton(
                         label: "SUBMIT",
-                        onPressed: () => null,
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Center(
+                                  child: Text("Email sent!",
+                                      style: montserratStyleWithColor(
+                                          context, 16, kcBlackFull, FontWeight.w400))),
+                              elevation: 0,
+                              backgroundColor: kcTitleTurquoise,
+                            ),
+                          );
+                          // copied successfully
+                        },
                       ),
                     ],
                   ),
