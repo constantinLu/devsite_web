@@ -56,7 +56,7 @@ class ServiceCard extends StatelessWidget {
                       height: getValueForScreenType<double>(
                           context: context, mobile: 20.h, tablet: 20.h, desktop: 21.h),
                       width: getValueForScreenType<double>(
-                          context: context, mobile: 80.w, tablet: 70.w, desktop: 20.w),
+                          context: context, mobile: 90.w, tablet: 70.w, desktop: 20.w),
                       decoration: BoxDecoration(color: backgroundColor ?? Colors.grey),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
