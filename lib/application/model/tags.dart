@@ -32,6 +32,7 @@ class TagName {
   static const String postgresql = 'postgresql';
   static const String mysql = 'mysql';
   static const String impala = 'impala';
+  static const String jooq = 'jooq';
 
   static const String azure = 'azure';
   static const String gcp = 'gcp';
@@ -70,11 +71,11 @@ class TagManager {
 
     //cloud
     Tag(name: TagName.azure, color: kcBlackFull, backgroundColor: kcBlue),
-    Tag(name: TagName.gcp, color: kcBlackFull, backgroundColor: kcBlue),
+    Tag(name: TagName.gcp, color: kcBlackFull, backgroundColor: Colors.redAccent),
 
     // test
     Tag(name: TagName.spock, color: kcWhiteCultured, backgroundColor: kcSpringGreen),
-    Tag(name: TagName.unitTesting, color: kcWhiteCultured, backgroundColor: kcGreyDim),
+    Tag(name: TagName.unitTesting, color: kcWhiteCultured, backgroundColor: Colors.purple),
     Tag(name: TagName.integrationTesting, color: kcBlackErie, backgroundColor: Colors.orange),
     Tag(name: TagName.e2eTesting, color: kcBlackFull, backgroundColor: Colors.greenAccent),
 

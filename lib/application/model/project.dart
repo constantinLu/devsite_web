@@ -149,9 +149,8 @@ var projects = [
     name: "SEPA-Tester",
     company: "Revolut",
     sector: "Finance",
-    description: "Bank transaction simulator. "
-        "This mimicked the real world transactions of money in order "
-        "to automatically test mandatory scenarios required by the bank authority before going LIVE",
+    description:"Bank transaction simulator for automated testing of mandatory scenarios required by the bank authority"
+        " before going LIVE",
     logo: AppAssets.revolutLogo,
     color: kcRevolut,
     tags: [
@@ -161,7 +160,6 @@ var projects = [
       TagManager.getTag(TagName.e2eTesting),
       TagManager.getTag(TagName.spock),
       TagManager.getTag(TagName.unitTesting),
-      TagManager.getTag(TagName.gcp),
     ],
     startDate: DateTime(2021, 03, 01),
     endDate: DateTime(2021, 06, 01),
@@ -178,7 +176,6 @@ var projects = [
       TagManager.getTag(TagName.java),
       TagManager.getTag(TagName.gradle),
       TagManager.getTag(TagName.postgresql),
-      TagManager.getTag(TagName.e2eTesting),
       TagManager.getTag(TagName.spock),
       TagManager.getTag(TagName.unitTesting),
       TagManager.getTag(TagName.gcp),
@@ -199,7 +196,6 @@ var projects = [
       TagManager.getTag(TagName.java),
       TagManager.getTag(TagName.gradle),
       TagManager.getTag(TagName.postgresql),
-      TagManager.getTag(TagName.e2eTesting),
       TagManager.getTag(TagName.spock),
       TagManager.getTag(TagName.unitTesting),
       TagManager.getTag(TagName.gcp),
@@ -222,7 +218,6 @@ var projects = [
       TagManager.getTag(TagName.postgresql),
       TagManager.getTag(TagName.e2eTesting),
       TagManager.getTag(TagName.spock),
-      TagManager.getTag(TagName.unitTesting),
       TagManager.getTag(TagName.gcp),
     ],
     startDate: DateTime(2021, 06, 01),

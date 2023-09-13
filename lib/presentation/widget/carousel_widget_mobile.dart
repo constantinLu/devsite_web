@@ -36,8 +36,8 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 90.w,
+    return ConstrainedBox(
+      constraints: BoxConstraints.loose(Size(90.w, double.infinity)),
       child: Column(
         children: [
           Row(
@@ -53,51 +53,54 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
                   color: kcLightGrey,
                 ),
               ),
-              SizedBox(
-                width: 70.w,
-                child: CarouselSlider(
-                  carouselController: _controller,
-                  options: CarouselOptions(
-                    height: 10.h,
-                    enlargeCenterPage: true,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.easeInBack,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 200),
-                    viewportFraction: 0.5,
+              Flexible(
+                fit: FlexFit.tight,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.loose(Size(70.w, double.infinity)),
+                  child: CarouselSlider(
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                      height: 10.h,
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.easeInBack,
+                      autoPlayAnimationDuration: const Duration(milliseconds: 200),
+                      viewportFraction: 0.5,
+                    ),
+                    items: tools.map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return GestureDetector(
+                            onTap: () {},
+                            child: Tooltip(
+                              richMessage: TextSpan(
+                                text: extractName(i),
+                                style: const TextStyle(
+                                  color: kcGreyDim,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              child: ColorFiltered(
+                                colorFilter: ColorFilter.matrix(grayscaleMatrix),
+                                child: SvgPicture.asset(
+                                  i,
+                                  fit: BoxFit.contain,
+                                  width: 40.w,
+                                  height: 14.h,
+                                ),
+                              ),
+                            ).moveUpOnHover,
+                          );
+                        },
+                      );
+                    }).toList(),
                   ),
-                  items: tools.map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return GestureDetector(
-                          onTap: () {},
-                          child: Tooltip(
-                            richMessage: TextSpan(
-                              text: extractName(i),
-                              style: const TextStyle(
-                                color: kcGreyDim,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: ColorFiltered(
-                              colorFilter: ColorFilter.matrix(grayscaleMatrix),
-                              child: SvgPicture.asset(
-                                i,
-                                fit: BoxFit.contain,
-                                width: 40.w,
-                                height: 14.h,
-                              ),
-                            ),
-                          ).moveUpOnHover,
-                        );
-                      },
-                    );
-                  }).toList(),
                 ),
               ),
               IconButton(

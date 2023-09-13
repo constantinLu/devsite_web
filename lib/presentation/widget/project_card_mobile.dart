@@ -3,7 +3,6 @@ import 'package:devsite_web/presentation/widget/tag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../application/model/project.dart';
@@ -23,7 +22,7 @@ class ProjectCardMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cardHeight = 30.h;
+    var cardHeight = 35.h;
     var cardWidth = 100.w;
     return Stack(
       children: [
@@ -38,12 +37,11 @@ class ProjectCardMobile extends StatelessWidget {
     ).moveUpOnHover;
   }
 
-  SizedBox buildSizedBox(
+  ConstrainedBox buildSizedBox(
       BuildContext context, double cardHeight, double cardWidth, bool isFrontCard) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
-    return SizedBox(
-      width: cardWidth,
-      height: cardHeight,
+    return ConstrainedBox(
+      constraints: BoxConstraints.loose(Size(cardWidth, cardHeight)),
       child: Padding(
         padding: const EdgeInsets.all(2),
         child: Card(
@@ -62,73 +60,85 @@ class ProjectCardMobile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                /// THIS IS THE WIDTH OF THE LOGO!!!
-                width: 20.w,
-                height: cardHeight,
-                decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
-                child: Stack(
-                  clipBehavior: Clip.antiAlias,
-                  alignment: Alignment.centerLeft,
-                  children: [
-                    isFrontCard
-                        ? Padding(
-                            padding: const EdgeInsets.only(left: 2.0, right: 5),
-                            child: project.logo!.contains(".svg")
-                                ? SvgPicture.asset(
-                                    project.logo!,
-                                    fit: BoxFit.fitWidth,
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.only(left: 10.0, right: 5),
-                                    child: Image.asset(
+              Flexible(
+                //constrain withn space
+                flex: 1,
+                fit: FlexFit.loose,
+                child: Container(
+                  /// THIS IS THE WIDTH OF THE LOGO!!! total 100.w - 20.w
+                  width: 20.w,
+                  height: cardHeight,
+                  decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
+                  child: Stack(
+                    clipBehavior: Clip.antiAlias,
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      isFrontCard
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 2.0, right: 5),
+                              child: project.logo!.contains(".svg")
+                                  ? SvgPicture.asset(
                                       project.logo!,
                                       fit: BoxFit.fitWidth,
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.only(left: 10.0, right: 5),
+                                      child: Image.asset(
+                                        project.logo!,
+                                        fit: BoxFit.fitWidth,
+                                      ),
                                     ),
-                                  ),
-                          )
-                        : const Padding(
-                            padding: EdgeInsets.all(0),
-                          ),
-                  ],
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.all(0),
+                            ),
+                    ],
+                  ),
                 ),
               ),
-              isFrontCard
-                  ? Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            project.name,
-                            style: poppinsStyle(context, 20),
-                          ),
-                          Space.height(0.8.h)!,
-                          Text(project.sector, style: robotoStyle(context, 15)),
-                          Space.height(1.h)!,
-                          SizedBox(
-                            /// THE length where the text will collapse afterwards 50% of the current width
-                            width: 50.w,
-                            child: Text(
-                              "• ${project.description}",
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              maxLines: 5,
-                              style: montserratStyle(context, 14, FontWeight.w400),
+              Flexible(
+                flex: 2,
+                fit: FlexFit.loose,
+                child: isFrontCard
+                    ? Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              project.name,
+                              style: poppinsStyle(context, 20),
                             ),
-                          ),
-                          Space.height(0.8.h)!,
-                          Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                              width: getValueForScreenType<double>(
-                                  context: context, mobile: 50.w, tablet: 15.w, desktop: 23.w),
-                              height: getValueForScreenType<double>(
-                                  context: context,
-                                  mobile: 20.h,
-                                  tablet: double.infinity,
-                                  desktop: double.infinity),
+                            Space.height(0.8.h)!,
+                            Text(project.sector, style: robotoStyle(context, 15)),
+                            Space.height(1.h)!,
+                            Flexible(
+                              fit: FlexFit.loose,
+                              flex: determineFlex(project.description.length),
+                              child: SizedBox(
+                                /// THE length where the text will collapse afterwards 50% of the current width
+                                width: 100.w,
+                                height: cardHeight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5.0),
+                                  child: Text(
+                                    "• ${project.description}",
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                    maxLines: 6,
+                                    style: montserratStyleWithColor(
+                                        context, 12, kcLightGrey, FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Flexible(fit: FlexFit.tight, flex: 1, child: Space.height(0.1.h)!),
+
+                            /// tags !
+                            Flexible(
+                              fit: FlexFit.tight,
+                              flex: 2,
                               child: Wrap(
                                 spacing: 5.0, // Horizontal spacing between items
                                 runSpacing: 5.0, // Vertical spacing between lines
@@ -140,11 +150,12 @@ class ProjectCardMobile extends StatelessWidget {
                                     .toList(),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : const Padding(padding: EdgeInsets.all(0))
+                            Flexible(fit: FlexFit.tight, flex: 2, child: Space.height(0.2.h)!),
+                          ],
+                        ),
+                      )
+                    : const Padding(padding: EdgeInsets.all(0)),
+              )
             ],
           ),
         ),
@@ -154,5 +165,15 @@ class ProjectCardMobile extends StatelessWidget {
 
   Color processColor(bool isFrontCard, ThemeProvider provider) {
     return isFrontCard ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground) : kcBlackFull;
+  }
+
+  int determineFlex(int textLength) {
+    if (textLength < 90) {
+      return 1;
+    } else if (textLength > 90 && textLength < 120) {
+      return 3;
+    } else {
+      return 4;
+    }
   }
 }

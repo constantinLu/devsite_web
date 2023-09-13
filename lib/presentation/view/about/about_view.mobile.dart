@@ -18,7 +18,7 @@ class AboutMobileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SizedBox(
-      height: 110.h,
+      height: 120.h,
       width: 25.w,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
@@ -54,13 +54,16 @@ class AboutMobileView extends StatelessWidget {
             ),
             Space.height(6.h)!,
             CarouselMobileWidget(),
-            Space.height(6.h)!,
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-              child: Center(
-                child: const IconAnimation(
-                    icon:
-                        Icon(Icons.keyboard_double_arrow_down, size: 50, color: kcDevsiteTurquise)),
+            Space.height(1.h)!,
+            Flexible(
+              fit: FlexFit.loose,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                child: Center(
+                  child: const IconAnimation(
+                      icon:
+                          Icon(Icons.keyboard_double_arrow_down, size: 50, color: kcDevsiteTurquise)),
+                ),
               ),
             )
           ],

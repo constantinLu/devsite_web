@@ -26,11 +26,11 @@ class ServiceCard extends StatelessWidget {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
 
     /// THIS SizedBox controls the dimension of the card.
-    return SizedBox(
-      height: getValueForScreenType<double>(
-          context: context, mobile: 63.h, tablet: 52.h, desktop: 54.h),
-      width: getValueForScreenType<double>(
-          context: context, mobile: 85.w, tablet: 90.w, desktop: 20.w),
+    return ConstrainedBox(
+      constraints: BoxConstraints.tight(Size(
+        getValueForScreenType<double>(context: context, mobile: 90.w, tablet: 90.w, desktop: 20.w),
+        getValueForScreenType<double>(context: context, mobile: 65.h, tablet: 52.h, desktop: 54.h),
+      )),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
         //TODO: This prevents the bug of
@@ -46,7 +46,7 @@ class ServiceCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
@@ -54,9 +54,9 @@ class ServiceCard extends StatelessWidget {
                     /// THIS CONTAINER CONTROLS THE IMAGE dimension
                     Container(
                       height: getValueForScreenType<double>(
-                          context: context, mobile: 20.h, tablet: 20.h, desktop: 20.h),
+                          context: context, mobile: 20.h, tablet: 20.h, desktop: 21.h),
                       width: getValueForScreenType<double>(
-                          context: context, mobile: 70.w, tablet: 70.w, desktop: 20.w),
+                          context: context, mobile: 80.w, tablet: 70.w, desktop: 20.w),
                       decoration: BoxDecoration(color: backgroundColor ?? Colors.grey),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
@@ -83,7 +83,8 @@ class ServiceCard extends StatelessWidget {
                         fontWeight: FontWeight.w700),
                   ),
                 ),
-                Expanded(
+                Flexible(
+                  fit: FlexFit.loose,
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(16).copyWith(bottom: 10),
@@ -94,7 +95,8 @@ class ServiceCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
+                Flexible(
+                  fit: FlexFit.tight,
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -104,7 +106,7 @@ class ServiceCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: getValueForScreenType<double>(
-                              context: context, mobile: 40.w, tablet: 15.w, desktop: 15.w),
+                              context: context, mobile: 70.w, tablet: 15.w, desktop: 15.w),
                           child: Wrap(
                             runAlignment: WrapAlignment.start,
                             spacing: 6,
@@ -124,7 +126,7 @@ class ServiceCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    ).moveUpOnHover;
+      ).moveUpOnHover,
+    );
   }
 }

@@ -18,7 +18,7 @@ class ServiceMobileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final servicesMap = ServiceView.servicesMap;
     return Container(
-      height: 340.h,
+      height: 350.h,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

@@ -15,7 +15,7 @@ class ShowcaseMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = 400.h;
+    var height = 490.h;
     return Container(
       height: height,
       width: double.infinity,
@@ -27,7 +27,6 @@ class ShowcaseMobileView extends StatelessWidget {
             child: Text(
               showcaseTitle,
               style: Theme.of(context).textTheme.displaySmall,
-              // style: montserratStyle(context, 30),
             ),
           ),
           Space.height(3.h)!,
@@ -56,7 +55,7 @@ class ShowcaseMobileView extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2),
                       child: Text(
                         projects[index].startDate.monthYear,
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                     connectorStyleBuilder: (context, index) => ConnectorStyle.dashedLine,

@@ -18,6 +18,14 @@ montserratStyle(BuildContext context, [double? size = 16, FontWeight weight = Fo
       color: Theme.of(context).textColor,
     );
 
+montserratStyleWithColor(BuildContext context, [double? size = 16, Color? color = kcWhiteCultured, FontWeight weight = FontWeight.w200]) =>
+    GoogleFonts.montserrat(
+      fontSize: size,
+      fontWeight: weight,
+      color: color,
+    );
+
+
 poppinsStyle(BuildContext context, [double? size = 16, FontWeight weight = FontWeight.w700]) =>
     GoogleFonts.poppins(fontSize: size, fontWeight: weight);
 
