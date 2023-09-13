@@ -24,6 +24,11 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool darkMode() {
+    var darkMode = isDarkMode;
+    return darkMode;
+  }
+
   @Deprecated("dark by default to be used")
   static bool processTheme() {
     final currentTime = DateTime.now();

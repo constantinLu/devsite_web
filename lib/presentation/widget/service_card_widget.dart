@@ -23,7 +23,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = tags?.first.backgroundColor?.withOpacity(0.8);
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
 
     /// THIS SizedBox controls the dimension of the card.
     return ConstrainedBox(
@@ -79,7 +79,7 @@ class ServiceCard extends StatelessWidget {
                     name,
                     style: TextStyle(
                         fontSize: 20,
-                        color: provider.isDarkMode ? kcWhiteFull : kcBlackFull,
+                        color: provider.darkMode() ? kcWhiteFull : kcBlackFull,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
