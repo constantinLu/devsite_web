@@ -26,9 +26,9 @@ jobs:
 
       - name: Generate ENV Variables
         run: |
-          echo "const EMAIL_PUBLIC_KEY = '${{ secrets.EMAIL_PUBLIC_KEY }}';" >> lib/application/env.dart
-          echo "const EMAIL_SERVICE_ID = '${{ secrets.EMAIL_SERVICE_ID }}';" >> lib/application/env.dart
-          echo "const EMAIL_TEMPLATE_ID = '${{ secrets.EMAIL_TEMPLATE_ID }}';" >> lib/application/env.dart
+          echo "static const EMAIL_PUBLIC_KEY = '${{ secrets.EMAIL_PUBLIC_KEY }}';" >> lib/application/env.dart
+          echo "static const EMAIL_SERVICE_ID = '${{ secrets.EMAIL_SERVICE_ID }}';" >> lib/application/env.dart
+          echo "static const EMAIL_TEMPLATE_ID = '${{ secrets.EMAIL_TEMPLATE_ID }}';" >> lib/application/env.dart
 
       - name: Build Web
         run: flutter build web --release --web-renderer canvaskit --no-tree-shake-icons

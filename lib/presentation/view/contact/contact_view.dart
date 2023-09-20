@@ -28,10 +28,10 @@ Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
   final response = await http.post(url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'service_id': Env.emailServiceId,
-        'template_id': Env.emailTemplateId,
+        'service_id': EMAIL_SERVICE_ID,
+        'template_id': EMAIL_TEMPLATE_ID,
         //public key
-        'user_id': Env.emailPublicKey,
+        'user_id': EMAIL_PUBLIC_KEY,
         'template_params': {
           'from_name': "$name",
           'from_email': "$email",

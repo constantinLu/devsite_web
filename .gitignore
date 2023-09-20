@@ -33,8 +33,7 @@ migrate_working_dir/
 /build/
 
 # env file
-assets/.env
-env.g.dart
+/lib/application/env.dart
 
 # Symbolication related
 app.*.symbols
