@@ -52,8 +52,8 @@ dependencies:
   flutter_form_builder:
   mailer:
   timelines:
-  flutter_dotenv:
 
+  #flutter_dotenv:
   #envied:
   #cached_network_image:
   #shimmer:
@@ -70,7 +70,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner:
+  #build_runner:
   #envied_generator:
   #freezed:
   #injectable_generator: # Version 2
