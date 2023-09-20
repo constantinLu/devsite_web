@@ -12,11 +12,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    env:
-      EMAIL_PUBLIC_KEY: ${{ secrets.EMAIL_PUBLIC_KEY }}
-      EMAIL_SERVICE_ID: ${{ secrets.EMAIL_SERVICE_ID }}
-      EMAIL_TEMPLATE_ID: ${{ secrets.EMAIL_TEMPLATE_ID }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2  # Changed from v3 to v2 as v3 is not yet released at the time of my last update
@@ -28,6 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Generate env_constants.dart
+        run: |
+          echo "const EMAIL_PUBLIC_KEY = '${{ secrets.EMAIL_PUBLIC_KEY }}';" >> lib/env.dart
+          echo "const EMAIL_SERVICE_ID = '${{ secrets.EMAIL_SERVICE_ID }}';" >> lib/env.dart
+          echo "const EMAIL_TEMPLATE_ID = '${{ secrets.EMAIL_TEMPLATE_ID }}';" >> lib/env.dart
 
       - name: Build Web
         run: flutter build web --release --web-renderer canvaskit --no-tree-shake-icons
