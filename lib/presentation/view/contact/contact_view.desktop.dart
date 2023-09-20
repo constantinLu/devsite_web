@@ -45,11 +45,13 @@ class ContactDesktopView extends StatelessWidget {
                     onPressed: () {
                       Clipboard.setData(ClipboardData(text: "office.devsite@gmail.com")).then((_) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Email address copied to clipboard",
-                              style: montserratStyleWithColor(
-                                  context, 16, kcBlackFull, FontWeight.w400)),
+                          content: Center(
+                            child: Text("Email address copied to clipboard",
+                                style: montserratStyleWithColor(
+                                    context, 16, kcBlackFull, FontWeight.w500)),
+                          ),
                           elevation: 0,
-                          backgroundColor: kcWhiteCultured,
+                          backgroundColor: kcTitleTurquoise,
                         ));
                       });
                       // copied successfully
@@ -92,16 +94,18 @@ class ContactDesktopView extends StatelessWidget {
                   Space.height(2.h)!,
                   RetroButton(
                     label: "SUBMIT",
-                    onPressed: () {
+                    onPressed: () async {
                       var snackBar;
                       if (_formKey.currentState?.saveAndValidate() ?? false) {
                         Map<String, dynamic> formData = _formKey.currentState!.value;
                         String name = formData['Name'];
                         String email = formData['Email'];
                         String message = formData['Message'];
-                        snackBar = sendEmail(context, name, email, message);
+                        snackBar = await sendEmail(context, name, email, message);
+                      } else {
+                        snackBar =
+                            alertMessage(context, "Mailing provider had some issues! Please try again later", kcRed);
                       }
-                      snackBar = alertMessage(context, "Mailing provider stopped working!", kcRed);
                     },
                   ),
                 ],

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../application/env.dart';
 import '../../common/color_picker.dart';
 import '../../common/style.dart';
 
@@ -27,9 +28,10 @@ Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
   final response = await http.post(url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'service_id': 'null',
-        'template_id': 'null',
-        'user_id': 'null',
+        'service_id': Env.emailServiceId,
+        'template_id': Env.emailTemplateId,
+        //public key
+        'user_id': Env.emailPublicKey,
         'template_params': {
           'from_name': "$name",
           'from_email': "$email",
@@ -47,6 +49,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> alertMessage(
     BuildContext context, String message, Color backgroundColor) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      duration: Duration(seconds: 1),
       content: Center(
           child: Text(message,
               style: montserratStyleWithColor(context, 16, kcBlackFull, FontWeight.w500))),
