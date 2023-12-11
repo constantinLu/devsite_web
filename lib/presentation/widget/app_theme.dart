@@ -65,9 +65,6 @@ class ThemeColors {
     ),
   );
 }
-// static Brightness get currentSystemBrightness =>
-//     View.of(context).devicePixelRatio;
-//     SchedulerBinding.instance.window.platformBrightness;
 
 extension ThemeExtras on ThemeData {
   Color get navBarColor => brightness == Brightness.light ? kcBlackCarbon : kcWhiteCultured;
