@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:devsite_web/application/assets/app_assets.dart';
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
