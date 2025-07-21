@@ -102,6 +102,8 @@ class ContactDesktopView extends StatelessWidget {
                         String email = formData['Email'];
                         String message = formData['Message'];
                         snackBar = await sendEmail(context, name, email, message);
+                        // Clear the form after successful email send
+                        _formKey.currentState?.reset();
                       } else {
                         snackBar =
                             alertMessage(context, "Mailing provider had some issues! Please try again later", kcRed);
