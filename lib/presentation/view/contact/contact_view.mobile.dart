@@ -64,21 +64,18 @@ class ContactMobileView extends StatelessWidget {
                 children: [
                   FormBuilderTextField(
                     name: 'Name',
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Name", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Name", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Email',
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Email", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Email", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Message',
                     maxLines: 10,
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Message", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Message", border: InputBorder.none),
                   ),
                   const Divider(),
                   Space.height(2.h)!,
@@ -92,6 +89,12 @@ class ContactMobileView extends StatelessWidget {
                         String email = formData['Email'];
                         String message = formData['Message'];
                         snackBar = sendEmail(context, name, email, message);
+                        // Clear the form after successful email send
+                        if (snackBar.content.toString().contains('success')) {
+                          _formKey.currentState?.fields['Name']?.reset();
+                          _formKey.currentState?.fields['Email']?.reset();
+                          _formKey.currentState?.fields['Message']?.reset();
+                        }
                       }
                       snackBar = alertMessage(context, "Mailing provider stopped working!", kcRed);
                     },

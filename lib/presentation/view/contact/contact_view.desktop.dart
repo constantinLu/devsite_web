@@ -47,8 +47,7 @@ class ContactDesktopView extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Center(
                             child: Text("Email address copied to clipboard",
-                                style: montserratStyleWithColor(
-                                    context, 16, kcBlackFull, FontWeight.w500)),
+                                style: montserratStyleWithColor(context, 16, kcBlackFull, FontWeight.w500)),
                           ),
                           elevation: 0,
                           backgroundColor: kcTitleTurquoise,
@@ -74,21 +73,18 @@ class ContactDesktopView extends StatelessWidget {
                 children: [
                   FormBuilderTextField(
                     name: 'Name',
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Name", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Name", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Email',
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Email", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Email", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Message',
                     maxLines: 10,
-                    decoration: const InputDecoration(
-                        filled: true, hintText: "Message", border: InputBorder.none),
+                    decoration: const InputDecoration(filled: true, hintText: "Message", border: InputBorder.none),
                   ),
                   const Divider(),
                   Space.height(2.h)!,
@@ -102,11 +98,13 @@ class ContactDesktopView extends StatelessWidget {
                         String email = formData['Email'];
                         String message = formData['Message'];
                         snackBar = await sendEmail(context, name, email, message);
-                        // Clear the form after successful email send
-                        _formKey.currentState?.reset();
+                        if (snackBar.content.toString().contains('success')) {
+                          _formKey.currentState?.fields['Name']?.reset();
+                          _formKey.currentState?.fields['Email']?.reset();
+                          _formKey.currentState?.fields['Message']?.reset();
+                        }
                       } else {
-                        snackBar =
-                            alertMessage(context, "Mailing provider had some issues! Please try again later", kcRed);
+                        snackBar = alertMessage(context, "Mailing provider had some issues! Please try again later", kcRed);
                       }
                     },
                   ),
