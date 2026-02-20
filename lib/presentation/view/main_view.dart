@@ -18,6 +18,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   late final ScrollProvider _scrollProvider;
+  bool _isRouteDrivenScrollInProgress = false;
 
   @override
   void initState() {
@@ -25,9 +26,9 @@ class _MainViewState extends State<MainView> {
     _scrollProvider = Provider.of<ScrollProvider>(context, listen: false);
     _scrollProvider.itemPositionsListener.itemPositions.addListener(_onSectionChangedByScroll);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      _scrollProvider.jumpTo(widget.initialSection);
+      await _runRouteDrivenScroll(widget.initialSection);
     });
   }
 
@@ -37,8 +38,18 @@ class _MainViewState extends State<MainView> {
     super.dispose();
   }
 
+  Future<void> _runRouteDrivenScroll(int sectionIndex) async {
+    _isRouteDrivenScrollInProgress = true;
+
+    try {
+      await _scrollProvider.jumpTo(sectionIndex);
+    } finally {
+      _isRouteDrivenScrollInProgress = false;
+    }
+  }
+
   void _onSectionChangedByScroll() {
-    if (!mounted) return;
+    if (!mounted || _isRouteDrivenScrollInProgress) return;
 
     final visibleItems = _scrollProvider.itemPositionsListener.itemPositions.value
         .where((position) => position.itemTrailingEdge > 0)
