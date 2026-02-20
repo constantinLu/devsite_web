@@ -1,6 +1,7 @@
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
-import '../../common/app_routes.dart';
+
+import '../common/app_routes.dart';
 
 class NavbarButton extends StatefulWidget {
   final String label;

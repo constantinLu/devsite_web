@@ -21,7 +21,6 @@ class ContactView extends StatelessWidget {
   }
 }
 
-
 String? requiredValidator(String? value, String fieldLabel) {
   if (value == null || value.trim().isEmpty) {
     return '$fieldLabel is required';
@@ -63,7 +62,8 @@ Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
   if (response.statusCode == 200) {
     return alertMessage(context, "Email sent!", kcTitleTurquoise);
   } else {
-    return alertMessage(context, "Something when wrong while sending the email!", kcRed);
+    return alertMessage(
+        context, "Something when wrong while sending the email!", kcRed);
   }
 }
 
@@ -74,7 +74,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> alertMessage(
       duration: Duration(seconds: 1),
       content: Center(
           child: Text(message,
-              style: montserratStyleWithColor(context, 16, kcBlackFull, FontWeight.w500))),
+              style: montserratStyleWithColor(
+                  context, 16, kcBlackFull, FontWeight.w500))),
       elevation: 0,
       backgroundColor: backgroundColor,
     ),
