@@ -6,6 +6,6 @@ class ScrollProvider extends ChangeNotifier {
   final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   final scrollDuration = const Duration(seconds: 2);
 
-  Future<void> jumpTo(int index) => itemScrollController.scrollTo(
+  void jumpTo(int index) => itemScrollController.scrollTo(
       index: index, duration: scrollDuration, curve: Curves.easeInOutCubic, alignment: 0);
 }
