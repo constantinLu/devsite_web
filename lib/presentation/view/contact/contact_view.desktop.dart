@@ -73,16 +73,19 @@ class ContactDesktopView extends StatelessWidget {
                 children: [
                   FormBuilderTextField(
                     name: 'Name',
+                    validator: (value) => requiredValidator(value, 'Name'),
                     decoration: const InputDecoration(filled: true, hintText: "Name", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Email',
+                    validator: emailValidator,
                     decoration: const InputDecoration(filled: true, hintText: "Email", border: InputBorder.none),
                   ),
                   Space.height(2.h)!,
                   FormBuilderTextField(
                     name: 'Message',
+                    validator: (value) => requiredValidator(value, 'Message'),
                     maxLines: 10,
                     decoration: const InputDecoration(filled: true, hintText: "Message", border: InputBorder.none),
                   ),
@@ -91,21 +94,17 @@ class ContactDesktopView extends StatelessWidget {
                   RetroButton(
                     label: "SUBMIT",
                     onPressed: () async {
-                      var snackBar;
-                      if (_formKey.currentState?.saveAndValidate() ?? false) {
-                        Map<String, dynamic> formData = _formKey.currentState!.value;
-                        String name = formData['Name'];
-                        String email = formData['Email'];
-                        String message = formData['Message'];
-                        snackBar = await sendEmail(context, name, email, message);
-                        if (snackBar.content.toString().contains('success')) {
-                          _formKey.currentState?.fields['Name']?.reset();
-                          _formKey.currentState?.fields['Email']?.reset();
-                          _formKey.currentState?.fields['Message']?.reset();
-                        }
-                      } else {
-                        snackBar = alertMessage(context, "Mailing provider had some issues! Please try again later", kcRed);
+                      if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
+                        alertMessage(context, "Please complete all fields with valid values.", kcRed);
+                        return;
                       }
+
+                      final formData = _formKey.currentState!.value;
+                      final name = formData['Name'];
+                      final email = formData['Email'];
+                      final message = formData['Message'];
+
+                      await sendEmail(context, name, email, message);
                     },
                   ),
                 ],

@@ -21,6 +21,28 @@ class ContactView extends StatelessWidget {
   }
 }
 
+
+String? requiredValidator(String? value, String fieldLabel) {
+  if (value == null || value.trim().isEmpty) {
+    return '$fieldLabel is required';
+  }
+  return null;
+}
+
+String? emailValidator(String? value) {
+  final requiredValidation = requiredValidator(value, 'Email');
+  if (requiredValidation != null) {
+    return requiredValidation;
+  }
+
+  final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+  if (!emailRegex.hasMatch(value!.trim())) {
+    return 'Enter a valid email address';
+  }
+
+  return null;
+}
+
 /// email logic
 Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
     BuildContext context, String name, String email, String message) async {
