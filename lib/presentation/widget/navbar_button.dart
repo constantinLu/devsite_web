@@ -1,8 +1,7 @@
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../application/provider/scroll_provider.dart';
+import '../common/app_routes.dart';
 
 class NavbarButton extends StatefulWidget {
   final String label;
@@ -21,8 +20,6 @@ class NavbarButton extends StatefulWidget {
 class _NavbarButtonState extends State<NavbarButton> {
   @override
   Widget build(BuildContext context) {
-    final scrollProvider = Provider.of<ScrollProvider>(context);
-
     // theme
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -31,7 +28,7 @@ class _NavbarButtonState extends State<NavbarButton> {
       ),
       child: TextButton(
         onPressed: () {
-          scrollProvider.jumpTo(widget.index);
+          Navigator.pushReplacementNamed(context, AppRoutes.pathForSection(widget.index));
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
