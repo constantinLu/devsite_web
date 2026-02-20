@@ -23,9 +23,11 @@ class ServiceMobileView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(servicesTitle, style: poppinsStyle(context, 32, FontWeight.w400)),
+          Text(servicesTitle,
+              style: poppinsStyle(context, 32, FontWeight.w400)),
           ServiceCard(
-            name: servicesMap.keys.where((key) => key == "CUSTOM SOFTWARE").first,
+            name:
+                servicesMap.keys.where((key) => key == "CUSTOM SOFTWARE").first,
             description: servicesMap["CUSTOM SOFTWARE"]!,
             image: AppAssets.customCard,
             tags: [
@@ -35,7 +37,9 @@ class ServiceMobileView extends StatelessWidget {
             ],
           ),
           ServiceCard(
-            name: servicesMap.keys.where((key) => key == "API DEVELOPMENT AND INTEGRATION").first,
+            name: servicesMap.keys
+                .where((key) => key == "API DEVELOPMENT AND INTEGRATION")
+                .first,
             description: servicesMap["API DEVELOPMENT AND INTEGRATION"]!,
             image: AppAssets.apiCard,
             tags: [
@@ -45,7 +49,9 @@ class ServiceMobileView extends StatelessWidget {
             ],
           ),
           ServiceCard(
-            name: servicesMap.keys.where((key) => key == "BACKEND REFACTORING").first,
+            name: servicesMap.keys
+                .where((key) => key == "BACKEND REFACTORING")
+                .first,
             description: servicesMap["BACKEND REFACTORING"]!,
             image: AppAssets.refactorCard,
             tags: [
@@ -54,7 +60,9 @@ class ServiceMobileView extends StatelessWidget {
             ],
           ),
           ServiceCard(
-            name: servicesMap.keys.where((key) => key == "MOBILE APP BACKEND DEVELOPMENT").first,
+            name: servicesMap.keys
+                .where((key) => key == "MOBILE APP BACKEND DEVELOPMENT")
+                .first,
             description: servicesMap["MOBILE APP BACKEND DEVELOPMENT"]!,
             image: AppAssets.mobileCard,
             tags: [
@@ -65,7 +73,9 @@ class ServiceMobileView extends StatelessWidget {
             ],
           ),
           ServiceCard(
-            name: servicesMap.keys.where((key) => key == "WEB APPLICATIONS").first,
+            name: servicesMap.keys
+                .where((key) => key == "WEB APPLICATIONS")
+                .first,
             description: servicesMap["WEB APPLICATIONS"]!,
             image: AppAssets.webCard,
             tags: [
@@ -77,7 +87,8 @@ class ServiceMobileView extends StatelessWidget {
           ),
           Space.height(4.h)!,
           const IconAnimation(
-              icon: Icon(Icons.keyboard_double_arrow_down, size: 70, color: kcDevsiteTurquise))
+              icon: Icon(Icons.keyboard_double_arrow_down,
+                  size: 70, color: kcDevsiteTurquise))
         ],
       ),
     );
