@@ -27,7 +27,6 @@ class AllViews extends StatelessWidget {
       itemCount: AllViews.views.length,
       itemBuilder: (context, index) => AllViews.views[index],
       itemScrollController: scrollProvider.itemScrollController,
-      itemPositionsListener: scrollProvider.itemPositionsListener,
     );
   }
 }
