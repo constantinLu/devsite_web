@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../application/provider/scroll_provider.dart';
+import '../../common/app_routes.dart';
 import '../../common/navbar_utils.dart';
 import '../../common/space.dart';
 import '../../widget/devsite_icon.dart';
@@ -11,7 +10,6 @@ import '../../widget/retro_button.dart';
 class NavbarDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final scrollProvider = Provider.of<ScrollProvider>(context);
     return Drawer(
       child: Column(
         children: [
@@ -25,8 +23,8 @@ class NavbarDrawer extends StatelessWidget {
                 (e) => ListTile(
                   title: Text(e.value),
                   onTap: () {
-                    scrollProvider.jumpTo(e.key);
                     Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, AppRoutes.pathForSection(e.key));
                   },
                 ),
               ),
@@ -34,8 +32,8 @@ class NavbarDrawer extends StatelessWidget {
           RetroButton(
               label: 'CONTACT US',
               onPressed: () {
-                scrollProvider.jumpTo(3);
                 Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, AppRoutes.contact);
               }),
         ],
       ),
