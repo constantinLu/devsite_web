@@ -46,6 +46,7 @@ String? emailValidator(String? value) {
 Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
     BuildContext context, String name, String email, String message) async {
   final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+  final  sendFromWithMessage = "Sent from:" + "$email" + " $message";
   final response = await http.post(url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
@@ -56,7 +57,7 @@ Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
         'template_params': {
           'from_name': "$name",
           'from_email': "$email",
-          'message': "$message",
+          'message': sendFromWithMessage,
         }
       }));
   if (response.statusCode == 200) {
