@@ -24,20 +24,11 @@ jobs:
       - name: Verify Dart Version
         run: dart --version
 
-      - name: Cache Flutter Dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pub-cache
-            ${{ runner.tool_cache }}/dart
-          key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml', 'pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-flutter
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.10.6'
+          flutter-version: '3.32.5' # Use the same version as your local Flutter installation
 
       - name: Install dependencies
         run: flutter pub get
