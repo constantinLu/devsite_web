@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../application/model/project.dart';
 import '../../application/provider/theme_provider.dart';
@@ -27,17 +28,37 @@ class ProjectCard extends StatelessWidget {
         getValueForScreenType<double>(context: context, mobile: 21.h, tablet: 21.h, desktop: 21.h);
     var width =
         getValueForScreenType<double>(context: context, mobile: 80.w, tablet: 50.w, desktop: 10.w);
-    return Stack(
-      children: [
-        Transform.translate(
-          offset: const Offset(-8, 8),
-          //this is the back card
-          child: buildSizedBox(context, height, width, false),
+    return GestureDetector(
+      onTap: () {
+        if (project.url != null) {
+          launchURL(project.url!);
+        }
+      },
+      child:  Tooltip(
+        richMessage: TextSpan(
+          text: project.url == null ? "" : "Click to view project",
+          style: const TextStyle(
+            color: kcGreyDim,
+            fontSize: 16.0,
+          ),
         ),
-        // this is the front card
-        buildSizedBox(context, height, width, true),
-      ],
-    ).moveUpOnHover;
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        child: Stack(
+          children: [
+            Transform.translate(
+              offset: const Offset(-8, 8),
+              //this is the back card
+              child: buildSizedBox(context, height, width, false),
+            ),
+            // this is the front card
+            buildSizedBox(context, height, width, true),
+          ],
+        ).moveUpOnHover,
+      ),
+    );
   }
 
   SizedBox buildSizedBox(BuildContext context, double height, double width, bool isFrontCard) {
@@ -87,10 +108,12 @@ class ProjectCard extends StatelessWidget {
                         ? Padding(
                             padding: const EdgeInsets.only(left: 10.0),
                             child: project.logo!.contains(".svg")
-                                ? SvgPicture.asset(
+                                ? Padding(
+                              padding: EdgeInsets.all(10),
+                              child: SvgPicture.asset(
                                     project.logo!,
                                     fit: BoxFit.scaleDown,
-                                  )
+                                  ))
                                 : Padding(
                                     padding: const EdgeInsets.all(25.0),
                                     child: Image.asset(
@@ -114,15 +137,19 @@ class ProjectCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Project Name
                           Text(
                             project.name,
                             style: poppinsStyle(context, 20),
                           ),
                           Space.height(0.2.w)!,
+
+                          // Project Sector
                           Text(project.sector, style: robotoStyle(context, 15)),
                           Space.height(0.5.w)!,
+
+                          //Project description
                           SizedBox(
-                            //THE length where the text will collapse afterwards
                             width: 23.w,
                             child: Text(
                               "• ${project.description}",
@@ -133,6 +160,8 @@ class ProjectCard extends StatelessWidget {
                             ),
                           ),
                           Space.height(0.5.w)!,
+
+                          // Project Tags
                           Expanded(
                             flex: 1,
                             child: SizedBox(
@@ -168,5 +197,14 @@ class ProjectCard extends StatelessWidget {
 
   Color processColor(bool isFrontCard, ThemeProvider provider) {
     return isFrontCard ? (provider.isDarkMode ? kcDarkBackground : kcLightBackground) : kcBlackFull;
+  }
+}
+
+void launchURL(String url) async {
+  final uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $url';
   }
 }
