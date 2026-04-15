@@ -2,7 +2,7 @@ import 'package:devsite_web/application/extensions/date_extension.dart';
 import 'package:devsite_web/presentation/widget/project_card_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timelines/timelines.dart';
+import 'package:timelines_plus/timelines_plus.dart';
 
 import '../../../application/model/project.dart';
 import '../../common/color_picker.dart';

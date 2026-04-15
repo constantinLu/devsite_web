@@ -19,6 +19,8 @@ class AppAssets {
   static String revolutLogo = 'assets/images/client/revolut.svg';
   static String orangeLogo = 'assets/images/client/orange.svg';
   static String eurocontrolLogo = 'assets/images/client/eurocontrol.png';
+  static String natureOzonLogo = 'assets/images/client/natureOzon.svg';
+  static String voltlabLogo = 'assets/images/client/voltlab.png';
 
   // tools
   static const String azure = 'assets/images/tools/azure.svg';

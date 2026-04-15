@@ -22,6 +22,7 @@ class Tag {
 class TagName {
   static const String java = 'java';
   static const String spring = 'spring';
+  static const String springsec = 'spring security';
   static const String dart = 'dart';
   static const String flutter = 'flutter';
   static const String react = 'react';
@@ -51,6 +52,16 @@ class TagName {
 
   static const String rest = 'rest-api';
   static const String kafka = 'kafka';
+
+  static const String vercel = 'vercel';
+  static const String nextJS = 'next.js';
+  static const String typescript = 'typescript';
+  static const String figma = 'figma';
+
+  static const String codex = 'codex';
+  static const String chatgpt = 'chatgpt';
+
+
 }
 
 class TagManager {
@@ -61,6 +72,10 @@ class TagManager {
     Tag(name: TagName.dart, color: kcBlackFull, backgroundColor: Colors.blueGrey),
     Tag(name: TagName.flutter, color: kcBlackFull, backgroundColor: kcBlue),
     Tag(name: TagName.react, color: kcBlackFull, backgroundColor: softBlue),
+    Tag(name: TagName.nextJS, color: kcBlackFull, backgroundColor: Colors.grey),
+    Tag(name: TagName.springsec, color: kcBlackFull, backgroundColor: Colors.greenAccent),
+    Tag(name: TagName.typescript, color: kcBlackFull, backgroundColor: Colors.blueGrey),
+
 
     Tag(name: TagName.javaee, color: kcWhiteCultured, backgroundColor: kcPurple),
     Tag(name: TagName.jsf, color: kcBlackFull, backgroundColor: kcRed),
@@ -90,6 +105,18 @@ class TagManager {
     //
     Tag(name: TagName.rest, color: kcWhiteCultured, backgroundColor: kcDarkBlue),
     Tag(name: TagName.kafka, color: kcBlackFull, backgroundColor: kcWhiteCultured),
+    Tag(name: TagName.figma, color: kcBlackFull, backgroundColor: kcRed),
+
+
+    //ai
+    Tag(name: TagName.codex, color: kcBlackFull, backgroundColor: kcBlue),
+    Tag(name: TagName.chatgpt, color: kcBlackFull, backgroundColor: Colors.cyanAccent),
+    Tag(name: TagName.vercel, color: kcBlackFull, backgroundColor: Colors.yellow),
+
+    //fe
+
+
+
   ];
 
   static Tag getTag(String name) {

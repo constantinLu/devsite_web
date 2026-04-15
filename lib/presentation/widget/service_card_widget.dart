@@ -39,8 +39,8 @@ class ServiceCard extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Card(
-            shadowColor: kcGreyPlatinum,
-            elevation: 3,
+            shadowColor: kcGreyDim,
+            elevation: 9,
             clipBehavior: Clip.antiAlias,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2),

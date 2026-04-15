@@ -20,7 +20,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.2.3 <4.0.0"
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -51,7 +52,7 @@ dependencies:
   font_awesome_flutter:
   flutter_form_builder:
   mailer:
-  timelines:
+  timelines_plus:
 
   #flutter_dotenv:
   #envied:
@@ -102,6 +103,8 @@ flutter:
     - assets/images/client/revolut.svg
     - assets/images/client/orange.svg
     - assets/images/client/eurocontrol.png
+    - assets/images/client/natureOzon.svg
+    - assets/images/client/voltlab.png
     #tools-logo
     - assets/images/tools/azure.svg
     - assets/images/tools/confluence.svg

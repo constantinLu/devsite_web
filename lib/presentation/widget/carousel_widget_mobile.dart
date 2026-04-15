@@ -16,7 +16,7 @@ class CarouselMobileWidget extends StatefulWidget {
 }
 
 class _CarouselWidgetState extends State<CarouselMobileWidget> {
-  final CarouselController _controller = CarouselController();
+  final CarouselSliderController _controller = CarouselSliderController();
   static const tools = [
     AppAssets.azure,
     AppAssets.confluence,
