@@ -34,8 +34,6 @@ dependencies:
     sdk: flutter
 
   http:
-  flutter_bloc: #state management
-  logger: #for logging
   google_fonts: #fonts
   flutter_svg:
   simple_gradient_text: #GRADIENT
@@ -51,7 +49,6 @@ dependencies:
   material_design_icons_flutter:
   font_awesome_flutter:
   flutter_form_builder:
-  mailer:
   timelines_plus:
 
   #flutter_dotenv:
@@ -76,7 +73,7 @@ dev_dependencies:
   #freezed:
   #injectable_generator: # Version 2
   #auto_route_generator:
-  #flutter_lints:
+  flutter_lints: ^4.0.0
 
   #faker:
   #mocktail:
@@ -85,41 +82,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  # Directory entries (trailing slash) bundle every file in that folder.
+  # NOTE: this is NOT recursive, so each subfolder needs its own line.
   assets:
-    #company
-    - assets/images/devbutton.svg
-    #gif
-    - assets/gif/dev_gif_300x200_dark.gif
-    - assets/gif/dev_gif_300x200_light.gif
-    #cards
-    - assets/images/cards/custom_card.svg
-    - assets/images/cards/integration_card.svg
-    - assets/images/cards/mobile_card.svg
-    - assets/images/cards/refactor_card.svg
-    - assets/images/cards/web_card.svg
-    #client-logo
-    - assets/images/client/mercedes.png
-    - assets/images/client/fortech.png
-    - assets/images/client/revolut.svg
-    - assets/images/client/orange.svg
-    - assets/images/client/eurocontrol.png
-    - assets/images/client/natureOzon.svg
-    - assets/images/client/voltlab.png
-    #tools-logo
-    - assets/images/tools/azure.svg
-    - assets/images/tools/confluence.svg
-    - assets/images/tools/docker.svg
-    - assets/images/tools/flutter.svg
-    - assets/images/tools/git.svg
-    - assets/images/tools/gradle.svg
-    - assets/images/tools/google-cloud.svg
-    - assets/images/tools/intellij-idea.svg
-    - assets/images/tools/java.svg
-    - assets/images/tools/jira.svg
-    - assets/images/tools/maven.svg
-    - assets/images/tools/mysql.svg
-    - assets/images/tools/postgresql.svg
-    - assets/images/tools/spring-boot.svg
+    - assets/gif/
+    - assets/images/          # devbutton.svg and any other top-level images
+    - assets/images/cards/
+    - assets/images/client/
+    - assets/images/tools/
 
 
   # To add custom fonts to your application, add a fonts section here,

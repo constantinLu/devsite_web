@@ -1,7 +1,8 @@
 import 'package:devsite_web/application/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../common/app_routes.dart';
+import '../../application/provider/scroll_provider.dart';
 
 class NavbarButton extends StatefulWidget {
   final String label;
@@ -28,7 +29,9 @@ class _NavbarButtonState extends State<NavbarButton> {
       ),
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, AppRoutes.pathForSection(widget.index));
+          // Scroll the existing single-page list instead of pushing a new route
+          // (which recreated the list and broke the shared scroll controller).
+          Provider.of<ScrollProvider>(context, listen: false).jumpTo(widget.index);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

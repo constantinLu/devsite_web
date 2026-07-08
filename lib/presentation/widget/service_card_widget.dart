@@ -9,8 +9,9 @@ import 'package:sizer/sizer.dart';
 import '../../application/model/tags.dart';
 import '../../application/provider/theme_provider.dart';
 import '../common/color_picker.dart';
-import '../common/space.dart';
 
+/// Content-sized service card: a fixed width but intrinsic height, so the full
+/// description and tags always fit instead of being cropped by a tight box.
 class ServiceCard extends StatelessWidget {
   final String name;
   final String description;
@@ -25,105 +26,62 @@ class ServiceCard extends StatelessWidget {
     final backgroundColor = tags?.first.backgroundColor?.withOpacity(0.8);
     final provider = Provider.of<ThemeProvider>(context, listen: true);
 
-    /// THIS SizedBox controls the dimension of the card.
-    return ConstrainedBox(
-      constraints: BoxConstraints.tight(Size(
-        getValueForScreenType<double>(context: context, mobile: 90.w, tablet: 90.w, desktop: 20.w),
-        getValueForScreenType<double>(context: context, mobile: 65.h, tablet: 52.h, desktop: 54.h),
-      )),
+    return SizedBox(
+      width: getValueForScreenType<double>(
+          context: context, mobile: 90.w, tablet: 80.w, desktop: 22.w),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-        //TODO: This prevents the bug of
-        // https://stackoverflow.com/questions/72410116/physicalmodellayer-detached-when-rendering-card-flutter
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Card(
-            shadowColor: kcGreyDim,
-            elevation: 9,
-            clipBehavior: Clip.antiAlias,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(2),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+        child: Card(
+          shadowColor: kcGreyDim,
+          elevation: 9,
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Banner image
+              Container(
+                height: getValueForScreenType<double>(
+                    context: context, mobile: 20.h, tablet: 20.h, desktop: 22.h),
+                width: double.infinity,
+                decoration: BoxDecoration(color: backgroundColor ?? Colors.grey),
+                child: Padding(
+                  padding: const EdgeInsets.all(12).copyWith(bottom: 8),
+                  child: SvgPicture.asset(image, fit: BoxFit.scaleDown),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
+                child: Text(
+                  name,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: provider.darkMode() ? kcWhiteFull : kcBlackFull,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 14),
+                child: Text(
+                  description,
+                  style: const TextStyle(
+                      fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                child: Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
                   children: [
-                    /// THIS CONTAINER CONTROLS THE IMAGE dimension
-                    Container(
-                      height: getValueForScreenType<double>(
-                          context: context, mobile: 20.h, tablet: 20.h, desktop: 21.h),
-                      width: getValueForScreenType<double>(
-                          context: context, mobile: 90.w, tablet: 70.w, desktop: 20.w),
-                      decoration: BoxDecoration(color: backgroundColor ?? Colors.grey),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
-                        child: SvgPicture.asset(
-                          image,
-                          fit: BoxFit.scaleDown,
-                          height: getValueForScreenType<double>(
-                              context: context, mobile: 20.h, tablet: 20.h, desktop: 20.h),
-                          width: getValueForScreenType<double>(
-                              context: context, mobile: 70.w, tablet: 20.w, desktop: 20.w),
-                        ),
-                      ),
-                    ),
+                    ...?tags?.map((tag) => TagWidget(tag, TagSize.M)),
                   ],
                 ),
-                Space.height(3.h)!,
-                Padding(
-                  padding: const EdgeInsets.all(20).copyWith(bottom: 0),
-                  child: Text(
-                    name,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: provider.darkMode() ? kcWhiteFull : kcBlackFull,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Flexible(
-                  fit: FlexFit.loose,
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16).copyWith(bottom: 10),
-                    child: Text(
-                      description,
-                      style: const TextStyle(
-                          fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          width: getValueForScreenType<double>(
-                              context: context, mobile: 60.w, tablet: 15.w, desktop: 15.w),
-                          child: Wrap(
-                            runAlignment: WrapAlignment.start,
-                            spacing: 6,
-                            runSpacing: 4,
-                            children: [
-                              ...?tags?.map(
-                                (tag) => TagWidget(tag, TagSize.M),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ).moveUpOnHover,

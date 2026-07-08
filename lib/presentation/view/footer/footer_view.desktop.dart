@@ -16,7 +16,9 @@ class FooterDesktopView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.fromLTRB(0, 1.h, 0, 2.h),
-      height: height * 0.07,
+      // Clamp so the icon buttons + copyright row always fit (7% of a short
+      // phone viewport was too small and overflowed).
+      height: (height * 0.07).clamp(96.0, double.infinity),
       width: width,
       child: Center(
         child: Column(

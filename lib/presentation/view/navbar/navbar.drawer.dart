@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../application/provider/scroll_provider.dart';
 import '../../common/app_routes.dart';
 import '../../common/navbar_utils.dart';
 import '../../common/space.dart';
@@ -24,7 +26,7 @@ class NavbarDrawer extends StatelessWidget {
                   title: Text(e.value),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, AppRoutes.pathForSection(e.key));
+                    Provider.of<ScrollProvider>(context, listen: false).jumpTo(e.key);
                   },
                 ),
               ),
@@ -33,7 +35,8 @@ class NavbarDrawer extends StatelessWidget {
               label: 'CONTACT US',
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.pushReplacementNamed(context, AppRoutes.contact);
+                Provider.of<ScrollProvider>(context, listen: false)
+                    .jumpTo(AppRoutes.sectionFor(AppRoutes.contact));
               }),
         ],
       ),

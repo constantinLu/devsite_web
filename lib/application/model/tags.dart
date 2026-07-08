@@ -120,7 +120,10 @@ class TagManager {
   ];
 
   static Tag getTag(String name) {
-    return tags.firstWhere((tag) => tag.name == name);
+    return tags.firstWhere(
+      (tag) => tag.name == name,
+      orElse: () => Tag(name: name, color: kcBlackFull, backgroundColor: kcWhiteCultured),
+    );
   }
 }
 

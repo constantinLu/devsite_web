@@ -6,6 +6,11 @@ class ScrollProvider extends ChangeNotifier {
   final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   final scrollDuration = const Duration(seconds: 2);
 
-  void jumpTo(int index) => itemScrollController.scrollTo(
-      index: index, duration: scrollDuration, curve: Curves.easeInOutCubic, alignment: 0);
+  void jumpTo(int index) {
+    // Guard against calling before the list has attached (avoids the
+    // scrollable_positioned_list attach assertion).
+    if (!itemScrollController.isAttached) return;
+    itemScrollController.scrollTo(
+        index: index, duration: scrollDuration, curve: Curves.easeInOutCubic, alignment: 0);
+  }
 }

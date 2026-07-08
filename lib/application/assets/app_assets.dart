@@ -20,21 +20,46 @@ class AppAssets {
   static String orangeLogo = 'assets/images/client/orange.svg';
   static String eurocontrolLogo = 'assets/images/client/eurocontrol.png';
   static String natureOzonLogo = 'assets/images/client/natureOzon.svg';
-  static String voltlabLogo = 'assets/images/client/voltlab.png';
+  static String empatikLogo = 'assets/images/client/empatik.svg';
+  static String voltlabLogo = 'assets/images/client/volt-lab.svg';
+  static String medicinaDentaraLogo = 'assets/images/client/medicinadentara.svg';
 
   // tools
-  static const String azure = 'assets/images/tools/azure.svg';
-  static const String confluence = 'assets/images/tools/confluence.svg';
-  static const String docker = 'assets/images/tools/docker.svg';
-  static const String flutter = 'assets/images/tools/flutter.svg';
-  static const String git = 'assets/images/tools/git.svg';
-  static const String gradle = 'assets/images/tools/gradle.svg';
-  static const String gcp = 'assets/images/tools/google-cloud.svg';
-  static const String intelliJ = 'assets/images/tools/intellij-idea.svg';
-  static const String java = 'assets/images/tools/java.svg';
-  static const String jira = 'assets/images/tools/jira.svg';
-  static const String maven = 'assets/images/tools/maven.svg';
-  static const String mysql = 'assets/images/tools/mysql.svg';
-  static const String postgresql = 'assets/images/tools/postgresql.svg';
   static const String springboot = 'assets/images/tools/spring-boot.svg';
+  static const String java = 'assets/images/tools/java.svg';
+  static const String flutter = 'assets/images/tools/flutter.svg';
+  static const String kotlin = 'assets/images/tools/kotlin.svg';
+  static const String kafka = 'assets/images/tools/kafka.svg';
+
+  //tools
+  static const String intelliJ = 'assets/images/tools/intellij-idea.svg';
+  static const String confluence = 'assets/images/tools/confluence.svg';
+  static const String jira = 'assets/images/tools/jira.svg';
+
+  //cloud
+  static const String azure = 'assets/images/tools/azure.svg';
+  static const String gcp = 'assets/images/tools/google-cloud.svg';
+
+  //build
+  static const String maven = 'assets/images/tools/maven.svg';
+  static const String gradle = 'assets/images/tools/gradle.svg';
+  static const String git = 'assets/images/tools/git.svg';
+
+  // dbs
+  static const String postgresql = 'assets/images/tools/postgresql.svg';
+  static const String mongoDb = 'assets/images/tools/mongdb.svg';
+  static const String mysql = 'assets/images/tools/mysql.svg';
+
+  //infra
+  static const String kubernetes = 'assets/images/tools/k8s.svg';
+  static const String docker = 'assets/images/tools/docker.svg';
+
+  //observability
+  static const String grafana = 'assets/images/tools/grafana.svg';
+  static const String newRelic = 'assets/images/tools/newrelic.svg';
+  static const String kibana = 'assets/images/tools/kibana.svg';
+
+  // ai
+  static const String claude = 'assets/images/tools/claude.svg';
+
 }

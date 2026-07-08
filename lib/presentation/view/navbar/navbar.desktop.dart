@@ -1,6 +1,8 @@
 import 'package:devsite_web/presentation/widget/retro_button.dart';
 import 'package:devsite_web/presentation/widget/theme_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../application/provider/scroll_provider.dart';
 import '../../common/app_routes.dart';
 import '../../common/navbar_utils.dart';
 import '../../widget/devsite_icon.dart';
@@ -27,7 +29,10 @@ class NavbarDesktop extends StatelessWidget {
                 ),
               ),
           const Expanded(flex: 3, child: SizedBox(width: double.infinity)),
-          RetroButton(label: 'CONTACT US', onPressed: () => Navigator.pushReplacementNamed(context, AppRoutes.contact)),
+          RetroButton(
+              label: 'CONTACT US',
+              onPressed: () => Provider.of<ScrollProvider>(context, listen: false)
+                  .jumpTo(AppRoutes.sectionFor(AppRoutes.contact))),
           ThemeButton(),
         ],
       ),

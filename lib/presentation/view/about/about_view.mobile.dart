@@ -19,7 +19,7 @@ class AboutMobileView extends StatelessWidget {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SizedBox(
       height: 120.h,
-      width: 25.w,
+      width: 100.w,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
         child: Column(

@@ -13,39 +13,39 @@ import '../common/color_picker.dart';
 import '../common/space.dart';
 import '../common/style.dart';
 
-enum PanelSize { XS, S, M, L, XL }
-
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final Project project;
-  final int? index;
-  final Size? panelSize;
 
-  const ProjectCard({super.key, required this.project, this.index, this.panelSize});
+  const ProjectCard({super.key, required this.project});
+
+  @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  bool _hovering = false;
 
   @override
   Widget build(BuildContext context) {
+    final hasUrl = widget.project.url != null;
     var height =
         getValueForScreenType<double>(context: context, mobile: 21.h, tablet: 21.h, desktop: 21.h);
     var width =
         getValueForScreenType<double>(context: context, mobile: 80.w, tablet: 50.w, desktop: 10.w);
-    return GestureDetector(
-      onTap: () {
-        if (project.url != null) {
-          launchURL(project.url!);
-        }
+    return MouseRegion(
+      cursor: hasUrl ? SystemMouseCursors.click : MouseCursor.defer,
+      onEnter: (_) {
+        if (hasUrl && !_hovering) setState(() => _hovering = true);
       },
-      child:  Tooltip(
-        richMessage: TextSpan(
-          text: project.url == null ? "" : "Click to view project",
-          style: const TextStyle(
-            color: kcGreyDim,
-            fontSize: 16.0,
-          ),
-        ),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(4.0),
-        ),
+      onExit: (_) {
+        if (_hovering) setState(() => _hovering = false);
+      },
+      child: GestureDetector(
+        onTap: () {
+          if (widget.project.url != null) {
+            launchURL(widget.project.url!);
+          }
+        },
         child: Stack(
           children: [
             Transform.translate(
@@ -63,6 +63,142 @@ class ProjectCard extends StatelessWidget {
 
   SizedBox buildSizedBox(BuildContext context, double height, double width, bool isFrontCard) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final project = widget.project;
+    final hasLogo = (project.logo?.trim().isNotEmpty ?? false);
+    final frontCardColor = processColor(true, provider);
+    final fallbackTextColor = frontCardColor == kcDarkBackground ? Colors.white : Colors.black;
+
+    final Widget cardRow = Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: getValueForScreenType<double>(
+              context: context, mobile: width, tablet: width, desktop: width),
+          height: height,
+          child: Stack(
+            clipBehavior: Clip.antiAlias,
+            alignment: Alignment.centerLeft,
+            children: [
+              Container(
+                width: getValueForScreenType<double>(
+                    context: context, mobile: 30.w, tablet: width, desktop: width),
+                height: getValueForScreenType<double>(
+                    context: context,
+                    mobile: 10.h,
+                    tablet: double.infinity,
+                    desktop: double.infinity),
+                decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
+              ),
+              isFrontCard
+                  ? hasLogo
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: project.logo!.contains(".svg")
+                              ? Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: SvgPicture.asset(
+                                    project.logo!,
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.all(25.0),
+                                  child: Image.asset(
+                                    project.logo!,
+                                    fit: BoxFit.fitWidth,
+                                    width: 10.w,
+                                    height: 15.h,
+                                  ),
+                                ),
+                        )
+                      : Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text(
+                              project.name,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: poppinsStyle(
+                                context,
+                                22,
+                                FontWeight.w700,
+                                fallbackTextColor,
+                              ).copyWith(
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ),
+                        )
+                  : const Padding(
+                      padding: EdgeInsets.all(0),
+                    )
+            ],
+          ),
+        ),
+        isFrontCard
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(20, 15, 5, 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Project Name
+                    Text(
+                      project.name,
+                      style: poppinsStyle(context, 20),
+                    ),
+                    Space.height(0.2.w)!,
+
+                    // Project Sector
+                    Text(project.sector, style: robotoStyle(context, 15)),
+                    Space.height(0.5.w)!,
+
+                    //Project description
+                    SizedBox(
+                      width: 23.w,
+                      child: Text(
+                        "• ${project.description}",
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        maxLines: 5,
+                        style: montserratStyle(context, 14, FontWeight.w400),
+                      ),
+                    ),
+                    Space.height(0.5.w)!,
+
+                    // Project Tags
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        width: getValueForScreenType<double>(
+                            context: context, mobile: 50.w, tablet: 15.w, desktop: 23.w),
+                        height: getValueForScreenType<double>(
+                            context: context,
+                            mobile: 20.h,
+                            tablet: double.infinity,
+                            desktop: double.infinity),
+                        child: Wrap(
+                          spacing: 5.0,
+                          runSpacing: 5.0,
+                          runAlignment: WrapAlignment.start,
+                          children: project.tags
+                              .map(
+                                (tag) => TagWidget(tag, TagSize.XS),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : const Padding(padding: EdgeInsets.all(0))
+      ],
+    );
+
+    final bool showHint = isFrontCard && project.url != null;
+
     return SizedBox(
       width: getValueForScreenType<double>(
           context: context, mobile: width, tablet: 15.w, desktop: 35.w),
@@ -83,111 +219,44 @@ class ProjectCard extends StatelessWidget {
               width: isFrontCard ? 3 : 0,
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: getValueForScreenType<double>(
-                    context: context, mobile: width, tablet: width, desktop: width),
-                height: height,
-                child: Stack(
-                  clipBehavior: Clip.antiAlias,
-                  alignment: Alignment.centerLeft,
+          child: showHint
+              ? Stack(
                   children: [
-                    Container(
-                      width: getValueForScreenType<double>(
-                          context: context, mobile: 30.w, tablet: width, desktop: width),
-                      height: getValueForScreenType<double>(
-                          context: context,
-                          mobile: 10.h,
-                          tablet: double.infinity,
-                          desktop: double.infinity),
-                      decoration: BoxDecoration(color: processColor(isFrontCard, provider)),
+                    cardRow,
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: _buildVisitBar(context),
                     ),
-                    isFrontCard
-                        ? Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: project.logo!.contains(".svg")
-                                ? Padding(
-                              padding: EdgeInsets.all(10),
-                              child: SvgPicture.asset(
-                                    project.logo!,
-                                    fit: BoxFit.scaleDown,
-                                  ))
-                                : Padding(
-                                    padding: const EdgeInsets.all(25.0),
-                                    child: Image.asset(
-                                      project.logo!,
-                                      fit: BoxFit.fitWidth,
-                                      width: 10.w,
-                                      height: 15.h,
-                                    ),
-                                  ),
-                          )
-                        : const Padding(
-                            padding: EdgeInsets.all(0),
-                          )
                   ],
-                ),
+                )
+              : cardRow,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVisitBar(BuildContext context) {
+    return IgnorePointer(
+      child: AnimatedOpacity(
+        opacity: _hovering ? 1.0 : 0.0,
+        duration: const Duration(milliseconds: 160),
+        curve: Curves.easeInOut,
+        child: Container(
+          height: 4.h,
+          alignment: Alignment.center,
+          color: kcTitleTurquoise.withOpacity(0.75),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Visit website",
+                style: montserratStyleWithColor(context, 14, kcBlackFull, FontWeight.w600),
               ),
-              isFrontCard
-                  ? Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 15, 5, 5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Project Name
-                          Text(
-                            project.name,
-                            style: poppinsStyle(context, 20),
-                          ),
-                          Space.height(0.2.w)!,
-
-                          // Project Sector
-                          Text(project.sector, style: robotoStyle(context, 15)),
-                          Space.height(0.5.w)!,
-
-                          //Project description
-                          SizedBox(
-                            width: 23.w,
-                            child: Text(
-                              "• ${project.description}",
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              maxLines: 5,
-                              style: montserratStyle(context, 14, FontWeight.w400),
-                            ),
-                          ),
-                          Space.height(0.5.w)!,
-
-                          // Project Tags
-                          Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                              width: getValueForScreenType<double>(
-                                  context: context, mobile: 50.w, tablet: 15.w, desktop: 23.w),
-                              height: getValueForScreenType<double>(
-                                  context: context,
-                                  mobile: 20.h,
-                                  tablet: double.infinity,
-                                  desktop: double.infinity),
-                              child: Wrap(
-                                spacing: 5.0, // Horizontal spacing between items
-                                runSpacing: 5.0, // Vertical spacing between lines
-                                runAlignment: WrapAlignment.start,
-                                children: project.tags
-                                    .map(
-                                      (tag) => TagWidget(tag, TagSize.XS),
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : const Padding(padding: EdgeInsets.all(0))
+              const SizedBox(width: 6),
+              const Icon(Icons.north_east, size: 16, color: kcBlackFull),
             ],
           ),
         ),
@@ -200,11 +269,11 @@ class ProjectCard extends StatelessWidget {
   }
 }
 
-void launchURL(String url) async {
+Future<void> launchURL(String url) async {
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
-    throw 'Could not launch $url';
+    debugPrint('Could not launch $url');
   }
 }

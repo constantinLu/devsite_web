@@ -1,29 +1,40 @@
-// This is a basic Flutter widget test.
+// Data-integrity tests for the project showcase.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// These replace the default "counter" boilerplate (which never matched this
+// app). They assert invariants on the hardcoded project data that, if broken,
+// would crash the app at startup or corrupt the timeline.
 
-import 'package:devsite_web/presentation/app_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:devsite_web/application/model/project.dart';
+import 'package:devsite_web/application/model/tags.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const AppWidget());
+  test('project ids are unique', () {
+    final ids = projects.map((p) => p.id).toList();
+    expect(ids.toSet().length, ids.length,
+        reason: 'Duplicate project ids found: $ids');
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  test('every project tag resolves to a defined tag', () {
+    // getTag now falls back gracefully, but the tag name should still match a
+    // real definition so the intended styling is applied.
+    final defined = TagManager.tags.map((t) => t.name).toSet();
+    for (final project in projects) {
+      for (final tag in project.tags) {
+        expect(defined.contains(tag.name), isTrue,
+            reason: 'Project "${project.name}" uses undefined tag "${tag.name}"');
+      }
+    }
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('projects are ordered newest-first by startDate', () {
+    for (var i = 0; i < projects.length - 1; i++) {
+      expect(
+        projects[i].startDate.isBefore(projects[i + 1].startDate),
+        isFalse,
+        reason: 'Project at index $i (${projects[i].name}) is older than the '
+            'next one (${projects[i + 1].name})',
+      );
+    }
   });
 }

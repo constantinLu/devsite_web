@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:devsite_web/presentation/view/contact/contact_view.desktop.dart';
 import 'package:devsite_web/presentation/view/contact/contact_view.mobile.dart';
+import 'package:devsite_web/presentation/view/contact/contact_view.tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:responsive_builder/responsive_builder.dart';
@@ -15,7 +16,7 @@ class ContactView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       desktop: (_) => ContactDesktopView(),
-      tablet: (_) => ContactDesktopView(),
+      tablet: (_) => ContactTabletView(),
       mobile: (_) => ContactMobileView(),
     );
   }
@@ -43,28 +44,38 @@ String? emailValidator(String? value) {
 }
 
 /// email logic
-Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> sendEmail(
+Future<void> sendEmail(
     BuildContext context, String name, String email, String message) async {
   final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-  final  sendFromWithMessage = "Sent from:" + "$email" + " $message";
-  final response = await http.post(url,
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({
-        'service_id': EMAIL_SERVICE_ID,
-        'template_id': EMAIL_TEMPLATE_ID,
-        //public key
-        'user_id': EMAIL_PUBLIC_KEY,
-        'template_params': {
-          'from_name': "$name",
-          'from_email': "$email",
-          'message': sendFromWithMessage,
-        }
-      }));
-  if (response.statusCode == 200) {
-    return alertMessage(context, "Email sent!", kcTitleTurquoise);
-  } else {
-    return alertMessage(
-        context, "Something when wrong while sending the email!", kcRed);
+  final sendFromWithMessage = "Sent from: $email $message";
+  try {
+    final response = await http
+        .post(url,
+            headers: {'Content-Type': 'application/json'},
+            body: json.encode({
+              'service_id': EMAIL_SERVICE_ID,
+              'template_id': EMAIL_TEMPLATE_ID,
+              //public key
+              'user_id': EMAIL_PUBLIC_KEY,
+              'template_params': {
+                'from_name': name,
+                'from_email': email,
+                'message': sendFromWithMessage,
+              }
+            }))
+        .timeout(const Duration(seconds: 15));
+
+    if (!context.mounted) return;
+    if (response.statusCode == 200) {
+      alertMessage(context, "Email sent!", kcTitleTurquoise);
+    } else {
+      debugPrint('EmailJS send failed: ${response.statusCode} ${response.body}');
+      alertMessage(context, "Something went wrong while sending the email!", kcRed);
+    }
+  } catch (e) {
+    debugPrint('EmailJS send error: $e');
+    if (!context.mounted) return;
+    alertMessage(context, "Something went wrong while sending the email!", kcRed);
   }
 }
 

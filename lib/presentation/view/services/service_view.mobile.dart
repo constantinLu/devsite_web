@@ -18,9 +18,10 @@ class ServiceMobileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final servicesMap = ServiceView.servicesMap;
     return Container(
-      height: 350.h,
       width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 3.h),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(servicesTitle, style: poppinsStyle(context, 32, FontWeight.w400)),

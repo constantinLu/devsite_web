@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common/color_picker.dart';
-import 'animation/grey_scale.dart';
 
 class CarouselWidget extends StatefulWidget {
   const CarouselWidget({super.key});
@@ -22,6 +21,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
     AppAssets.confluence,
     AppAssets.docker,
     AppAssets.flutter,
+    AppAssets.kotlin,
     AppAssets.git,
     AppAssets.gradle,
     AppAssets.gcp,
@@ -32,11 +32,17 @@ class _CarouselWidgetState extends State<CarouselWidget> {
     AppAssets.mysql,
     AppAssets.postgresql,
     AppAssets.springboot,
+    AppAssets.kafka,
+    AppAssets.claude,
+    AppAssets.mongoDb,
+    AppAssets.grafana,
+    AppAssets.newRelic,
+    AppAssets.kibana,
+    AppAssets.kubernetes,
   ];
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       width: 75.w,
       child: Column(
@@ -65,7 +71,8 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                     autoPlay: true,
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 200),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 200),
                     viewportFraction: 0.1,
                   ),
                   items: tools.map((i) {
@@ -85,14 +92,11 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(4.0),
                             ),
-                            child: ColorFiltered(
-                              colorFilter: ColorFilter.matrix(grayscaleMatrix),
-                              child: SvgPicture.asset(
-                                i,
-                                fit: BoxFit.contain,
-                                width: 32.w,
-                                height: 8.h,
-                              ),
+                            child: SvgPicture.asset(
+                              i,
+                              fit: BoxFit.contain,
+                              width: 32.w,
+                              height: 8.h,
                             ),
                           ).moveUpOnHover,
                         );

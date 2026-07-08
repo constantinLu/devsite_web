@@ -15,12 +15,13 @@ class ShowcaseDesktopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = 430.h;
     return Container(
-      height: height,
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
+      // No fixed height: the section sizes to its content so it always fits,
+      // regardless of how many projects are added.
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           /// ROW 1 - 3 elements
           Center(
@@ -31,6 +32,10 @@ class ShowcaseDesktopView extends StatelessWidget {
           ),
           Space.height(3.h)!,
           FixedTimeline.tileBuilder(
+            // Size to content (default is MainAxisSize.max, which needs a
+            // bounded height and throws under the unbounded height of the
+            // scroll list). min lets the section grow with the project count.
+            mainAxisSize: MainAxisSize.min,
             theme: TimelineThemeData(
               color: kcTitleTurquoise,
             ),
@@ -39,7 +44,7 @@ class ShowcaseDesktopView extends StatelessWidget {
               itemCount: projects.length,
               contentsBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(5),
-                child: ProjectCard(project: projects[index], index: index),
+                child: ProjectCard(project: projects[index]),
               ),
               oppositeContentsBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(5),
