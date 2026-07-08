@@ -32,12 +32,12 @@ class FooterDesktopView extends StatelessWidget {
                     onPressed: () {
                       openURL(github);
                     },
-                    icon: const Icon(FontAwesomeIcons.github)),
+                    icon: const FaIcon(FontAwesomeIcons.github)),
                 IconButton(
                     onPressed: () {
                       openURL(linkedIn);
                     },
-                    icon: const Icon(FontAwesomeIcons.linkedinIn)),
+                    icon: const FaIcon(FontAwesomeIcons.linkedinIn)),
               ],
             ),
             const Text("Copyright © 2023 Devsite LLC . All Rights Reserved"),

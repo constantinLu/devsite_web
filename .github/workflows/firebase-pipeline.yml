@@ -14,21 +14,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Dart
-        uses: dart-lang/setup-dart@v1
-        with:
-          dart-version: '3.2.3'
-
-      - name: Verify Dart Version
-        run: dart --version
-
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.5' # Use the same version as your local Flutter installation
+          channel: 'stable'
+          flutter-version: '3.44.5' # Keep in sync with the local Flutter version
+
+      - name: Verify versions
+        run: flutter --version
 
       - name: Install dependencies
         run: flutter pub get
@@ -41,7 +36,7 @@ jobs:
 
 
       - name: Build Web
-        run: flutter build web --release -dart-define=FLUTTER_WEB_USE_SKIA=false
+        run: flutter build web --release
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0

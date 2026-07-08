@@ -42,10 +42,6 @@
   <title>DEVSITE — Custom Software &amp;Development</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
@@ -148,22 +144,14 @@
     }
   </style>
   <script>
-     function delay(time) {
-      return new Promise(resolve => setTimeout(resolve, time));
-    }
-
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       var loaderContent = document.querySelector('#loader-content');
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-             loaderContent.style.opacity = "0";
-             //await delay(400);
-             appRunner.runApp();
+      // Modern Flutter web bootstrap (replaces the deprecated loadEntrypoint).
+      _flutter.loader.load({
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            loaderContent.style.opacity = "0";
+            appRunner.runApp();
           });
         }
       });

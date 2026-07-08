@@ -27,8 +27,8 @@ class ThemeButton extends StatelessWidget {
       child: IconButton(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         icon: provider.isDarkMode
-            ? const Icon(FontAwesomeIcons.solidMoon, color: kcGreyDim)
-            : const Icon(FontAwesomeIcons.solidSun, color: kcYellowBouldare),
+            ? const FaIcon(FontAwesomeIcons.solidMoon, color: kcGreyDim)
+            : const FaIcon(FontAwesomeIcons.solidSun, color: kcYellowBouldare),
         onPressed: () {
           provider.toggleTheme();
         },
