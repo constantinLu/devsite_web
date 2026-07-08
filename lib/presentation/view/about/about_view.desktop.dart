@@ -3,6 +3,7 @@ import 'package:devsite_web/application/assets/app_assets.dart';
 import 'package:devsite_web/presentation/common/style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../application/provider/theme_provider.dart';
@@ -43,13 +44,20 @@ class AboutDesktopView extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(aboutHello, style: poppinsStyle(context, 30)),
+                          Seo.text(
+                            text: aboutHello,
+                            child: Text(aboutHello, style: poppinsStyle(context, 30)),
+                          ),
                         ],
                       ),
                       Space.height(0.3.w)!,
-                      Text(
-                        welcomeTitle,
-                        style: montserratStyle(context, 25),
+                      Seo.text(
+                        text: welcomeTitle,
+                        style: TextTagStyle.h1,
+                        child: Text(
+                          welcomeTitle,
+                          style: montserratStyle(context, 25),
+                        ),
                       ),
                       Space.height(0.5.h)!,
                       AnimatedTextKit(
@@ -60,9 +68,12 @@ class AboutDesktopView extends StatelessWidget {
                       Space.height(4.h)!,
                       Padding(
                         padding: EdgeInsets.only(right: 10.w),
-                        child: Text(
-                          miniDescription,
-                          style: robotoStyle(context),
+                        child: Seo.text(
+                          text: miniDescription,
+                          child: Text(
+                            miniDescription,
+                            style: robotoStyle(context),
+                          ),
                         ),
                       ),
                     ],
@@ -75,9 +86,13 @@ class AboutDesktopView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
-                        fit: BoxFit.contain,
+                      Seo.image(
+                        src: provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                        alt: "DEVSite software development",
+                        child: Image.asset(
+                          provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       Space.height(15.h)!,
                     ],

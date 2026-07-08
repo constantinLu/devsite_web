@@ -129,14 +129,6 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
   }
 }
 
-void showMobileTooltip(BuildContext context, message) {
-  final snackBar = SnackBar(
-    content: Text(message),
-    duration: Duration(seconds: 3), // Adjust the duration as needed
-  );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-}
-
 String extractName(String input) {
   final regex = RegExp(r'[^/]+(?=\.\w+$)|[^/]+(?=;$)');
   final match = regex.firstMatch(input);

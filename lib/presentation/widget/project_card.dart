@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,7 +33,7 @@ class _ProjectCardState extends State<ProjectCard> {
         getValueForScreenType<double>(context: context, mobile: 21.h, tablet: 21.h, desktop: 21.h);
     var width =
         getValueForScreenType<double>(context: context, mobile: 80.w, tablet: 50.w, desktop: 10.w);
-    return MouseRegion(
+    final Widget card = MouseRegion(
       cursor: hasUrl ? SystemMouseCursors.click : MouseCursor.defer,
       onEnter: (_) {
         if (hasUrl && !_hovering) setState(() => _hovering = true);
@@ -58,6 +59,13 @@ class _ProjectCardState extends State<ProjectCard> {
           ],
         ).moveUpOnHover,
       ),
+    );
+
+    if (!hasUrl) return card;
+    return Seo.link(
+      href: widget.project.url!,
+      anchor: widget.project.name,
+      child: card,
     );
   }
 
@@ -93,23 +101,27 @@ class _ProjectCardState extends State<ProjectCard> {
                   ? hasLogo
                       ? Padding(
                           padding: const EdgeInsets.only(left: 10.0),
-                          child: project.logo!.contains(".svg")
-                              ? Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: SvgPicture.asset(
-                                    project.logo!,
-                                    fit: BoxFit.scaleDown,
+                          child: Seo.image(
+                            src: project.logo!,
+                            alt: project.name,
+                            child: project.logo!.contains(".svg")
+                                ? Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: SvgPicture.asset(
+                                      project.logo!,
+                                      fit: BoxFit.scaleDown,
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Image.asset(
+                                      project.logo!,
+                                      fit: BoxFit.fitWidth,
+                                      width: 10.w,
+                                      height: 15.h,
+                                    ),
                                   ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: Image.asset(
-                                    project.logo!,
-                                    fit: BoxFit.fitWidth,
-                                    width: 10.w,
-                                    height: 15.h,
-                                  ),
-                                ),
+                          ),
                         )
                       : Center(
                           child: Padding(
@@ -144,25 +156,35 @@ class _ProjectCardState extends State<ProjectCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Project Name
-                    Text(
-                      project.name,
-                      style: poppinsStyle(context, 20),
+                    Seo.text(
+                      text: project.name,
+                      style: TextTagStyle.h3,
+                      child: Text(
+                        project.name,
+                        style: poppinsStyle(context, 20),
+                      ),
                     ),
                     Space.height(0.2.w)!,
 
                     // Project Sector
-                    Text(project.sector, style: robotoStyle(context, 15)),
+                    Seo.text(
+                      text: project.sector,
+                      child: Text(project.sector, style: robotoStyle(context, 15)),
+                    ),
                     Space.height(0.5.w)!,
 
                     //Project description
                     SizedBox(
                       width: 23.w,
-                      child: Text(
-                        "• ${project.description}",
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: false,
-                        maxLines: 5,
-                        style: montserratStyle(context, 14, FontWeight.w400),
+                      child: Seo.text(
+                        text: project.description,
+                        child: Text(
+                          "• ${project.description}",
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                          maxLines: 5,
+                          style: montserratStyle(context, 14, FontWeight.w400),
+                        ),
                       ),
                     ),
                     Space.height(0.5.w)!,

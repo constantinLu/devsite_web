@@ -20,11 +20,3 @@ List<TyperAnimatedText> tabList = [
   TyperAnimatedText(animationMobile,
       speed: const Duration(milliseconds: 50), textStyle: AppText.h2!.copyWith(fontSize: 20))
 ];
-List<TyperAnimatedText> mobileList = [
-  TyperAnimatedText(animationBackend,
-      speed: const Duration(milliseconds: 50), textStyle: AppText.h2!.copyWith(fontSize: 16)),
-  TyperAnimatedText(animationWeb,
-      speed: const Duration(milliseconds: 50), textStyle: AppText.h2!.copyWith(fontSize: 16)),
-  TyperAnimatedText(animationMobile,
-      speed: const Duration(milliseconds: 50), textStyle: AppText.h2!.copyWith(fontSize: 16))
-];

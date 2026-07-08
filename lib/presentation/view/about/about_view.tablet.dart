@@ -3,6 +3,7 @@ import 'package:devsite_web/application/assets/app_assets.dart';
 import 'package:devsite_web/presentation/common/style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../application/provider/theme_provider.dart';
@@ -34,18 +35,29 @@ class AboutTabletView extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 24.h,
-                  child: Image.asset(
-                    provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
-                    fit: BoxFit.contain,
+                  child: Seo.image(
+                    src: provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                    alt: "DEVSite software development",
+                    child: Image.asset(
+                      provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
                 Space.height(3.h)!,
-                Text(aboutHello, style: poppinsStyle(context, 34)),
+                Seo.text(
+                  text: aboutHello,
+                  child: Text(aboutHello, style: poppinsStyle(context, 34)),
+                ),
                 Space.height(1.h)!,
-                Text(
-                  welcomeTitle,
-                  textAlign: TextAlign.center,
-                  style: montserratStyle(context, 26),
+                Seo.text(
+                  text: welcomeTitle,
+                  style: TextTagStyle.h1,
+                  child: Text(
+                    welcomeTitle,
+                    textAlign: TextAlign.center,
+                    style: montserratStyle(context, 26),
+                  ),
                 ),
                 Space.height(2.h)!,
                 SizedBox(
@@ -57,10 +69,13 @@ class AboutTabletView extends StatelessWidget {
                   ),
                 ),
                 Space.height(3.h)!,
-                Text(
-                  miniDescription,
-                  textAlign: TextAlign.center,
-                  style: robotoStyle(context),
+                Seo.text(
+                  text: miniDescription,
+                  child: Text(
+                    miniDescription,
+                    textAlign: TextAlign.center,
+                    style: robotoStyle(context),
+                  ),
                 ),
                 Space.height(5.h)!,
                 const CarouselMobileWidget(),

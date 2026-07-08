@@ -1,11 +1,11 @@
 {
-    "name": "devsite_web",
-    "short_name": "devsite_web",
+    "name": "DEVSITE — Custom Software & Backend Development",
+    "short_name": "DEVSITE",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "webpage for devsite",
+    "description": "DEVSite builds custom Java, Spring Boot and Next.js applications, REST APIs, microservices, cloud-native solutions, Kubernetes infrastructure and scalable enterprise software.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

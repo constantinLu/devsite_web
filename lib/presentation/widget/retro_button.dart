@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 
 import '../common/color_picker.dart';
 
-enum BtnSize { XS, S, M, L, XL }
-
 class RetroButton extends StatefulWidget {
   final String label;
   final Size? btnSize;
   final Function onPressed;
+  final bool enabled;
 
-  const RetroButton({super.key, required this.label, this.btnSize, required this.onPressed});
+  const RetroButton(
+      {super.key,
+      required this.label,
+      this.btnSize,
+      required this.onPressed,
+      this.enabled = true});
 
   @override
   State<RetroButton> createState() => _RetroButtonState();
@@ -48,11 +52,10 @@ class _RetroButtonState extends State<RetroButton> {
 
         // SECOND BUTTON
         ElevatedButton(
-          onPressed: () {
-            widget.onPressed();
-          },
+          onPressed: widget.enabled ? () => widget.onPressed() : null,
           style: ElevatedButton.styleFrom(
             backgroundColor: kcTitleTurquoise,
+            disabledBackgroundColor: kcGreyDim,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0),
               side: const BorderSide(

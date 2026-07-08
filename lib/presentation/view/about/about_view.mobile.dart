@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:devsite_web/presentation/widget/carousel_widget_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../application/assets/app_assets.dart';
@@ -27,17 +28,28 @@ class AboutMobileView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset(
-                provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
-                fit: BoxFit.contain,
+              child: Seo.image(
+                src: provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                alt: "DEVSite software development",
+                child: Image.asset(
+                  provider.isDarkMode ? AppAssets.devsiteDark : AppAssets.devsiteLight,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
             Space.height(2.h)!,
-            Text(aboutHello, style: poppinsStyle(context, 30)),
+            Seo.text(
+              text: aboutHello,
+              child: Text(aboutHello, style: poppinsStyle(context, 30)),
+            ),
             Space.height(1.h)!,
-            Text(
-              welcomeTitle,
-              style: montserratStyle(context, 25),
+            Seo.text(
+              text: welcomeTitle,
+              style: TextTagStyle.h1,
+              child: Text(
+                welcomeTitle,
+                style: montserratStyle(context, 25),
+              ),
             ),
             Space.height(1.h)!,
             Expanded(
@@ -48,9 +60,12 @@ class AboutMobileView extends StatelessWidget {
               ),
             ),
             Space.height(4.h)!,
-            Text(
-              miniDescription,
-              style: robotoStyle(context),
+            Seo.text(
+              text: miniDescription,
+              child: Text(
+                miniDescription,
+                style: robotoStyle(context),
+              ),
             ),
             Space.height(6.h)!,
             CarouselMobileWidget(),

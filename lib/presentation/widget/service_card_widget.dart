@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../application/model/tags.dart';
@@ -50,25 +51,36 @@ class ServiceCard extends StatelessWidget {
                 decoration: BoxDecoration(color: backgroundColor ?? Colors.grey),
                 child: Padding(
                   padding: const EdgeInsets.all(12).copyWith(bottom: 8),
-                  child: SvgPicture.asset(image, fit: BoxFit.scaleDown),
+                  child: Seo.image(
+                    src: image,
+                    alt: name,
+                    child: SvgPicture.asset(image, fit: BoxFit.scaleDown),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
-                child: Text(
-                  name,
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: provider.darkMode() ? kcWhiteFull : kcBlackFull,
-                      fontWeight: FontWeight.w700),
+                child: Seo.text(
+                  text: name,
+                  style: TextTagStyle.h2,
+                  child: Text(
+                    name,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: provider.darkMode() ? kcWhiteFull : kcBlackFull,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 14),
-                child: Text(
-                  description,
-                  style: const TextStyle(
-                      fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
+                child: Seo.text(
+                  text: description,
+                  child: Text(
+                    description,
+                    style: const TextStyle(
+                        fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
+                  ),
                 ),
               ),
               Padding(

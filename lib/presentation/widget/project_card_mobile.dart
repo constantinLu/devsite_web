@@ -4,6 +4,7 @@ import 'package:devsite_web/presentation/widget/tag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:seo/seo.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../application/model/project.dart';
@@ -36,9 +37,13 @@ class ProjectCardMobile extends StatelessWidget {
 
     // Touch has no hover, so make the whole card tappable when it links out.
     if (project.url == null) return stacked;
-    return GestureDetector(
-      onTap: () => launchURL(project.url!),
-      child: stacked,
+    return Seo.link(
+      href: project.url!,
+      anchor: project.name,
+      child: GestureDetector(
+        onTap: () => launchURL(project.url!),
+        child: stacked,
+      ),
     );
   }
 
@@ -71,11 +76,15 @@ class ProjectCardMobile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
             child: Center(
               child: hasLogo
-                  ? ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 12.h),
-                      child: project.logo!.contains(".svg")
-                          ? SvgPicture.asset(project.logo!, fit: BoxFit.contain)
-                          : Image.asset(project.logo!, fit: BoxFit.contain),
+                  ? Seo.image(
+                      src: project.logo!,
+                      alt: project.name,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 12.h),
+                        child: project.logo!.contains(".svg")
+                            ? SvgPicture.asset(project.logo!, fit: BoxFit.contain)
+                            : Image.asset(project.logo!, fit: BoxFit.contain),
+                      ),
                     )
                   : Text(
                       project.name,
@@ -97,16 +106,26 @@ class ProjectCardMobile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(project.name, style: poppinsStyle(context, 20)),
+                Seo.text(
+                  text: project.name,
+                  style: TextTagStyle.h3,
+                  child: Text(project.name, style: poppinsStyle(context, 20)),
+                ),
                 const SizedBox(height: 6),
-                Text(project.sector, style: robotoStyle(context, 15)),
+                Seo.text(
+                  text: project.sector,
+                  child: Text(project.sector, style: robotoStyle(context, 15)),
+                ),
                 const SizedBox(height: 12),
-                Text(
-                  "• ${project.description}",
-                  softWrap: true,
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                  style: montserratStyleWithColor(context, 13, kcLightGrey, FontWeight.w400),
+                Seo.text(
+                  text: project.description,
+                  child: Text(
+                    "• ${project.description}",
+                    softWrap: true,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: montserratStyleWithColor(context, 13, kcLightGrey, FontWeight.w400),
+                  ),
                 ),
                 const SizedBox(height: 14),
                 Wrap(

@@ -1,5 +1,5 @@
 import 'package:devsite_web/presentation/common/color_picker.dart';
-import 'package:devsite_web/presentation/widget/retro_button.dart';
+import 'package:devsite_web/presentation/widget/submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -94,9 +94,9 @@ class ContactTabletView extends StatelessWidget {
                       ),
                       const Divider(),
                       Space.height(2.h)!,
-                      RetroButton(
+                      SubmitButton(
                         label: "SUBMIT",
-                        onPressed: () async {
+                        onSubmit: () async {
                           if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
                             alertMessage(
                                 context, "Please complete all fields with valid values.", kcRed);
