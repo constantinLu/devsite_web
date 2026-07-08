@@ -21,8 +21,6 @@ class NavbarButton extends StatefulWidget {
 class _NavbarButtonState extends State<NavbarButton> {
   @override
   Widget build(BuildContext context) {
-    final scrollProvider = Provider.of<ScrollProvider>(context);
-
     // theme
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -31,7 +29,9 @@ class _NavbarButtonState extends State<NavbarButton> {
       ),
       child: TextButton(
         onPressed: () {
-          scrollProvider.jumpTo(widget.index);
+          // Scroll the existing single-page list instead of pushing a new route
+          // (which recreated the list and broke the shared scroll controller).
+          Provider.of<ScrollProvider>(context, listen: false).jumpTo(widget.index);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

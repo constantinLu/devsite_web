@@ -22,6 +22,7 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
     AppAssets.confluence,
     AppAssets.docker,
     AppAssets.flutter,
+    AppAssets.kotlin,
     AppAssets.git,
     AppAssets.gradle,
     AppAssets.gcp,
@@ -32,6 +33,13 @@ class _CarouselWidgetState extends State<CarouselMobileWidget> {
     AppAssets.mysql,
     AppAssets.postgresql,
     AppAssets.springboot,
+    AppAssets.kafka,
+    AppAssets.claude,
+    AppAssets.mongoDb,
+    AppAssets.grafana,
+    AppAssets.newRelic,
+    AppAssets.kibana,
+    AppAssets.kubernetes,
   ];
 
   @override

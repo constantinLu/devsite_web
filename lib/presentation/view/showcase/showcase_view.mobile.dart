@@ -15,12 +15,13 @@ class ShowcaseMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = 460.h;
     return Container(
-      height: height,
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 2.w),
+      // No fixed height: the section sizes to its content so it always fits,
+      // regardless of how many projects are added.
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           /// ROW 1 - 3 elements
           Center(
@@ -30,39 +31,33 @@ class ShowcaseMobileView extends StatelessWidget {
             ),
           ),
           Space.height(3.h)!,
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                FixedTimeline.tileBuilder(
-                  theme: TimelineThemeData(
-                    color: kcTitleTurquoise,
-                    nodePosition: 0.10,
-                    nodeItemOverlap: true,
-                    indicatorTheme: IndicatorThemeData(),
-                    connectorTheme: ConnectorThemeData(),
-                  ),
-                  builder: TimelineTileBuilder.connectedFromStyle(
-                    contentsAlign: ContentsAlign.basic,
-                    itemCount: projects.length,
-                    contentsBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(left: 4),
-                      child: ProjectCardMobile(project: projects[index], index: index),
-                    ),
-                    oppositeContentsBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(right: 2),
-                      child: Text(
-                        projects[index].startDate.monthYear,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ),
-                    connectorStyleBuilder: (context, index) => ConnectorStyle.dashedLine,
-                    indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
-                  ),
+          FixedTimeline.tileBuilder(
+            // Size to content (default MainAxisSize.max needs a bounded height
+            // and throws under the unbounded height of the scroll list).
+            mainAxisSize: MainAxisSize.min,
+            theme: TimelineThemeData(
+              color: kcTitleTurquoise,
+              nodePosition: 0.10,
+              nodeItemOverlap: true,
+              indicatorTheme: IndicatorThemeData(),
+              connectorTheme: ConnectorThemeData(),
+            ),
+            builder: TimelineTileBuilder.connectedFromStyle(
+              contentsAlign: ContentsAlign.basic,
+              itemCount: projects.length,
+              contentsBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: ProjectCardMobile(project: projects[index]),
+              ),
+              oppositeContentsBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(right: 2),
+                child: Text(
+                  projects[index].startDate.monthYear,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
-              ],
+              ),
+              connectorStyleBuilder: (context, index) => ConnectorStyle.dashedLine,
+              indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
             ),
           ),
           Space.height(4.h)!,

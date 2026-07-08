@@ -1,4 +1,5 @@
 import 'package:devsite_web/application/provider/scroll_provider.dart';
+import 'package:devsite_web/presentation/common/app_routes.dart';
 import 'package:devsite_web/application/provider/theme_provider.dart';
 import 'package:devsite_web/presentation/view/main_view.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,14 @@ class AppWidget extends StatelessWidget {
           title: appTitle,
           debugShowCheckedModeBanner: false,
           theme: Provider.of<ThemeProvider>(context).getTheme(),
-          home: MainView(),
+          initialRoute: AppRoutes.home,
+          onGenerateRoute: (settings) {
+            final sectionIndex = AppRoutes.sectionFor(settings.name ?? AppRoutes.home);
+            return MaterialPageRoute(
+              builder: (_) => MainView(initialSection: sectionIndex),
+              settings: settings,
+            );
+          },
         );
       }),
     ).animate().fadeIn(duration: 200.ms);

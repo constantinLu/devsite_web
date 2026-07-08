@@ -1,5 +1,6 @@
 import 'package:devsite_web/presentation/view/showcase/showcase_view.desktop.dart';
 import 'package:devsite_web/presentation/view/showcase/showcase_view.mobile.dart';
+import 'package:devsite_web/presentation/view/showcase/showcase_view.tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -15,7 +16,7 @@ class _ShowcaseViewState extends State<ShowcaseView> {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       desktop: (_) => const ShowcaseDesktopView(),
-      tablet: (_) => const ShowcaseDesktopView(),
+      tablet: (_) => const ShowcaseTabletView(),
       mobile: (_) => const ShowcaseMobileView(),
     );
   }

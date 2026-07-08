@@ -22,7 +22,7 @@ class AboutDesktopView extends StatelessWidget {
 
     return SizedBox(
       height: 86.h,
-      width: 25.w,
+      width: 100.w,
       child: Column(
         children: [
           Padding(

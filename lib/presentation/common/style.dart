@@ -26,8 +26,9 @@ montserratStyleWithColor(BuildContext context, [double? size = 16, Color? color 
     );
 
 
-poppinsStyle(BuildContext context, [double? size = 16, FontWeight weight = FontWeight.w700]) =>
-    GoogleFonts.poppins(fontSize: size, fontWeight: weight);
+poppinsStyle(BuildContext context,
+        [double? size = 16, FontWeight weight = FontWeight.w700, Color? color]) =>
+    GoogleFonts.poppins(fontSize: size, fontWeight: weight, color: color);
 
 TextStyle get ktsTitle => GoogleFonts.openSans(
       fontSize: 80,

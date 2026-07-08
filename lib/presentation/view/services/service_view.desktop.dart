@@ -20,11 +20,11 @@ class ServiceDesktopView extends StatelessWidget {
   Widget build(BuildContext context) {
     final servicesMap = ServiceView.servicesMap;
     return Container(
-      height: 140.h,
-      width: 90.h,
+      width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           /// ROW 1 - 3 elements
           Text(servicesTitle, style: poppinsStyle(context, 32, FontWeight.w400)),

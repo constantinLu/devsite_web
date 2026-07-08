@@ -1,5 +1,6 @@
 import 'package:devsite_web/presentation/view/services/service_view.desktop.dart';
 import 'package:devsite_web/presentation/view/services/service_view.mobile.dart';
+import 'package:devsite_web/presentation/view/services/service_view.tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -25,7 +26,8 @@ class ServiceView extends StatefulWidget {
         "our team of web developers will deliver high-load performance systems with enhanced stability."
   };
 
-  String getValue(searchKey) => servicesMap.keys.firstWhere((key) => servicesMap[key] == searchKey);
+  String getValue(String searchKey) =>
+      servicesMap.keys.firstWhere((key) => servicesMap[key] == searchKey, orElse: () => '');
 
   @override
   State<ServiceView> createState() => _ServiceViewState();
@@ -36,7 +38,7 @@ class _ServiceViewState extends State<ServiceView> {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       desktop: (_) => const ServiceDesktopView(),
-      tablet: (_) => const ServiceDesktopView(),
+      tablet: (_) => const ServiceTabletView(),
       mobile: (_) => const ServiceMobileView(),
     );
   }

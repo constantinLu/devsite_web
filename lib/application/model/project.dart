@@ -50,34 +50,110 @@ enum Month {
 
   const Month(this.value);
 
-  static String monthString(int key) => Month.values.firstWhere((element) => element.value == key).name;
+  static String monthString(int key) => Month.values
+      .firstWhere((element) => element.value == key, orElse: () => Month.Jan)
+      .name;
 }
 
 var projects = [
   Project(
-      id: 16,
-      name: "VoltLab",
-      company: "-",
-      sector: "Business",
-      description: "Interactive Electrical Calculators",
-      logo: AppAssets.voltlabLogo,
+      id: 20,
+      name: "Empatik",
+      company: "Empatik SRL",
+      sector: "Medical",
+      description: "Presentation website for a medical home care company",
+      logo: AppAssets.empatikLogo,
       tags: [
         TagManager.getTag(TagName.vercel),
         TagManager.getTag(TagName.chatgpt),
         TagManager.getTag(TagName.nextJS),
         TagManager.getTag(TagName.typescript),
       ],
-      startDate: DateTime(2025, 11, 01),
+      startDate: DateTime(2026, 06, 01),
+      endDate: DateTime.now(),
+      color: Colors.white,
+      url: "https://empatik.ro"),
+  Project(
+      id: 19,
+      name: "Dental Medicine - Smirodava ",
+      company: "Medicina Dentara Smirodava SRL",
+      sector: "Dental",
+      description:
+          "Responsive presentation website for a dental clinic, focused on clearly communicating services, treatments, and building trust with patients.",
+      logo: AppAssets.medicinaDentaraLogo,
+      tags: [
+        TagManager.getTag(TagName.vercel),
+        TagManager.getTag(TagName.nextJS),
+        TagManager.getTag(TagName.typescript),
+      ],
+      startDate: DateTime(2026, 04, 01),
+      endDate: DateTime.now(),
+      color: Colors.white,
+      url: "https://www.medicinadentarasmirodava.ro/"),
+  Project(
+      id: 18,
+      name: "VoltLab",
+      company: "-",
+      sector: "Business",
+      description: "Interactive Electrical Calculators",
+      tags: [
+        TagManager.getTag(TagName.vercel),
+        TagManager.getTag(TagName.chatgpt),
+        TagManager.getTag(TagName.nextJS),
+        TagManager.getTag(TagName.typescript),
+      ],
+      startDate: DateTime(2024, 05, 01),
       endDate: DateTime.now(),
       color: Colors.blue,
       url: "https://www.voltlab.app"),
   Project(
-      id: 13,
+      id: 17,
+      name: "TIP",
+      company: "Eurocontrol",
+      sector: "Aviation",
+      description:
+          "Traffic Inspector: Inspection and validation of the aircraft traffic for operational analysis",
+      logo: AppAssets.eurocontrolLogo,
+      color: Colors.white,
+      tags: [
+        TagManager.getTag(TagName.java),
+        TagManager.getTag(TagName.maven),
+        TagManager.getTag(TagName.impala),
+        TagManager.getTag(TagName.integrationTesting),
+        TagManager.getTag(TagName.azure),
+        TagManager.getTag(TagName.kafka),
+      ],
+      startDate: DateTime(2026, 01, 01),
+      endDate: DateTime.now(),
+      url: 'https://sherlock.eurocontrol.int'),
+  Project(
+      id: 16,
+      name: "FIP",
+      company: "Eurocontrol",
+      sector: "Aviation",
+      description:
+          "Flight Inspector: Inspection and validation of flight data for compliance and operational analysis",
+      logo: AppAssets.eurocontrolLogo,
+      color: Colors.white,
+      tags: [
+        TagManager.getTag(TagName.java),
+        TagManager.getTag(TagName.maven),
+        TagManager.getTag(TagName.impala),
+        TagManager.getTag(TagName.unitTesting),
+        TagManager.getTag(TagName.integrationTesting),
+        TagManager.getTag(TagName.azure),
+        TagManager.getTag(TagName.kafka),
+      ],
+      startDate: DateTime(2025, 05, 01),
+      endDate: DateTime.now(),
+      url: 'https://sherlock.eurocontrol.int'),
+  Project(
+      id: 15,
       name: "Nature Ozon",
       company: "NatureOzon SRL",
       sector: "Medical",
       description:
-          "a modern presentation website for a medical clinic specializing in ozone therapy and rejuvenation treatments, focusing on clear service communication and user-friendly design",
+          "A modern presentation website for a medical clinic specializing in ozone therapy and rejuvenation treatments, focusing on clear service communication and user-friendly design",
       logo: AppAssets.natureOzonLogo,
       tags: [
         TagManager.getTag(TagName.vercel),
@@ -90,48 +166,12 @@ var projects = [
       color: Colors.white,
       url: "https://nature-ozon.vercel.app"),
   Project(
-      id: 115,
-      name: "TIP",
-      company: "Eurocontrol",
-      sector: "Aviation",
-      description: "Traffic Inspector: Inspection and validation of the aircraft traffic for operational analysis",
-      logo: AppAssets.eurocontrolLogo,
-      color: Colors.white,
-      tags: [
-        TagManager.getTag(TagName.java),
-        TagManager.getTag(TagName.maven),
-        TagManager.getTag(TagName.impala),
-        TagManager.getTag(TagName.integrationTesting),
-        TagManager.getTag(TagName.azure),
-      ],
-      startDate: DateTime(2025, 10, 01),
-      endDate: DateTime.now(),
-      url: 'https://sherlock.eurocontrol.int'),
-  Project(
-      id: 114,
-      name: "FIP",
-      company: "Eurocontrol",
-      sector: "Aviation",
-      description: "Flight Inspector: Inspection and validation of flight data for compliance and operational analysis",
-      logo: AppAssets.eurocontrolLogo,
-      color: Colors.white,
-      tags: [
-        TagManager.getTag(TagName.java),
-        TagManager.getTag(TagName.maven),
-        TagManager.getTag(TagName.impala),
-        TagManager.getTag(TagName.unitTesting),
-        TagManager.getTag(TagName.integrationTesting),
-        TagManager.getTag(TagName.azure),
-      ],
-      startDate: DateTime(2025, 05, 01),
-      endDate: DateTime.now(),
-      url: 'https://sherlock.eurocontrol.int'),
-  Project(
-      id: 113,
+      id: 14,
       name: "ACAS",
       company: "Eurocontrol",
       sector: "Aviation",
-      description: "Airborne Collision Avoidance System: Provides insights into aircraft collision avoidance events",
+      description:
+          "Airborne Collision Avoidance System: Provides insights into aircraft collision avoidance events",
       logo: AppAssets.eurocontrolLogo,
       color: Colors.white,
       tags: [
@@ -145,10 +185,10 @@ var projects = [
       endDate: DateTime.now(),
       url: 'https://sherlock.eurocontrol.int'),
   Project(
-      id: 113,
+      id: 13,
       name: "IAM",
       company: "Eurocontrol",
-      sector: "Authenication/Auhorization",
+      sector: "Authentication/Authorization",
       description: "Identity and Access Management",
       logo: AppAssets.eurocontrolLogo,
       color: Colors.white,
@@ -162,11 +202,12 @@ var projects = [
       endDate: DateTime.now(),
       url: 'https://sherlock.eurocontrol.int'),
   Project(
-      id: 15,
+      id: 12,
       name: "CNS-CAP",
       company: "Eurocontrol",
       sector: "Aviation",
-      description: "Aircraft communication, navigation and surveillance backend data processing",
+      description:
+          "Aircraft communication, navigation and surveillance backend data processing",
       logo: AppAssets.eurocontrolLogo,
       color: Colors.white,
       tags: [
@@ -181,7 +222,7 @@ var projects = [
       endDate: DateTime.now(),
       url: 'https://sherlock.eurocontrol.int'),
   Project(
-      id: 1,
+      id: 11,
       name: "Web-shop",
       company: "Orange",
       sector: "IT Telecom",
@@ -199,7 +240,7 @@ var projects = [
       endDate: DateTime(2023, 06, 01),
       url: 'https://www.orange.ro'),
   Project(
-      id: 2,
+      id: 10,
       name: "EBA",
       company: "Revolut",
       sector: "Finance",
@@ -214,12 +255,13 @@ var projects = [
         TagManager.getTag(TagName.spock),
         TagManager.getTag(TagName.unitTesting),
         TagManager.getTag(TagName.gcp),
+        TagManager.getTag(TagName.kafka),
       ],
-      startDate: DateTime(2022, 03, 01),
-      endDate: DateTime(2023, 01, 01),
+      startDate: DateTime(2022, 11, 01),
+      endDate: DateTime(2023, 02, 01),
       url: 'https://www.revolut.com/'),
   Project(
-      id: 3,
+      id: 9,
       name: "SEPA Non-instant",
       company: "Revolut",
       sector: "Finance",
@@ -234,12 +276,13 @@ var projects = [
         TagManager.getTag(TagName.e2eTesting),
         TagManager.getTag(TagName.spock),
         TagManager.getTag(TagName.gcp),
+        TagManager.getTag(TagName.kafka),
       ],
-      startDate: DateTime(2021, 06, 01),
-      endDate: DateTime(2023, 01, 01),
+      startDate: DateTime(2022, 05, 01),
+      endDate: DateTime(2022, 10, 01),
       url: 'https://www.revolut.com/'),
   Project(
-      id: 4,
+      id: 8,
       name: "SEPA Instant",
       company: "Revolut",
       sector: "Finance",
@@ -254,12 +297,13 @@ var projects = [
         TagManager.getTag(TagName.spock),
         TagManager.getTag(TagName.unitTesting),
         TagManager.getTag(TagName.gcp),
+        TagManager.getTag(TagName.kafka),
       ],
-      startDate: DateTime(2021, 06, 01),
-      endDate: DateTime(2023, 01, 01),
+      startDate: DateTime(2021, 11, 01),
+      endDate: DateTime(2022, 05, 01),
       url: 'https://www.revolut.com/'),
   Project(
-      id: 5,
+      id: 7,
       name: "Bailiff",
       company: "Revolut",
       sector: "Finance",
@@ -273,16 +317,18 @@ var projects = [
         TagManager.getTag(TagName.spock),
         TagManager.getTag(TagName.unitTesting),
         TagManager.getTag(TagName.gcp),
+        TagManager.getTag(TagName.kafka),
       ],
       startDate: DateTime(2021, 06, 01),
-      endDate: DateTime(2023, 01, 01),
+      endDate: DateTime(2021, 11, 01),
       url: 'https://www.revolut.com/'),
   Project(
       id: 6,
       name: "SEPA-Tester",
       company: "Revolut",
       sector: "Finance",
-      description: "Bank transaction simulator for automated testing of mandatory scenarios required by the bank authority"
+      description:
+          "Bank transaction simulator for automated testing of mandatory scenarios required by the bank authority"
           " before going LIVE",
       logo: AppAssets.revolutLogo,
       color: kcRevolut,
@@ -292,14 +338,14 @@ var projects = [
         TagManager.getTag(TagName.postgresql),
         TagManager.getTag(TagName.e2eTesting),
         TagManager.getTag(TagName.spock),
-        TagManager.getTag(TagName.unitTesting),
+        TagManager.getTag(TagName.kafka),
       ],
       startDate: DateTime(2021, 03, 01),
       endDate: DateTime(2021, 06, 01),
       url: 'https://www.revolut.com/'),
   Project(
-    id: 7,
-    name: "Forcaster",
+    id: 5,
+    name: "Forecaster",
     company: "Fortech",
     sector: "Finance",
     description: "Financial forecasting and projections performed to "
@@ -316,7 +362,7 @@ var projects = [
     endDate: DateTime(2021, 03, 01),
   ),
   Project(
-    id: 8,
+    id: 4,
     name: "Office-space",
     company: "Fortech",
     sector: "Human resources",
@@ -334,11 +380,12 @@ var projects = [
     endDate: DateTime(2020, 09, 01),
   ),
   Project(
-    id: 9,
+    id: 3,
     name: "E-resume",
     company: "Fortech",
     sector: "Human resources",
-    description: "Resume manager, creator, aggregator, editor based on templates. "
+    description:
+        "Resume manager, creator, aggregator, editor based on templates. "
         "Report generator based on skills, years of experience, projects.",
     logo: AppAssets.fortechLogo,
     color: kcBlackCard,
@@ -353,7 +400,7 @@ var projects = [
     endDate: DateTime(2019, 12, 01),
   ),
   Project(
-    id: 10,
+    id: 2,
     name: "Secur-auth",
     company: "Fortech",
     sector: "IT Security",
@@ -371,11 +418,12 @@ var projects = [
     endDate: DateTime(2019, 06, 01),
   ),
   Project(
-    id: 11,
+    id: 1,
     name: "Unite",
     company: "Mercedes",
     sector: "Finance",
-    description: "Car sales with different financial instruments used by dealerships entities in europe markets",
+    description:
+        "Car sales with different financial instruments used by dealerships entities in europe markets",
     logo: AppAssets.mercedesLogo,
     color: Colors.white,
     tags: [
@@ -387,4 +435,4 @@ var projects = [
     startDate: DateTime(2018, 04, 01),
     endDate: DateTime(2019, 04, 01),
   ),
-];
+]..sort((a, b) => b.startDate.compareTo(a.startDate));
